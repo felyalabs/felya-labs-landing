@@ -1,0 +1,40 @@
+---
+import { brand } from '../data/site.js';
+import BaseLayout from './BaseLayout.astro';
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={page.pageTitle} lang={page.lang} bodyClass="legal-page antialiased">
+    <main class="legal-shell">
+        <nav class="legal-nav" aria-label="Legal page">
+            <a href="index.html" class="legal-brand" aria-label="FELYA LABS home">
+                <img src={brand.logo.src} width={brand.logo.width} height={brand.logo.height} alt="">
+            </a>
+            <a href="index.html" class="legal-back">&larr; Back to website</a>
+        </nav>
+
+        <article class="legal-document surface-panel">
+            <h1 class="legal-title">{page.title}</h1>
+            <div class="legal-copy" set:html={page.body} />
+        </article>
+    </main>
+</BaseLayout>
+
+<style is:global>
+    .legal-copy {
+        text-align: justify;
+        text-justify: inter-word;
+        white-space: pre-wrap; 
+        line-height: 1.6;
+    }
+
+    .legal-copy a {
+        color: #3b82f6; 
+        text-decoration: underline;
+        transition: color 0.2s ease;
+    }
+    .legal-copy a:hover {
+        color: #1d4ed8; 
+    }
+</style>

@@ -1,0 +1,64 @@
+---
+import { gloveImage, waitlistForm } from '../data/site.js';
+
+const gloveSrcset = gloveImage.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                     ');
+---
+
+<section
+        class="relative flex min-h-[720px] flex-col items-center justify-between gap-10 px-8 pb-12 pt-32 md:min-h-[calc(100vh-7rem)] md:flex-row md:gap-12 md:px-16 md:pb-16 md:pt-40">
+
+    <div class="z-10 mt-6 flex w-full flex-col justify-center py-8 md:mt-0 md:ml-12 md:w-[50%] md:py-10">
+        <div class="mx-auto flex w-full max-w-[42rem] flex-col justify-center space-y-10 md:mx-0 md:max-w-none md:space-y-16">
+
+            <div class="space-y-6 max-w-full">
+                <h1 class="text-gray-300 text-3xl font-semibold tracking-wide">Interface of Craft:</h1>
+                <p class="text-gray-400 text-xl font-semibold leading-relaxed">
+                    With our Glove, people can perform manual tasks remotely by controlling robotic hands with natural
+                    movement and tactile feedback.
+                </p>
+            </div>
+
+            <div class="relative flex h-[32vh] min-h-[220px] max-h-[300px] w-full items-center justify-center md:hidden">
+                <img src={gloveImage.src} srcset={gloveSrcset} sizes={gloveImage.sizes}
+                     width={gloveImage.width} height={gloveImage.height} alt={gloveImage.alt} loading="eager"
+                     class="h-full w-auto max-w-full rotate-[2deg] scale-105 object-contain">
+            </div>
+
+            <div class="flex flex-col items-center space-y-4 md:items-start">
+                <h2 class="w-full text-center md:text-left">
+                    <span class="block text-[3rem] leading-[1.05] font-bold tracking-tight text-white sm:text-[4rem] sm:leading-none md:text-[3.8rem]">Stay in the loop.</span>
+                    <span class="block text-[3rem] leading-[1.05] font-bold tracking-tight text-[#777777] sm:text-[4rem] sm:leading-none md:text-[3.8rem]">Sign up now.</span>
+                </h2>
+
+                <form id="signup-form" action={waitlistForm.action} method="POST"
+                      data-success-message="Connection established. You're on the list."
+                      data-error-message="We couldn't submit that. Email info@felyalabs.com and we'll add you manually."
+                      class="flex w-full max-w-[380px] flex-col gap-3 pt-4">
+                    <label for="signup-email" class="sr-only">Email address</label>
+                    <input id="signup-email" type="email" name="email" required autocomplete="email" inputmode="email"
+                           placeholder="Email" aria-describedby="signup-consent signup-status"
+                           class="bg-[#141414] text-white px-5 py-4 rounded-[1.35rem] focus:outline-none focus:ring-1 focus:ring-gray-500 placeholder-gray-600 border border-[#222]">
+
+                    <p id="signup-consent" class="text-xs text-left pl-3 leading-relaxed text-gray-600 text-justify">
+                        By signing up, you agree to Formspark processing your email and technical data for your waitlist registration. You can withdraw consent at any time. See our <a href="privacy.html" class="text-gray-300 underline-offset-4 hover:text-white hover:underline">Privacy Policy</a>.
+                    </p>
+
+                    <button type="submit"
+                            data-label="Sign up"
+                            class="bg-white text-black font-semibold text-lg px-5 py-4 rounded-[1.35rem] hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-300 transition-colors">
+                        Sign up
+                    </button>
+
+                    <p id="signup-status" role="status" aria-live="polite"
+                       class="min-h-5 text-sm text-gray-500 data-[state=error]:text-red-300 data-[state=success]:text-green-400"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative mt-4 hidden h-[40vh] min-h-[280px] w-full items-center justify-center md:mt-0 md:flex md:h-[85vh] md:max-h-[700px] md:w-[50%]">
+        <img src={gloveImage.src} srcset={gloveSrcset} sizes={gloveImage.sizes}
+             width={gloveImage.width} height={gloveImage.height} alt={gloveImage.alt} loading="eager"
+             class="h-full w-auto max-w-full object-contain rotate-[2deg] scale-105 md:scale-110">
+    </div>
+</section>

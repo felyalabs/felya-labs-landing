@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('/fonts/manrope-variable.ttf') format('truetype');
+    font-weight: 400 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+:root {
+    --surface-radius-lg: 2rem;
+    --surface-radius-md: 1.35rem;
+    --surface-bg: #111111;
+    --surface-bg-muted: #141414;
+    --surface-border: #222222;
+}
+
+.surface-corners {
+    border-radius: var(--surface-radius-lg);
+}
+
+.surface-panel {
+    border: 1px solid var(--surface-border);
+    background-color: var(--surface-bg);
+    border-radius: var(--surface-radius-lg);
+}
+
+.gallery-dots-bar {
+    min-height: 4.25rem;
+}
+
+.carousel-dot__marker {
+    width: 0.5rem;
+    background-color: #333333;
+    transition: background-color 180ms ease, width 180ms ease;
+}
+
+.carousel-dot:hover .carousel-dot__marker,
+.carousel-dot:focus-visible .carousel-dot__marker {
+    background-color: #9ca3af;
+}
+
+.carousel-dot[data-active="true"] .carousel-dot__marker {
+    width: 1.75rem;
+    background-color: #ffffff;
+}
+
+.mobile-nav-toggle {
+    list-style: none;
+}
+
+.mobile-nav-toggle::-webkit-details-marker {
+    display: none;
+}
+
+@keyframes sponsor-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-1 * var(--sponsor-marquee-distance, 50%)));
+    }
+}
+
+.sponsor-marquee {
+    --sponsor-logo-gap: 4rem;
+    --sponsor-edge-fade: 3.5rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            #000 var(--sponsor-edge-fade),
+            #000 calc(100% - var(--sponsor-edge-fade)),
+            transparent
+    );
+    mask-image: linear-gradient(
+            to right,
+            transparent,
+            #000 var(--sponsor-edge-fade),
+            #000 calc(100% - var(--sponsor-edge-fade)),
+            transparent
+    );
+}
+
+.sponsor-marquee__track {
+    display: inline-flex;
+    width: max-content;
+    animation: sponsor-scroll 24s linear infinite;
+    will-change: transform;
+}
+
+.sponsor-marquee:hover .sponsor-marquee__track {
+    animation-play-state: paused;
+}
+
+.sponsor-marquee__group {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: var(--sponsor-logo-gap);
+    width: var(--sponsor-marquee-distance, max-content);
+    padding-right: var(--sponsor-logo-gap);
+}
+
+.sponsor-logo {
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.legal-page {
+    min-height: 100vh;
+    font-family: inherit;
+    background: #000000;
+    color: #d1d5db;
+}
+
+.legal-shell {
+    width: min(100% - 3rem, 52rem);
+    margin-inline: auto;
+    padding-block: 4rem;
+}
+
+.legal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.legal-brand img {
+    display: block;
+    height: 2rem;
+    width: auto;
+}
+
+.legal-back {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    border: 1px solid var(--surface-border);
+    border-radius: 999px;
+    background: var(--surface-bg);
+    padding: 0.7rem 1.1rem;
+    color: #9ca3af;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.legal-back:hover,
+.legal-back:focus-visible {
+    border-color: #3a3a3a;
+    background: var(--surface-bg-muted);
+    color: #ffffff;
+}
+
+.legal-back:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.legal-document {
+    padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.legal-title {
+    margin: 0 0 2rem;
+    border-bottom: 1px solid var(--surface-border);
+    padding-bottom: 1.25rem;
+    color: #ffffff;
+    font-size: clamp(1.55rem, 7vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0;
+    hyphens: auto;
+    overflow-wrap: anywhere;
+}
+
+.legal-copy {
+    white-space: pre-line;
+    color: #c4c7cf;
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+@media (max-width: 640px) {
+    .legal-shell {
+        width: min(100% - 2rem, 52rem);
+        padding-block: 2rem;
+    }
+
+    .legal-nav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .legal-brand img {
+        height: 1.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .sponsor-panel {
+        width: max-content;
+        max-width: 100%;
+        margin-inline: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .sponsor-marquee {
+        flex: 0 1 auto;
+        overflow: visible;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .sponsor-marquee__track {
+        display: block;
+        width: max-content;
+        max-width: 100%;
+        animation: none;
+        transform: none;
+        will-change: auto;
+    }
+
+    .sponsor-marquee__group {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.25rem var(--sponsor-logo-gap);
+        width: max-content;
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .sponsor-marquee__group:not(:first-child) {
+        display: none;
+    }
+}

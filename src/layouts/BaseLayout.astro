@@ -1,0 +1,38 @@
+---
+import { waitlistForm } from '../data/site.js';
+import '../styles/global.css';
+
+const {
+  title,
+  lang = 'en',
+  htmlClass = '',
+  bodyClass = 'antialiased',
+  includeSiteScript = false
+} = Astro.props;
+
+const styleSrc = import.meta.env.DEV ? "style-src 'self' 'unsafe-inline'" : "style-src 'self'";
+const scriptSrc = import.meta.env.DEV ? "script-src 'self' 'unsafe-inline'" : "script-src 'self'";
+const connectSrc = import.meta.env.DEV
+  ? `connect-src 'self' ${waitlistForm.origin}`
+  : `connect-src ${waitlistForm.origin}`;
+const contentSecurityPolicy = `default-src 'self'; base-uri 'none'; object-src 'none'; ${scriptSrc}; script-src-attr 'none'; ${styleSrc}; font-src 'self'; img-src 'self'; media-src 'self'; manifest-src 'self'; ${connectSrc}; form-action ${waitlistForm.origin}; frame-src 'none'; upgrade-insecure-requests`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class={htmlClass || undefined}>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content={contentSecurityPolicy}>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+</head>
+<body class={bodyClass}>
+    <slot />
+    {includeSiteScript && <script type="module" src="assets/js/site.js"></script>}
+</body>
+</html>

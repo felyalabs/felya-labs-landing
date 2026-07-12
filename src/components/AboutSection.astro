@@ -1,0 +1,44 @@
+---
+import { teamImage } from '../data/site.js';
+
+const teamSrcset = teamImage.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                        ');
+---
+
+<section id="about" class="flex flex-col items-center px-8 py-16 md:px-16">
+    <div class="text-center mb-16 space-y-4">
+        <h2 class="text-white text-2xl md:text-2xl font-bold tracking-tight">
+            Born in the Lab. Engineered for the Future.
+        </h2>
+        <div class="inline-block bg-[#111111] border border-[#222] rounded-full px-5 py-2 text-gray-400 text-sm font-medium">
+            Pre-seed venture | Germany
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-[1200px] w-full items-center">
+        <div class="w-full">
+            <img
+                    src={teamImage.src}
+                    srcset={teamSrcset}
+                    sizes={teamImage.sizes}
+                    width={teamImage.width}
+                    height={teamImage.height}
+                    loading="lazy"
+                    decoding="async"
+                    alt={teamImage.alt}
+                    class="surface-corners w-full h-auto object-cover border border-[#111]">
+        </div>
+        <div class="space-y-6 text-gray-400 text-lg leading-relaxed text-justify">
+            <p>
+                We are a team of students from the <strong class="text-white font-semibold">Code & Context</strong>{' '}
+                program at the <strong class="text-white font-semibold">Cologne University of Applied Sciences (TH
+                Köln)</strong>.
+            </p>
+            <p>
+                What started as an ambitious academic challenge has outgrown the classroom. Today, we are taking FELYA
+                LABS forward as an independent pre-seed venture. Driven by a fusion of human-centered design, software
+                development and advanced robotics, our goal is to transition this project into a full-scale tech
+                startup.
+            </p>
+        </div>
+    </div>
+</section>

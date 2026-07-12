@@ -1,0 +1,65 @@
+---
+import { video as defaultVideo } from '../data/site.js';
+
+const {
+  id = 'video',
+  heading = 'Prototyping',
+  video = defaultVideo,
+  playerId = 'prototype-video'
+} = Astro.props;
+
+const headingId = `${id}-heading`;
+const coverSrcset = video.cover?.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                            ');
+---
+
+<section id={id} class="px-8 md:px-16 pt-20 pb-36 flex flex-col items-center" aria-labelledby={headingId}>
+    <h2 id={headingId} class="bg-[#111111] border border-[#222] rounded-full px-6 py-2 text-gray-300 text-sm mb-12 font-medium">
+        {heading}
+    </h2>
+
+    <div class="surface-corners relative w-full max-w-[1100px] mx-auto aspect-video overflow-hidden border border-[#222] bg-black">
+        <video
+                id={playerId}
+                class="h-full w-full bg-black object-cover"
+                controls
+                controlslist="nodownload"
+                playsinline
+                preload={video.preload}
+                poster={video.cover?.poster}
+                width={video.width}
+                height={video.height}
+                aria-label={video.title}>
+            {video.sources.map((source) => (
+                <source data-src={source.src} type={source.type} media={source.media}>
+            ))}
+            {video.fallbackText}
+        </video>
+        {video.cover && (
+            <button
+                    type="button"
+                    data-video-cover
+                    data-video-target={playerId}
+                    aria-controls={playerId}
+                    aria-label={video.cover.label}
+                    hidden
+                    class="absolute inset-0 z-10 flex h-full w-full items-center justify-center bg-black text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black">
+                <picture class="absolute inset-0 h-full w-full" aria-hidden="true">
+                    <source srcset={coverSrcset} sizes={video.cover.sizes} type="image/webp">
+                    <img
+                            src={video.cover.src}
+                            width={video.cover.width}
+                            height={video.cover.height}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                            class="h-full w-full object-cover">
+                </picture>
+                <span class="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-black/55 text-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-sm transition-colors hover:bg-white hover:text-black md:h-20 md:w-20">
+                    <svg aria-hidden="true" focusable="false" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="ml-1">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </span>
+            </button>
+        )}
+    </div>
+</section>

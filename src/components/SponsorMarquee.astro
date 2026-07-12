@@ -1,0 +1,26 @@
+---
+import { sponsors } from '../data/site.js';
+
+const sponsorGroups = [sponsors, sponsors];
+const baseLogoClass = 'sponsor-logo w-auto opacity-60 filter grayscale transition-all duration-300 hover:grayscale-0 hover:opacity-100 cursor-pointer';
+---
+
+<section class="relative z-10 px-8 pb-14 md:px-16 md:pb-20" aria-labelledby="supporters-heading">
+    <div class="sponsor-panel surface-panel mx-auto flex w-full max-w-[72rem] items-center gap-7 overflow-hidden px-6 py-5 md:gap-8 md:px-8">
+        <span id="supporters-heading" class="shrink-0 whitespace-nowrap text-sm font-medium text-gray-400">Supported by</span>
+        <span class="sr-only">igus, Innovation Hub, KNIPEX, coco, Wurth, Fidlock, TH Köln, and Solingen.</span>
+
+        <div class="sponsor-marquee">
+            <div class="sponsor-marquee__track" aria-hidden="true">
+                {sponsorGroups.map((group) => (
+                    <div class="sponsor-marquee__group">
+                        {group.map((sponsor) => (
+                            <img src={sponsor.src} width={sponsor.width} height={sponsor.height} alt="" loading="lazy" decoding="async"
+                                 class={`${baseLogoClass} ${sponsor.className}`}>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>

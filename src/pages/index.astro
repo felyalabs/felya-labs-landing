@@ -1,0 +1,30 @@
+---
+import AboutSection from '../components/AboutSection.astro';
+import Footer from '../components/Footer.astro';
+import GallerySection from '../components/GallerySection.astro';
+import Header from '../components/Header.astro';
+import HeroSection from '../components/HeroSection.astro';
+import SponsorMarquee from '../components/SponsorMarquee.astro';
+import VideoSection from '../components/VideoSection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+    title="FELYA LABS - Real Time Robotic Teleoperation"
+    lang="en"
+    htmlClass="scroll-smooth"
+    bodyClass="antialiased overflow-x-hidden"
+    includeSiteScript
+>
+    <Header />
+
+    <main id="main">
+        <HeroSection />
+        <SponsorMarquee />
+        <AboutSection />
+        <VideoSection />
+        <GallerySection />
+    </main>
+
+    <Footer />
+</BaseLayout>

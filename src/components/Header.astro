@@ -1,0 +1,37 @@
+---
+import { brand, navLinks } from '../data/site.js';
+---
+
+<a href="#main"
+   class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:outline-none focus:ring-2 focus:ring-white">
+    Skip to content
+</a>
+
+<header class="absolute left-0 top-0 z-50 w-full px-6 py-6 md:px-16">
+    <nav class="surface-panel relative mx-auto flex w-full items-center justify-between gap-5 px-6 py-4 md:gap-8 md:px-12" aria-label="Primary">
+        <a href="#main" class="block shrink-0" aria-label="FELYA LABS home">
+            <img src={brand.logo.src} width={brand.logo.width} height={brand.logo.height} loading="eager" alt="FELYA LABS home"
+                 class="block h-8 w-auto object-contain md:h-9">
+        </a>
+        <details class="md:hidden">
+            <summary class="mobile-nav-toggle flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[#222] bg-[#0b0b0b] text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                <span class="sr-only">Open navigation</span>
+                <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round">
+                    <path d="M5 7h14"/>
+                    <path d="M5 12h14"/>
+                    <path d="M5 17h14"/>
+                </svg>
+            </summary>
+            <div class="surface-panel absolute left-1/2 top-[calc(100%+0.75rem)] flex w-64 max-w-[calc(100vw-3rem)] -translate-x-1/2 flex-col gap-1 p-2 text-base font-medium tracking-wide text-gray-300">
+                {navLinks.map((link) => (
+                    <a href={link.href} class="rounded-[1.35rem] px-5 py-4 transition-colors hover:bg-[#1a1a1a] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white">{link.label}</a>
+                ))}
+            </div>
+        </details>
+        <div class="hidden shrink-0 gap-8 whitespace-nowrap text-sm font-medium tracking-wide text-gray-400 md:flex">
+            {navLinks.map((link) => (
+                <a href={link.href} class="hover:text-white transition-colors duration-300">{link.label}</a>
+            ))}
+        </div>
+    </nav>
+</header>
