@@ -1,0 +1,34 @@
+---
+import { brand, legalLinks, socialLinks } from '../data/site.js';
+import SocialIcon from './SocialIcon.astro';
+import type { Locale } from '../i18n/config';
+import { localePath } from '../i18n/config';
+import { t, type TranslationKey } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<footer class="site-footer section-shell">
+    <div class="section-inner">
+        <div class="footer-bar">
+            <div class="footer-identity">
+                <a href={`${localePath(locale)}#paton`} class="footer-brand" aria-label={t(locale, 'brand.home')}>
+                    <img src={brand.logo.src} width={brand.logo.width} height={brand.logo.height} alt="FELYA LABS" loading="lazy" decoding="async" fetchpriority="low">
+                </a>
+                <p class="footer-copyright" data-i18n="footer.copyright">{t(locale, 'footer.copyright')}</p>
+            </div>
+            <div class="footer-socials">
+                {socialLinks.map((link) => (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={t(locale, `footer.${link.id}` as TranslationKey)}>
+                        <SocialIcon id={link.id} />
+                    </a>
+                ))}
+            </div>
+            <nav class="footer-legal" aria-label={t(locale, 'footer.legalAria')}>
+                {legalLinks.map((link) => (
+                    <a href={link.href} data-i18n={`legal.${link.key}`}>{t(locale, `legal.${link.key}` as TranslationKey)}</a>
+                ))}
+            </nav>
+        </div>
+    </div>
+</footer>

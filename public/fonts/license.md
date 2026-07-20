@@ -1,0 +1,5 @@
+- name: Manrope
+- direct download link: https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf
+- license type: SIL Open Font License 1.1
+- license link: https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt
+- license file: public/fonts/licenses/manrope-OFL-1.1.txt

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { browserLocaleAliases, languageStorageKey, locales } from '../i18n/config';
+---
+
+<BaseLayout locale="en" robots="noindex, follow" title="FELYA LABS" description="Choose your language to enter FELYA LABS.">
+    <main
+        class="locale-entry"
+        data-locale-entry
+        data-locales={JSON.stringify(locales)}
+        data-locale-aliases={JSON.stringify(browserLocaleAliases)}
+        data-storage-key={languageStorageKey}
+    >
+        <a href="/en/">Continue to FELYA LABS</a>
+    </main>
+    <script type="module" src="/assets/js/locale-redirect.js"></script>
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import { localePath, resolveLocale } from '../i18n/config';
+import BaseLayout from './BaseLayout.astro';
+
+const { page } = Astro.props;
+const locale = resolveLocale(page.lang);
+const contentBlocks = page.body
+    .split(/\r?\n\r?\n/)
+    .map((content) => content.trim())
+    .filter(Boolean)
+    .map((content) => ({
+        content,
+        type: /^\d+\.\s/.test(content) && !content.includes('\n') ? 'heading' : 'paragraph',
+        isMeta: /^(Last updated:|Information pursuant)/.test(content)
+    }));
+---
+
+<BaseLayout title={page.pageTitle} lang={page.lang} bodyClass="legal-page antialiased" includeSiteScript={true}>
+    <Header locale={locale} navigationBase={localePath(locale)} showLanguageSelector={false} />
+
+    <div class="legal-shell">
+        <main id="main" class="legal-main">
+            <article class="legal-document surface-panel">
+                <header class="legal-document-header">
+                    <p class="legal-eyebrow">FELYA LABS</p>
+                    <h1 class="legal-title">{page.title}</h1>
+                </header>
+                <div class="legal-copy">
+                    {contentBlocks.map((block) => block.type === 'heading'
+                        ? <h2 set:html={block.content} />
+                        : <p class:list={{ 'legal-meta': block.isMeta }} set:html={block.content.replace(/\r?\n/g, '<br>')} />
+                    )}
+                </div>
+            </article>
+        </main>
+    </div>
+</BaseLayout>

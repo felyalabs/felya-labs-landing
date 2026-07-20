@@ -1,0 +1,33 @@
+---
+import { teamPortrait } from '../data/site.js';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+
+const teamPortraitSrcset = teamPortrait.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                        ');
+---
+
+<section class="point-of-view-section section-shell" aria-labelledby="why">
+    <div class="section-inner">
+        <header class="point-of-view-intro reveal-block">
+            <p class="section-kicker" data-i18n="pointOfView.eyebrow">{t(locale, 'pointOfView.eyebrow')}</p>
+            <h2 id="why" class="point-of-view-title section-nav-target" data-i18n="pointOfView.heading" set:html={t(locale, 'pointOfView.heading')}></h2>
+            <div class="point-of-view-belief">
+                <p data-i18n="pointOfView.mission">{t(locale, 'pointOfView.mission')}</p>
+                <p data-i18n="pointOfView.principle">{t(locale, 'pointOfView.principle')}</p>
+            </div>
+        </header>
+
+        <figure class="point-of-view-portrait reveal-block">
+            <img src={teamPortrait.src} srcset={teamPortraitSrcset} sizes="(min-width: 1536px) 1536px, (min-width: 768px) calc(100vw - 6rem), calc(100vw - 3rem)"
+                 width={teamPortrait.width} height={teamPortrait.height} loading="lazy" decoding="async" alt={t(locale, 'pointOfView.imageAlt')}>
+        </figure>
+
+        <div class="point-of-view-disciplines reveal-block">
+            <p class="section-kicker" data-i18n="pointOfView.disciplinesEyebrow">{t(locale, 'pointOfView.disciplinesEyebrow')}</p>
+            <p class="point-of-view-disciplines__copy" data-i18n="pointOfView.disciplines">{t(locale, 'pointOfView.disciplines')}</p>
+            <p class="point-of-view-disciplines__origin" data-i18n="pointOfView.origin">{t(locale, 'pointOfView.origin')}</p>
+        </div>
+    </div>
+</section>

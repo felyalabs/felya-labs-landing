@@ -1,0 +1,35 @@
+---
+import { localeDetails, localePath, locales, type Locale } from '../i18n/config';
+import { t } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<button type="button" data-language-open class="language-toggle" aria-label={t(locale, 'language.open')} aria-haspopup="dialog" aria-controls="language-dialog">
+    <span>{localeDetails[locale].shortLabel}</span>
+</button>
+
+<dialog id="language-dialog" class="language-dialog" aria-labelledby="language-dialog-title" data-language-dialog>
+    <div class="language-dialog__panel">
+        <header class="language-dialog__header">
+            <h2 id="language-dialog-title">{t(locale, 'language.dialog')}</h2>
+            <button type="button" class="language-dialog__close" data-language-close aria-label={t(locale, 'language.close')}>
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="20" height="20"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+        </header>
+        <nav class="language-dialog__options" aria-label={t(locale, 'language.dialog')}>
+            {locales.map((item) => (
+                <a
+                    href={localePath(item)}
+                    lang={localeDetails[item].htmlLang}
+                    hreflang={localeDetails[item].htmlLang}
+                    data-language-option={item}
+                    aria-current={item === locale ? 'page' : undefined}
+                >
+                    <span>{localeDetails[item].nativeName}</span>
+                    <small>{localeDetails[item].shortLabel}</small>
+                </a>
+            ))}
+        </nav>
+    </div>
+</dialog>

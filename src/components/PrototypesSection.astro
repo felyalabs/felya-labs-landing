@@ -1,0 +1,59 @@
+---
+import { prototypeVideo as defaultVideo } from '../data/site.js';
+import type { Locale } from '../i18n/config';
+import { t, type TranslationKey } from '../i18n/translations';
+
+const { video = defaultVideo, playerId = 'prototype-video', locale } = Astro.props as { video?: typeof defaultVideo; playerId?: string; locale: Locale };
+const coverSrcset = video.cover?.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                            ');
+const chapterKeys = ['prototypes.proof.0', 'prototypes.proof.1', 'prototypes.proof.2'] as const;
+const phaseKeys = ['prototypes.phase.0', 'prototypes.phase.1', 'prototypes.phase.2'] as const;
+---
+
+<section class="prototypes-section section-shell" aria-labelledby="prototypes">
+    <div class="section-inner">
+        <header class="prototypes-intro reveal-block">
+            <div>
+                <p class="section-kicker" data-i18n="prototypes.eyebrow">{t(locale, 'prototypes.eyebrow')}</p>
+                <h2 id="prototypes" class="section-title section-nav-target" data-i18n="prototypes.heading" set:html={t(locale, 'prototypes.heading')}></h2>
+            </div>
+            <div class="prototypes-intro__copy">
+                <p class="section-lead" data-i18n="prototypes.description">{t(locale, 'prototypes.description')}</p>
+            </div>
+        </header>
+
+        <div class="prototypes-film-stage reveal-block">
+            <div data-video-frame class="video-ambient-frame prototypes-film">
+                <video id={playerId} class="h-full w-full bg-black object-cover" controls controlslist="nodownload" playsinline aria-describedby={`${playerId}-description`}
+                       preload={video.preload} poster={video.cover?.poster} width={video.width} height={video.height} aria-label={t(locale, 'prototypes.videoTitle')}>
+                    {video.sources.map((source) => (<source data-src={source.src} type={source.type} media={source.media}>))}
+                    {t(locale, 'prototypes.videoFallback')}
+                </video>
+                {video.cover && (
+                    <button type="button" data-video-cover data-video-target={playerId} data-video-replay-label={t(locale, 'prototypes.videoReplayLabel')} aria-controls={playerId} aria-label={t(locale, 'prototypes.videoLabel')} hidden
+                            class="prototypes-film__cover group absolute inset-0 z-10 flex h-full w-full cursor-pointer items-center justify-center bg-black text-white focus:outline-none">
+                        <picture class="prototypes-film__picture absolute inset-0 h-full w-full" aria-hidden="true">
+                            <source srcset={coverSrcset} sizes={video.cover.sizes} type="image/webp">
+                            <img src={video.cover.src} width={video.cover.width} height={video.cover.height} alt="" loading="lazy" decoding="async" class="prototypes-film__thumbnail h-full w-full object-cover">
+                        </picture>
+                        <span class="prototypes-film__shade absolute inset-0" aria-hidden="true"></span>
+                        <span class="prototypes-film__reflection" aria-hidden="true"></span>
+                        <span data-video-play-cta class="video-play-cta relative z-10 inline-flex items-center gap-3 border border-white/20 bg-white px-3 py-2 pr-5 text-sm font-semibold text-black shadow-[0_22px_70px_rgba(0,0,0,0.45)] md:gap-4 md:px-5 md:py-3 md:pr-8 md:text-lg">
+                            <span class="video-play-cta__icon flex h-8 w-8 items-center justify-center rounded-full bg-black text-white md:h-11 md:w-11">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><path d="M8 5v14l11-7z"/></svg>
+                            </span>
+                            <span data-video-play-label data-i18n="prototypes.playButton">{t(locale, 'prototypes.playButton')}</span>
+                        </span>
+                    </button>
+                )}
+            </div>
+        </div>
+
+        <p id={`${playerId}-description`} class="prototypes-status" data-i18n="prototypes.status">{t(locale, 'prototypes.status')}</p>
+
+        <ol class="prototypes-chapters reveal-block" aria-label={t(locale, 'prototypes.proofAria')} data-i18n-aria-label="prototypes.proofAria">
+            {chapterKeys.map((chapterKey, index) => (
+                <li><span data-i18n={phaseKeys[index]}>{t(locale, phaseKeys[index] as TranslationKey)}</span><strong data-i18n={chapterKey}>{t(locale, chapterKey)}</strong></li>
+            ))}
+        </ol>
+    </div>
+</section>

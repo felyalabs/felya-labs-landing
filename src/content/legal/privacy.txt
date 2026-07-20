@@ -1,0 +1,62 @@
+Privacy Policy
+
+Last updated: July 2026
+
+1. General Information and Controller
+
+1.1. Protecting your personal data is of utmost importance to us. This Privacy Policy clarifies the nature, scope, and purpose of the processing of personal data (hereinafter referred to as "Data") within our website felyalabs.com (hereinafter referred to as "Website").
+
+1.2. The data controller responsible for the data processing on this Website pursuant to the General Data Protection Regulation (GDPR) is the founding team of the FELYA LABS project, acting as a partnership under civil law (Gesellschaft bürgerlichen Rechts — GbR) under German law, emerged from the "Code & Context" program at the Cologne University of Applied Sciences (TH Köln). You can contact us directly and informally via email at: info@felyalabs.com.
+
+
+2. Hosting and Server Log Files
+
+2.1. This Website is provided as a static website via the hosting service GitHub Pages. The provider is GitHub Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA (parent company: Microsoft Corp.). When accessing this Website, the hosting provider automatically processes technical access data (so-called server log files) transmitted by your browser. This includes the IP address of the accessing device, date and time of the request, volume of data transferred, browser type and version, the operating system used, and the referrer URL (the previously visited page).
+
+2.2. The processing of this data is technically necessary to ensure the stability, functionality, and security of the Website. The legal basis for this processing is Art. 6 (1) (f) GDPR (legitimate interest). Since GitHub is a US-based provider, compliance with European data protection standards is secured through the execution of Standard Contractual Clauses (SCCs) approved by the European Commission.
+
+2.3. In accordance with privacy-by-design and privacy-by-default principles, all core design elements, fonts, graphics, and the embedded prototype video are loaded locally from the infrastructure of our hosting provider. No data transmission to third-party CDNs (e.g., Google Fonts) takes place upon merely loading the page. We do not deploy any cookies or persistent local storage tracking mechanisms upon the mere retrieval of the Website.
+
+
+3. Data Collection via the Registration Function (Sign-Up)
+
+3.1. When you actively enter your email address into the designated form and execute the "Sign up" action, you consent to us processing your contact details and technical metadata for the purpose of including you in the project waiting list and sending you electronic updates regarding our milestones, research results, and future launch.
+
+3.2. For the technical provision, validation, and processing of form submissions, we utilize the external form backend Formspark, a service provided by Trampoline Software SRL, Rue de Marsannay-la-Côte Mazy 16, 5032 Gembloux, Belgium. A technical connection to Formspark's servers is exclusively established at the moment you actively click the submission button. According to the provider, the data is stored on servers within the European Union. Data transmitted during this action includes your email address and the required HTTP header data (including your IP address).
+
+3.3. The legal basis for this processing is your explicit consent pursuant to Art. 6 (1) (a) GDPR. You maintain the absolute and unconditional right to revoke this consent at any time with effect for the future. A revocation can be submitted informally by sending an email notification to info@felyalabs.com. Following your revocation, your data will be permanently deleted from our list without undue delay.
+
+
+4. Contact via Email
+
+4.1. When you contact us directly via email, the details you provide (email address, name, and the content of your message) will be processed for the purpose of handling and resolving your inquiry.
+
+4.2. The legal basis for this processing is Art. 6 (1) (f) GDPR (legitimate interest in responding to user inquiries). If the email contact aims at the conclusion of a future contract or cooperation, the additional legal basis is Art. 6 (1) (b) GDPR. Your data will be deleted as soon as your inquiry has been conclusively resolved and no statutory retention obligations prevent such deletion.
+
+
+5. External Links to Social Networks
+
+5.1. Our Website contains links (hyperlinks) to our official profiles on external platforms (LinkedIn, Instagram, GitHub, YouTube). These links are integrated as simple, static URLs.
+
+5.2. Merely visiting our Website does not trigger any transmission of data to these third-party providers. A data transfer (including your IP address and, if applicable, account information if you are logged into the respective service) is only initiated if you actively click on the link and are redirected to the domain of the third-party provider. We exercise no control over the data processing practices of these external platforms.
+
+
+6. Embedded Local Video Material
+
+6.1. The video embedded on the Website demonstrating our robotics prototypes is served as a local media file directly through our server infrastructure. When loading, displaying, or playing this video, no connection is established at any time to servers of third-party providers such as YouTube (Google).
+
+6.2. The browser requests the local video data only after the user activates the play control. The legal basis for this visual provision is Art. 6 (1) (f) GDPR (legitimate interest in the clear and technically optimized presentation of our research results).
+
+
+7. Your Statutory Rights under the GDPR
+
+7.1. As a data subject under European law, you possess comprehensive statutory rights regarding your personal data, which you can assert at any time by contacting us informally via email at info@felyalabs.com:
+
+(1) Right of Access (Art. 15 GDPR): The right to obtain information about your data processed by us.
+(2) Right to Rectification (Art. 16 GDPR): The right to demand the immediate correction of inaccurate or incomplete data.
+(3) Right to Erasure / "Right to be Forgotten" (Art. 17 GDPR): The right to request the complete deletion of your data stored by us.
+(4) Right to Restriction of Processing (Art. 18 GDPR): The right to restrict data processing under specific statutory conditions.
+(5) Right to Data Portability (Art. 20 GDPR): The right to receive your data in a structured, commonly used, and machine-readable format.
+(6) Right to Object (Art. 21 GDPR): The right to object at any time to data processing based on our legitimate interests.
+
+7.2. Pursuant to Art. 7 (3) GDPR, you also maintain the right to revoke any consent previously granted at any time with effect for the future. Furthermore, you have the right to lodge a complaint with a competent data protection supervisory authority (Art. 77 GDPR).

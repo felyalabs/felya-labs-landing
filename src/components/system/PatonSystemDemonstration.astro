@@ -1,0 +1,126 @@
+---
+import type { Locale } from '../../i18n/config';
+import { t } from '../../i18n/translations';
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<div
+    class="system-demonstration"
+    data-system-demonstration
+    data-phase="rest"
+    role="group"
+    aria-label={t(locale, 'system.flowAria')}
+    data-i18n-aria-label="system.flowAria"
+>
+    <div class="system-demonstration__stage">
+        <svg
+            class="system-demonstration__mobile-loop"
+            viewBox="0 0 100 100"
+            aria-hidden="true"
+        >
+            <path
+                class="system-demonstration__mobile-loop-path system-demonstration__mobile-loop-path--forward"
+                d="M61 9A41 41 0 0 1 90 54"
+            />
+            <path
+                class="system-demonstration__mobile-loop-path system-demonstration__mobile-loop-path--return"
+                d="M39 91A41 41 0 0 1 9 57"
+            />
+            <g class="system-demonstration__beam system-demonstration__beam--forward system-demonstration__mobile-loop-beam">
+                <path class="system-demonstration__beam-halo" d="M61 9A41 41 0 0 1 90 54" pathLength="1" />
+                <path class="system-demonstration__beam-core" d="M61 9A41 41 0 0 1 90 54" pathLength="1" />
+            </g>
+            <g class="system-demonstration__beam system-demonstration__beam--return system-demonstration__mobile-loop-beam">
+                <path class="system-demonstration__beam-halo" d="M39 91A41 41 0 0 1 9 57" pathLength="1" />
+                <path class="system-demonstration__beam-core" d="M39 91A41 41 0 0 1 9 57" pathLength="1" />
+            </g>
+        </svg>
+
+        <div class="system-demonstration__subject system-demonstration__subject--operator" aria-hidden="true">
+            <div class="system-demonstration__operator-stack">
+                <span class="system-demonstration__operator-layer system-demonstration__operator-layer--base"></span>
+                <span class="system-demonstration__operator-layer system-demonstration__operator-layer--suit"></span>
+                <span class="system-demonstration__operator-layer system-demonstration__operator-layer--glove-right"></span>
+                <span class="system-demonstration__operator-layer system-demonstration__operator-layer--glove-left"></span>
+            </div>
+        </div>
+
+        <div class="system-demonstration__subject system-demonstration__subject--robot" aria-hidden="true">
+            <div class="system-demonstration__art system-demonstration__art--robot"></div>
+        </div>
+
+        <button
+            class="system-demonstration__trigger system-demonstration__trigger--operator"
+            type="button"
+            data-system-demo-trigger="forward"
+            aria-label={t(locale, 'system.stage.movement.aria')}
+            data-i18n-aria-label="system.stage.movement.aria"
+        ></button>
+        <button
+            class="system-demonstration__trigger system-demonstration__trigger--robot"
+            type="button"
+            data-system-demo-trigger="return"
+            aria-label={t(locale, 'system.stage.action.aria')}
+            data-i18n-aria-label="system.stage.action.aria"
+        ></button>
+
+        <svg
+            class="system-demonstration__signals system-demonstration__signals--desktop"
+            viewBox="0 0 1400 630"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+        >
+            <defs>
+                <marker class="system-demonstration__fallback-arrow" id="system-demo-forward-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0 0 9 4.5 0 9Z" />
+                </marker>
+                <marker class="system-demonstration__fallback-arrow" id="system-demo-return-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
+                    <path d="M0 0 9 4.5 0 9Z" />
+                </marker>
+            </defs>
+
+            <path class="system-demonstration__path system-demonstration__path--forward" d="M470 250C604 226 812 226 950 250" marker-end="url(#system-demo-forward-arrow)" />
+            <path class="system-demonstration__path system-demonstration__path--return" d="M950 371C812 395 604 395 470 371" marker-end="url(#system-demo-return-arrow)" />
+            <g class="system-demonstration__beam system-demonstration__beam--forward">
+                <path class="system-demonstration__beam-halo" d="M470 250C604 226 812 226 950 250" pathLength="1" />
+                <path class="system-demonstration__beam-core" d="M470 250C604 226 812 226 950 250" pathLength="1" />
+            </g>
+            <g class="system-demonstration__beam system-demonstration__beam--return">
+                <path class="system-demonstration__beam-halo" d="M950 371C812 395 604 395 470 371" pathLength="1" />
+                <path class="system-demonstration__beam-core" d="M950 371C812 395 604 395 470 371" pathLength="1" />
+            </g>
+        </svg>
+
+        <button
+            class="system-demonstration__paton"
+            type="button"
+            data-system-demo-trigger="complete"
+            aria-label={t(locale, 'system.stage.paton.aria')}
+            data-i18n-aria-label="system.stage.paton.aria"
+        >
+            <span>PATON</span>
+            <small data-i18n="system.patonLayer">{t(locale, 'system.patonLayer')}</small>
+        </button>
+
+        <p class="system-demonstration__annotation system-demonstration__annotation--forward" data-i18n="system.forward">
+            {t(locale, 'system.forward')}
+        </p>
+        <p class="system-demonstration__annotation system-demonstration__annotation--return" data-i18n="system.return">
+            {t(locale, 'system.return')}
+        </p>
+        <p class="system-demonstration__annotation system-demonstration__annotation--return-phone" data-i18n="system.returnShort">
+            {t(locale, 'system.returnShort')}
+        </p>
+
+        <div class="system-demonstration__caption system-demonstration__caption--operator">
+            <strong data-i18n="system.sequence.movement">{t(locale, 'system.sequence.movement')}</strong>
+            <span data-i18n="system.sequence.capture">{t(locale, 'system.sequence.capture')}</span>
+        </div>
+
+        <div class="system-demonstration__caption system-demonstration__caption--robot">
+            <strong data-i18n="system.sequence.paton">{t(locale, 'system.sequence.paton')}</strong>
+            <span data-i18n="system.sequence.action">{t(locale, 'system.sequence.action')}</span>
+        </div>
+
+    </div>
+</div>

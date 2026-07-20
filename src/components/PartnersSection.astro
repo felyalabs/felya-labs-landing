@@ -1,0 +1,43 @@
+---
+import { partners } from '../data/site.js';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+
+const baseLogoClass = 'partner-logo';
+const partnerOrder = [
+    'Innovation Hub Bergisches RheinLand',
+    'igus',
+    'KNIPEX',
+    'Würth Elektronik',
+    'FIDLOCK',
+    'Code & Context',
+    'Gateway TH Köln',
+    'TH Köln',
+    'Solingen Business'
+];
+const orderedPartners = partnerOrder
+    .map((name) => partners.find((partner) => partner.name === name))
+    .filter(Boolean);
+---
+
+<section class="partner-section section-shell" aria-labelledby="partners-heading">
+    <div class="section-inner reveal-block">
+        <p class="partner-kicker section-kicker" data-i18n="partners.eyebrow">{t(locale, 'partners.eyebrow')}</p>
+        <h2 id="partners-heading" class="partner-heading" data-i18n="partners.heading">{t(locale, 'partners.heading')}</h2>
+        <ul class="sr-only">
+            {orderedPartners.map((partner) => <li>{partner.name}</li>)}
+        </ul>
+        <div class="partner-grid" aria-hidden="true">
+            {orderedPartners.map((partner) => (
+                <span class={`partner-logo-frame ${partner.frameClass}`}>
+                    <img src={partner.darkDefaultSrc} width={partner.width} height={partner.height} alt="" loading="lazy" decoding="async" class={`${baseLogoClass} partner-logo--dark-default`}>
+                    <img src={partner.src} width={partner.width} height={partner.height} alt="" loading="lazy" decoding="async" class={`${baseLogoClass} partner-logo--dark-hover`}>
+                    <img src={partner.lightDefaultSrc} width={partner.width} height={partner.height} alt="" loading="lazy" decoding="async" class={`${baseLogoClass} partner-logo--light-default`}>
+                    <img src={partner.lightHoverSrc} width={partner.width} height={partner.height} alt="" loading="lazy" decoding="async" class={`${baseLogoClass} partner-logo--light-hover`}>
+                </span>
+            ))}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import PatonSystemDemonstration from './system/PatonSystemDemonstration.astro';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<section class="system-section section-shell" aria-labelledby="system">
+    <div class="section-inner">
+        <header class="system-intro reveal-block">
+            <p class="section-kicker" data-i18n="system.eyebrow">{t(locale, 'system.eyebrow')}</p>
+            <h2 id="system" class="section-title section-nav-target" data-i18n="system.heading" set:html={t(locale, 'system.heading')}></h2>
+            <div class="section-lead system-intro__lead">
+                <p class="system-intro__sequence" data-i18n="system.leadSequence">{t(locale, 'system.leadSequence')}</p>
+                <p data-i18n="system.leadControl">{t(locale, 'system.leadControl')}</p>
+            </div>
+        </header>
+
+        <PatonSystemDemonstration locale={locale} />
+    </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import type { Locale } from '../i18n/config';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import HeroSection from './HeroSection.astro';
+import PrototypesSection from './PrototypesSection.astro';
+import PatonSystemSection from './PatonSystemSection.astro';
+import DevelopmentUpdatesSection from './DevelopmentUpdatesSection.astro';
+import FuturesSection from './FuturesSection.astro';
+import PartnersSection from './PartnersSection.astro';
+import PointOfViewSection from './PointOfViewSection.astro';
+import WorkWithUsSection from './WorkWithUsSection.astro';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<Header locale={locale} />
+<main id="main">
+    <HeroSection locale={locale} />
+    <PatonSystemSection locale={locale} />
+    <PointOfViewSection locale={locale} />
+    <PrototypesSection locale={locale} />
+    <PartnersSection locale={locale} />
+    <FuturesSection locale={locale} />
+    <DevelopmentUpdatesSection locale={locale} />
+    <WorkWithUsSection locale={locale} />
+</main>
+<Footer locale={locale} />

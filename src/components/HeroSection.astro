@@ -1,0 +1,48 @@
+---
+import { gloveLightImage, gloveDarkImage } from '../data/site.js';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+
+const gloveSrcset = gloveDarkImage.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                     ');
+const gloveCutoutSrcset = gloveLightImage.srcset.map(([src, width]) => `${src} ${width}w`).join(',\n                     ');
+---
+
+<section id="paton" class="hero-reveal hero-section">
+    <div class="hero-composition">
+        <div class="hero-copy">
+            <p class="hero-product-name" data-i18n="hero.product">{t(locale, 'hero.product')}</p>
+            <h1 class="hero-title">
+                <span class="block text-white" data-i18n="hero.headlineHands">{t(locale, 'hero.headlineHands')}</span>
+                <span class="hero-headline-language-hitbox text-[#777777]" data-hero-headline-languages data-hero-intro-pending
+                      role="button" tabindex="0" aria-label={t(locale, 'hero.languageInteraction')}>
+                    <span class="hero-headline-language-reference" data-i18n="hero.headlineAnywhere"
+                          aria-hidden="true">{t(locale, 'hero.headlineAnywhere')}</span>
+                    <span class="hero-headline-language-text" data-i18n="hero.headlineAnywhere">{t(locale, 'hero.headlineAnywhere')}</span>
+                </span>
+            </h1>
+            <p class="hero-lead" data-i18n="hero.lead">
+                {t(locale, 'hero.lead')}
+            </p>
+
+        </div>
+
+        <div class="hero-product-stage hero-mobile-glove-stage">
+            <div class="hero-product-composite hero-scroll-glove" data-hero-product-composite>
+                <img src={gloveLightImage.src}
+                     srcset={gloveCutoutSrcset}
+                     sizes="(min-width: 1280px) 540px, (min-width: 1024px) 460px, (min-width: 640px) 430px, calc(100vw - 48px)"
+                     width={gloveLightImage.width} height={gloveLightImage.height}
+                     alt={t(locale, 'hero.imageAlt')} loading="eager" decoding="async" fetchpriority="high"
+                     class="hero-product-image hero-product-image--light">
+                <img src={gloveDarkImage.src}
+                     srcset={gloveSrcset}
+                     sizes="(min-width: 1280px) 540px, (min-width: 1024px) 460px, (min-width: 640px) 430px, calc(100vw - 48px)"
+                     width={gloveDarkImage.width} height={gloveDarkImage.height}
+                     alt="" aria-hidden="true" loading="eager" decoding="async" fetchpriority="high"
+                     class="hero-product-image hero-product-image--dark">
+            </div>
+        </div>
+    </div>
+</section>

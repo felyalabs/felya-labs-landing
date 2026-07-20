@@ -1,0 +1,59 @@
+---
+import { brand, navLinks } from '../data/site.js';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageSelector from './LanguageSelector.astro';
+import type { Locale } from '../i18n/config';
+import { localePath } from '../i18n/config';
+import { t, type TranslationKey } from '../i18n/translations';
+
+const { locale, navigationBase = '', showLanguageSelector = true } = Astro.props as {
+    locale: Locale;
+    navigationBase?: string;
+    showLanguageSelector?: boolean;
+};
+
+const navigationHref = (href: string) => `${navigationBase}${href}`;
+---
+
+<a href="#main"
+   class="skip-link sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:outline-none focus:ring-2 focus:ring-white">
+    <span data-i18n="nav.skip">{t(locale, 'nav.skip')}</span>
+</a>
+
+<header class="site-header fixed left-0 top-0 z-50 w-full px-4 py-4 sm:px-6 md:absolute md:px-12 md:py-5 lg:px-16">
+    <nav class="site-nav relative mx-auto flex w-full max-w-[104rem] items-center justify-between gap-3 px-5 py-3 md:gap-8 md:px-8" aria-label={t(locale, 'nav.primary')} data-i18n-aria-label="nav.primary">
+        <a href={`${localePath(locale)}#main`} class="block shrink-0" aria-label={t(locale, 'brand.home')}>
+            <img src={brand.logo.src} width={brand.logo.width} height={brand.logo.height} loading="eager" alt={t(locale, 'brand.home')}
+                 class="theme-brand-logo block h-7 w-auto -translate-y-[0.12rem] object-contain md:h-8">
+        </a>
+        <div class="header-controls order-2 ml-auto flex items-center gap-2 md:order-3 md:ml-0">
+            <ThemeToggle locale={locale} />
+            {showLanguageSelector && <LanguageSelector locale={locale} />}
+        </div>
+        <details class="mobile-navigation order-3 md:hidden">
+            <summary class="mobile-nav-toggle flex h-11 w-11 cursor-pointer items-center justify-center text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                     aria-label={t(locale, 'nav.open')}
+                     aria-controls="mobile-navigation-panel"
+                     aria-expanded="false">
+                <span class="sr-only" data-i18n="nav.open">{t(locale, 'nav.open')}</span>
+                <svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round">
+                    <path d="M5 7h14"/>
+                    <path d="M5 12h14"/>
+                    <path d="M5 17h14"/>
+                </svg>
+            </summary>
+            <div id="mobile-navigation-panel" class="mobile-nav-panel absolute right-0 top-[calc(100%+0.75rem)] flex w-64 max-w-[calc(100vw-2rem)] flex-col gap-1 p-2 text-base font-medium text-gray-300">
+                {navLinks.map((link) => (
+                    <a href={navigationHref(link.href)} data-nav-link data-i18n={`nav.${link.key}`} class="px-5 py-4 transition-colors hover:bg-white/[0.04] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]">{t(locale, `nav.${link.key}` as TranslationKey)}</a>
+                ))}
+            </div>
+        </details>
+        <div class="order-2 hidden shrink-0 items-center gap-6 whitespace-nowrap text-sm font-medium text-gray-400 md:flex">
+            <div class="flex items-center gap-8">
+                {navLinks.map((link) => (
+                    <a href={navigationHref(link.href)} data-nav-link data-i18n={`nav.${link.key}`} class="nav-link hover:text-white transition-colors duration-300">{t(locale, `nav.${link.key}` as TranslationKey)}</a>
+                ))}
+            </div>
+        </div>
+    </nav>
+</header>

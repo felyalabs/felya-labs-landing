@@ -1,0 +1,46 @@
+---
+import { developmentUpdatesForm } from '../data/site.js';
+import type { Locale } from '../i18n/config';
+import { t } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+const consentHtml = t(locale, 'developmentUpdates.consent').replace(/\s+target="_blank"/g, '');
+---
+
+<section id="updates" class="development-updates-section section-shell" aria-labelledby="development-updates-heading">
+    <div class="section-inner">
+        <div class="development-updates-composition reveal-block">
+            <div>
+                <p class="section-kicker" data-i18n="developmentUpdates.eyebrow">{t(locale, 'developmentUpdates.eyebrow')}</p>
+                <h2 id="development-updates-heading" class="development-updates-title" data-i18n="developmentUpdates.heading1" set:html={t(locale, 'developmentUpdates.heading1')}></h2>
+                <p class="development-updates-description" data-i18n="developmentUpdates.description">{t(locale, 'developmentUpdates.description')}</p>
+            </div>
+
+            <form id="development-updates-form" action={developmentUpdatesForm.action} method="POST"
+                  data-success-message={t(locale, 'developmentUpdates.success')}
+                  data-error-message={t(locale, 'developmentUpdates.error')}
+                  data-i18n-data-success-message="developmentUpdates.success"
+                  data-i18n-data-error-message="developmentUpdates.error"
+                  class="development-updates-form w-full">
+                <label for="development-updates-email" class="sr-only" data-i18n="developmentUpdates.emailLabel">{t(locale, 'developmentUpdates.emailLabel')}</label>
+                <input id="development-updates-email" type="email" name="email" required autocomplete="email" inputmode="email"
+                       placeholder={t(locale, 'developmentUpdates.placeholder')} aria-describedby="development-updates-consent development-updates-status"
+                       data-i18n-placeholder="developmentUpdates.placeholder"
+                       class="development-updates-input">
+
+                <button type="submit"
+                        data-label={t(locale, 'developmentUpdates.button')}
+                        data-i18n="developmentUpdates.button"
+                        data-i18n-data-label="developmentUpdates.button"
+                        class="development-updates-button">
+                    {t(locale, 'developmentUpdates.button')}
+                </button>
+
+                <p id="development-updates-consent" class="development-updates-consent" set:html={consentHtml}></p>
+
+                <p id="development-updates-status" role="status" aria-live="polite"
+                   class="development-updates-status"></p>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,79 @@
+---
+import type { Locale } from '../i18n/config';
+import { t, type TranslationKey } from '../i18n/translations';
+
+const { locale } = Astro.props as { locale: Locale };
+const scenarios = [
+  {
+    key: 'remote',
+    sketches: [
+      { name: 'vr-hydrogen-engine-touch', position: 'center', width: 2050, height: 2103 }
+    ]
+  },
+  {
+    key: 'hazard',
+    sketches: [
+      { name: 'static-haptic-refined-mask', position: 'left', width: 1345, height: 982, singleMask: true },
+      { name: 'humanoid-arms-knipex-pliers', position: 'right', width: 1464, height: 1066 }
+    ]
+  },
+  {
+    key: 'presence',
+    sketches: [
+      { name: 'operator-vr-paton-glove', position: 'left', width: 1636, height: 1524 },
+      { name: 'humanoid-with-rose', position: 'right', width: 1526, height: 1934 }
+    ]
+  }
+];
+
+const sketchSource = (name, theme) => `/assets/images/possible-futures/sketches/webp/${name}-${theme}.webp`;
+---
+
+<section class="futures-section section-shell" aria-labelledby="futures">
+    <div class="section-inner">
+        <header class="futures-intro reveal-block">
+            <p class="section-kicker" data-i18n="futures.eyebrow">{t(locale, 'futures.eyebrow')}</p>
+            <h2 id="futures" class="section-title section-nav-target" data-i18n="futures.heading" set:html={t(locale, 'futures.heading')}></h2>
+            <p class="section-lead" data-i18n="futures.description">{t(locale, 'futures.description')}</p>
+        </header>
+
+        <div class="future-canvas">
+            {scenarios.map((scenario) => (
+                <article class={`future-scenario future-scenario--${scenario.key} reveal-block`} aria-labelledby={`future-${scenario.key}-title`}>
+                    <div class="future-scenario__copy">
+                        <h3 id={`future-${scenario.key}-title`} data-i18n={`futures.scenario.${scenario.key}.title`} set:html={t(locale, `futures.scenario.${scenario.key}.title` as TranslationKey)}></h3>
+                        <p data-i18n={`futures.scenario.${scenario.key}.description`}>{t(locale, `futures.scenario.${scenario.key}.description` as TranslationKey)}</p>
+                    </div>
+                    <div class="future-scenario__visual" aria-hidden="true">
+                        {scenario.sketches.map((sketch) => (
+                            sketch.singleMask ? (
+                                <img
+                                    class={`future-sketch future-sketch--single-mask future-sketch--${scenario.key}-${sketch.position}`}
+                                    src={`/assets/images/possible-futures/sketches/webp/${sketch.name}.webp`}
+                                    width={sketch.width}
+                                    height={sketch.height}
+                                    alt=""
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            ) : (
+                                <img
+                                    class={`future-sketch future-sketch--${scenario.key}-${sketch.position}`}
+                                    src={sketchSource(sketch.name, 'black')}
+                                    data-theme-image
+                                    data-light-src={sketchSource(sketch.name, 'black')}
+                                    data-dark-src={sketchSource(sketch.name, 'white')}
+                                    width={sketch.width}
+                                    height={sketch.height}
+                                    alt=""
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            )
+                        ))}
+                    </div>
+                </article>
+            ))}
+        </div>
+    </div>
+</section>
