@@ -1188,12 +1188,292 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
       activeHapticTimers.add(timer);
     };
 
-    // Keep the animation source in lockstep with the CSS composition. A tall
-    // or near-square viewport needs the compact loop even when it is wider
-    // than a conventional tablet breakpoint.
-    const usesMobileSignalLoop = () => window.matchMedia(
-      '(max-width: 1099px), (max-aspect-ratio: 6 / 5)',
-    ).matches;
+    // Keep the animation source in lockstep with the CSS composition. The
+    // horizontal canvas remains active down to tablet landscape sizes. The
+    // circular canvas takes over only on genuinely narrow portrait viewports.
+    const compactLayoutQuery = window.matchMedia(
+      '(max-width: 1024px) and (orientation: portrait)',
+    );
+    const usesMobileSignalLoop = () => compactLayoutQuery.matches;
+
+    const stage = demonstration.querySelector('.system-demonstration__stage');
+    const operatorStack = demonstration.querySelector('.system-demonstration__operator-stack');
+    const robotSubject = demonstration.querySelector('.system-demonstration__subject--robot');
+    const desktopSignalSvg = demonstration.querySelector('.system-demonstration__signals--desktop');
+    const mobileSignalSvg = demonstration.querySelector('.system-demonstration__mobile-loop');
+    const patonLabel = demonstration.querySelector('.system-demonstration__paton');
+    const forwardLabel = demonstration.querySelector('.system-demonstration__annotation--forward');
+    const returnLabel = demonstration.querySelector('.system-demonstration__annotation--return');
+    const operatorSourceSize = { width: 1327, height: 1688 };
+    const robotSourceSize = { width: 1325, height: 1409 };
+    let collisionGeometryFrame = 0;
+
+    const getContainedArtworkRect = (containerRect, sourceSize, alignX, alignY) => {
+      const scale = Math.min(
+        containerRect.width / sourceSize.width,
+        containerRect.height / sourceSize.height,
+      );
+      const width = sourceSize.width * scale;
+      const height = sourceSize.height * scale;
+
+      return {
+        left: containerRect.left + (containerRect.width - width) * alignX,
+        top: containerRect.top + (containerRect.height - height) * alignY,
+        width,
+        height,
+      };
+    };
+
+    const setCollisionImageGeometry = (svg, selector, artworkRect) => {
+      if (!svg || !artworkRect) return;
+      const svgRect = svg.getBoundingClientRect();
+      const viewBox = svg.viewBox?.baseVal;
+      const image = svg.querySelector(selector);
+      if (!image || !viewBox || svgRect.width <= 0 || svgRect.height <= 0) return;
+
+      const scaleX = viewBox.width / svgRect.width;
+      const scaleY = viewBox.height / svgRect.height;
+      image.setAttribute('x', String(viewBox.x + (artworkRect.left - svgRect.left) * scaleX));
+      image.setAttribute('y', String(viewBox.y + (artworkRect.top - svgRect.top) * scaleY));
+      image.setAttribute('width', String(artworkRect.width * scaleX));
+      image.setAttribute('height', String(artworkRect.height * scaleY));
+    };
+
+    const setCollisionLabelGeometry = (svg, selector, element, padding = 10) => {
+      if (!svg || !element) return;
+      const svgRect = svg.getBoundingClientRect();
+      const viewBox = svg.viewBox?.baseVal;
+      const maskRect = svg.querySelector(selector);
+      const elementRect = element.getBoundingClientRect();
+      if (
+        !maskRect
+        || !viewBox
+        || svgRect.width <= 0
+        || svgRect.height <= 0
+        || elementRect.width <= 0
+        || elementRect.height <= 0
+      ) return;
+
+      const scaleX = viewBox.width / svgRect.width;
+      const scaleY = viewBox.height / svgRect.height;
+      maskRect.setAttribute(
+        'x',
+        String(viewBox.x + (elementRect.left - svgRect.left - padding) * scaleX),
+      );
+      maskRect.setAttribute(
+        'y',
+        String(viewBox.y + (elementRect.top - svgRect.top - padding) * scaleY),
+      );
+      maskRect.setAttribute('width', String((elementRect.width + padding * 2) * scaleX));
+      maskRect.setAttribute('height', String((elementRect.height + padding * 2) * scaleY));
+    };
+
+    const positionCompactSignalLabels = () => {
+      if (!stage || !mobileSignalSvg || !forwardLabel || !returnLabel) return;
+
+      const stageRect = stage.getBoundingClientRect();
+      const loopRect = mobileSignalSvg.getBoundingClientRect();
+      if (stageRect.width <= 0 || loopRect.width <= 0) return;
+
+      const centerX = loopRect.left - stageRect.left + loopRect.width / 2;
+      const centerY = loopRect.top - stageRect.top + loopRect.height / 2;
+      const radius = loopRect.width * 0.4;
+      // A real clear-space rule is more robust than viewport-specific nudges:
+      // labels sit at least one label line away from the signal stroke.
+      const labelGap = Math.max(
+        forwardLabel.offsetHeight,
+        returnLabel.offsetHeight,
+        loopRect.width * 0.035,
+      );
+
+      const place = (element, x, y) => {
+        element.style.inset = 'auto';
+        element.style.left = `${x}px`;
+        element.style.top = `${y}px`;
+        element.style.transform = 'translate(-50%, -50%)';
+      };
+
+      const operatorRect = operatorStack?.getBoundingClientRect();
+      const robotRect = robotSubject?.getBoundingClientRect();
+      const artworkGapCenter = operatorRect && robotRect
+        ? ((operatorRect.bottom + robotRect.top) / 2) - stageRect.top
+        : centerY;
+      const loopLeft = loopRect.left - stageRect.left + loopRect.width * 0.1;
+      const loopRight = loopRect.right - stageRect.left - loopRect.width * 0.1;
+      const stageGutter = Math.max(8, stageRect.width * 0.018);
+      const leftRoom = loopLeft - stageGutter;
+      const rightRoom = stageRect.width - stageGutter - loopRight;
+      const labelsFitBesideLoop = (
+        leftRoom >= returnLabel.offsetWidth + labelGap
+        && rightRoom >= forwardLabel.offsetWidth + labelGap
+      );
+
+      if (labelsFitBesideLoop) {
+        // Wide portrait canvases: both labels share the true visual midpoint
+        // between the artworks and sit wholly outside the circle.
+        place(
+          forwardLabel,
+          loopRight + labelGap + forwardLabel.offsetWidth / 2,
+          artworkGapCenter,
+        );
+        place(
+          returnLabel,
+          loopLeft - labelGap - returnLabel.offsetWidth / 2,
+          artworkGapCenter,
+        );
+        return;
+      }
+
+      // Narrow canvases cannot physically fit full labels beside the circle.
+      // Use shallower symmetric arc points near the artwork gap instead.
+      const labelHorizontalOffset = radius * 0.9;
+      const verticalOffset = radius * 0.18;
+      place(
+        forwardLabel,
+        centerX + labelHorizontalOffset,
+        Math.min(artworkGapCenter, centerY - verticalOffset)
+          - forwardLabel.offsetHeight / 2 - labelGap,
+      );
+      place(
+        returnLabel,
+        centerX - labelHorizontalOffset,
+        Math.max(artworkGapCenter, centerY + verticalOffset)
+          + returnLabel.offsetHeight / 2 + labelGap,
+      );
+    };
+
+    const resetSignalLabelPositions = () => {
+      [forwardLabel, returnLabel].forEach((element) => {
+        if (!element) return;
+        element.style.removeProperty('inset');
+        element.style.removeProperty('left');
+        element.style.removeProperty('right');
+        element.style.removeProperty('top');
+        element.style.removeProperty('bottom');
+        element.style.removeProperty('transform');
+      });
+    };
+
+    const updateCollisionGeometry = () => {
+      collisionGeometryFrame = 0;
+      if (!stage || !operatorStack || !robotSubject) return;
+
+      const compact = usesMobileSignalLoop();
+      demonstration.dataset.layout = compact ? 'compact' : 'landscape';
+      const activeSvg = compact ? mobileSignalSvg : desktopSignalSvg;
+      if (!activeSvg) return;
+
+      if (compact) {
+        // Width is the normal master scale; height is its safety constraint.
+        // Both illustrations are reduced together, preserving their 0.865
+        // visual ratio, whenever the portrait canvas becomes too crowded.
+        // The robot follows the loop's lower quadrant, but its baseline may
+        // never leave the stage. This replaces both device-specific `top`
+        // nudges and the old viewport-height-dependent `bottom` anchor.
+        const stageRect = stage.getBoundingClientRect();
+        const operatorSubject = operatorStack.parentElement;
+        const nominalOperatorWidth = Math.min(
+          stageRect.width * 0.74,
+          Math.max(
+            stageRect.width * 0.58,
+            stageRect.width * 0.97 - window.innerWidth * 0.05,
+          ),
+        );
+        const maxOperatorWidthFromHeight = stageRect.height * 0.44;
+        const operatorWidth = Math.min(
+          nominalOperatorWidth,
+          maxOperatorWidthFromHeight,
+        );
+        const robotWidth = operatorWidth * 0.865;
+        const setStableLength = (element, property, value) => {
+          if (!element) return;
+          const nextValue = `${Math.round(value * 100) / 100}px`;
+          if (element.style.getPropertyValue(property) !== nextValue) {
+            element.style.setProperty(property, nextValue);
+          }
+        };
+        setStableLength(
+          operatorSubject,
+          '--system-compact-operator-render-width',
+          operatorWidth,
+        );
+        setStableLength(
+          robotSubject,
+          '--system-compact-robot-render-width',
+          robotWidth,
+        );
+        const robotRect = robotSubject.getBoundingClientRect();
+        const desiredTop = stageRect.height * 0.58;
+        const baselineTop = stageRect.height * 0.985 - robotRect.height;
+        const robotTop = Math.min(desiredTop, baselineTop);
+        const currentTop = robotSubject.style.getPropertyValue('--system-compact-robot-top');
+        const nextTop = `${Math.round(robotTop * 100) / 100}px`;
+        if (currentTop !== nextTop) {
+          robotSubject.style.setProperty('--system-compact-robot-top', nextTop);
+        }
+        positionCompactSignalLabels();
+      } else {
+        robotSubject.style.removeProperty('--system-compact-robot-top');
+        operatorStack.parentElement?.style.removeProperty('--system-compact-operator-render-width');
+        robotSubject.style.removeProperty('--system-compact-robot-render-width');
+        resetSignalLabelPositions();
+      }
+
+      const operatorContainerRect = operatorStack.getBoundingClientRect();
+      const operatorRect = compact
+        ? {
+            left: operatorContainerRect.left,
+            top: operatorContainerRect.top,
+            width: operatorContainerRect.width,
+            // Compact artwork is width-fitted and intentionally cropped below
+            // the belt. Keep its original coordinate space for exact alignment.
+            height: operatorContainerRect.width
+              * (operatorSourceSize.height / operatorSourceSize.width),
+          }
+        : getContainedArtworkRect(operatorContainerRect, operatorSourceSize, 0, 0.5);
+
+      const robotRect = getContainedArtworkRect(
+        robotSubject.getBoundingClientRect(),
+        robotSourceSize,
+        1,
+        compact ? 1 : 0.5,
+      );
+
+      setCollisionImageGeometry(
+        activeSvg,
+        '.system-demonstration__collision-image--operator',
+        operatorRect,
+      );
+      setCollisionImageGeometry(
+        activeSvg,
+        '.system-demonstration__collision-image--robot',
+        robotRect,
+      );
+      setCollisionLabelGeometry(
+        activeSvg,
+        '.system-demonstration__collision-label--paton',
+        patonLabel,
+      );
+    };
+
+    const requestCollisionGeometryUpdate = () => {
+      if (collisionGeometryFrame) return;
+      collisionGeometryFrame = window.requestAnimationFrame(updateCollisionGeometry);
+    };
+
+    const collisionResizeObserver = 'ResizeObserver' in window
+      ? new ResizeObserver(requestCollisionGeometryUpdate)
+      : null;
+    collisionResizeObserver?.observe(stage);
+    collisionResizeObserver?.observe(operatorStack);
+    collisionResizeObserver?.observe(robotSubject);
+    if (patonLabel) collisionResizeObserver?.observe(patonLabel);
+    if (forwardLabel) collisionResizeObserver?.observe(forwardLabel);
+    if (returnLabel) collisionResizeObserver?.observe(returnLabel);
+    compactLayoutQuery.addEventListener?.('change', requestCollisionGeometryUpdate);
+    window.addEventListener('resize', requestCollisionGeometryUpdate, { passive: true });
+    window.addEventListener('load', requestCollisionGeometryUpdate, { once: true });
+    requestCollisionGeometryUpdate();
 
     const getSignalArrivalDelay = (signalDelay, signalDuration) => {
       const arrivalRatio = usesMobileSignalLoop()

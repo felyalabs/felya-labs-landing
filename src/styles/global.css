@@ -955,11 +955,15 @@ html[data-theme="light"] .legal-document {
 }
 
 html[data-theme="light"] .future-scenario {
-    --future-blueprint-surface: #f3f6fb;
-    --future-blueprint-grid-minor: rgba(58, 91, 176, 0.065);
-    --future-blueprint-grid-major: rgba(58, 91, 176, 0.12);
-    --future-blueprint-border: rgba(58, 91, 176, 0.2);
-    --future-blueprint-glow: rgba(72, 108, 211, 0.14);
+    --future-blueprint-surface: #eef2f7;
+    --future-blueprint-grid-minor: rgba(61, 75, 103, 0.055);
+    --future-blueprint-grid-major: rgba(61, 75, 103, 0.105);
+    --future-blueprint-border: rgba(61, 75, 103, 0.17);
+    --future-blueprint-glow: rgba(255, 255, 255, 0.94);
+    box-shadow:
+        inset 0 1px rgba(255, 255, 255, 0.92),
+        inset 0 0 6.5rem rgba(61, 75, 103, 0.065),
+        0 1.5rem 4rem rgba(47, 63, 91, 0.045);
 }
 
 .future-scenario::before {
@@ -988,6 +992,24 @@ html[data-theme="light"] .future-scenario {
         radial-gradient(circle at var(--future-blueprint-glow-x) var(--future-blueprint-glow-y), var(--future-blueprint-glow), transparent 34%),
         radial-gradient(circle at var(--future-blueprint-glow-secondary-x) var(--future-blueprint-glow-secondary-y), var(--future-blueprint-glow-secondary), transparent 32%),
         linear-gradient(110deg, transparent 46%, rgba(103, 133, 223, 0.035) 72%, transparent 100%);
+}
+
+html[data-theme="light"] .future-scenario::after {
+    background:
+        radial-gradient(
+            ellipse at var(--future-blueprint-glow-x) var(--future-blueprint-glow-y),
+            rgba(255, 255, 255, 0.96) 0%,
+            rgba(255, 255, 255, 0.7) 26%,
+            rgba(255, 255, 255, 0.28) 45%,
+            transparent 68%
+        ),
+        radial-gradient(
+            ellipse at var(--future-blueprint-glow-secondary-x) var(--future-blueprint-glow-secondary-y),
+            rgba(255, 255, 255, 0.78) 0%,
+            rgba(255, 255, 255, 0.34) 36%,
+            transparent 66%
+        ),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 46%, rgba(61, 75, 103, 0.035));
 }
 
 .future-scenario__copy {
@@ -1060,21 +1082,74 @@ html[data-theme="light"] .future-scenario {
     transform: scaleX(-1);
 }
 
-.future-sketch--presence-right {
+.future-presence-robot {
+    position: absolute;
+    z-index: 1;
     right: 14%;
     bottom: 0;
     width: min(43%, 31.5rem);
+    aspect-ratio: 1526 / 1934;
+}
+
+.future-presence-robot .future-sketch--presence-right {
+    inset: 0;
+    width: 100%;
     transform: scaleX(-1);
 }
 
+.future-presence-rose-fog {
+    position: absolute;
+    z-index: 0;
+    top: 21%;
+    left: 8%;
+    width: 43%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle,
+        rgba(78, 115, 224, 0.3) 0%,
+        rgba(78, 115, 224, 0.16) 38%,
+        rgba(78, 115, 224, 0.06) 58%,
+        transparent 74%
+    );
+    filter: blur(0.3rem);
+}
+
 html[data-theme="light"] .future-sketch {
-    opacity: 0.78;
-    filter: drop-shadow(0 0 1.25rem rgba(61, 91, 177, 0.1));
+    opacity: 0.86;
+    filter: drop-shadow(0 0 0.9rem rgba(38, 50, 75, 0.055));
 }
 
 html[data-theme="light"] .future-sketch--single-mask {
-    opacity: 0.78;
-    filter: brightness(0) drop-shadow(0 0 1.25rem rgba(61, 91, 177, 0.1));
+    opacity: 0.86;
+    filter: brightness(0) drop-shadow(0 0 0.9rem rgba(38, 50, 75, 0.055));
+}
+
+html[data-theme="light"] .future-presence-rose-fog {
+    display: none;
+}
+
+html[data-theme="light"] .future-scenario--remote::after {
+    background:
+        radial-gradient(circle at 56% 49%, rgba(33, 181, 181, 0.075), transparent 19%),
+        radial-gradient(ellipse at 56% 49%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.66) 33%, transparent 68%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent 46%, rgba(61, 75, 103, 0.035));
+}
+
+html[data-theme="light"] .future-scenario--hazard::after {
+    background:
+        radial-gradient(ellipse at 30% var(--future-blueprint-glow-y), rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.58) 32%, transparent 64%),
+        radial-gradient(ellipse at 70% var(--future-blueprint-glow-secondary-y), rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.5) 32%, transparent 62%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 48%, rgba(61, 75, 103, 0.035));
+}
+
+html[data-theme="light"] .future-scenario--presence::after {
+    background:
+        radial-gradient(ellipse at 64% 55%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.58) 36%, transparent 68%),
+        radial-gradient(ellipse at 31% 67%, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.35) 35%, transparent 62%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 48%, rgba(61, 75, 103, 0.035));
 }
 
 .future-scenario--hazard .future-scenario__copy {
@@ -1096,8 +1171,7 @@ html[data-theme="light"] .future-sketch--single-mask {
 }
 
 .future-scenario--presence {
-    --future-blueprint-glow-x: 54%;
-    --future-blueprint-glow-y: 31%;
+    --future-blueprint-glow: transparent;
 }
 
 @media (min-width: 1024px) {
@@ -1110,13 +1184,10 @@ html[data-theme="light"] .future-sketch--single-mask {
     }
 
     .future-scenario--hazard {
-        --future-blueprint-glow-y: 50%;
-        --future-blueprint-glow-secondary-y: 49%;
+        --future-blueprint-glow-y: 58%;
+        --future-blueprint-glow-secondary-y: 57%;
     }
 
-    .future-scenario--presence {
-        --future-blueprint-glow-x: 49%;
-    }
 }
 
 .contact-paths {
@@ -1163,6 +1234,16 @@ html[data-theme="light"] .future-sketch--single-mask {
     .future-scenario { min-height: 42rem; }
     .future-scenario__copy { top: 2.25rem; left: 2.25rem; }
     .future-scenario--hazard .future-scenario__copy { right: auto; left: 2.25rem; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .future-sketch--hazard-left {
+        bottom: 19%;
+    }
+
+    .future-sketch--hazard-right {
+        bottom: 17.5%;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1265,7 +1346,7 @@ html[data-theme="light"] .future-sketch--single-mask {
         left: 1%;
         width: min(58%, 18.5rem);
     }
-    .future-sketch--presence-right {
+    .future-presence-robot {
         right: -10%;
         bottom: 10%;
         width: min(65%, 20.5rem);
@@ -1273,10 +1354,6 @@ html[data-theme="light"] .future-sketch--single-mask {
     .future-scenario--remote {
         --future-blueprint-glow-x: 51%;
         --future-blueprint-glow-y: 68%;
-    }
-    .future-scenario--presence {
-        --future-blueprint-glow-x: 49%;
-        --future-blueprint-glow-y: 58%;
     }
     .contact-paths { grid-template-columns: 1fr; }
     .contact-path { min-height: 8.5rem; padding: 1.75rem; }
@@ -1826,7 +1903,7 @@ html[data-theme="light"] .system-demonstration {
     position: relative;
     width: 100%;
     aspect-ratio: 1400 / 630;
-    min-height: 34rem;
+    min-height: clamp(22rem, 45vw, 34rem);
     overflow: clip;
 }
 
@@ -1949,6 +2026,10 @@ html[data-theme="light"] .system-demonstration {
     pointer-events: none;
 }
 
+.system-demonstration__collision-mask {
+    mask-type: luminance;
+}
+
 .system-demonstration__signals marker path {
     fill: var(--system-demo-signal);
 }
@@ -2027,14 +2108,16 @@ html[data-theme="light"] .system-demonstration {
 }
 
 .system-demonstration__annotation--forward {
-    top: 31.5%;
+    top: 34.3%;
     left: 50%;
-    transform: translateX(-50%);
+    margin-top: -0.75rem;
+    transform: translate(-50%, -100%);
 }
 
 .system-demonstration__annotation--return {
-    top: 62.5%;
+    top: 64.3%;
     left: 50%;
+    margin-top: 0.75rem;
     transform: translateX(-50%);
 }
 
@@ -2048,6 +2131,10 @@ html[data-theme="light"] .system-demonstration {
 
 .system-demonstration__caption--operator { left: 3%; }
 .system-demonstration__caption--robot { right: 3%; text-align: right; }
+
+html[lang="de"] .system-demonstration__caption--robot strong {
+    white-space: nowrap;
+}
 
 .system-demonstration__caption p {
     margin: 0 0 0.65rem;
@@ -2118,7 +2205,7 @@ html[data-theme="light"] .system-demonstration {
 }
 
 .system-demonstration[data-phase="feedback"] .system-demonstration__caption--operator span {
-    color: var(--accent-strong);
+    color: var(--system-demo-ink-soft);
     opacity: 1;
 }
 
@@ -2378,14 +2465,6 @@ html[data-theme="light"] .system-demonstration__stage::after {
     letter-spacing: 0.1em;
 }
 
-.system-demonstration__annotation--forward {
-    top: 32.5%;
-}
-
-.system-demonstration__annotation--return {
-    top: 63.5%;
-}
-
 .system-demonstration__annotation {
     color: var(--system-demo-ink);
     font-size: 0.66rem;
@@ -2463,7 +2542,7 @@ html[data-theme="light"] .system-demonstration__stage::after {
 
 .system-demonstration[data-emphasis="return"] .system-demonstration__caption--operator span,
 .system-demonstration[data-emphasis="complete"] .system-demonstration__caption--operator span {
-    color: var(--system-demo-signal);
+    color: var(--system-demo-ink-soft);
     opacity: 1;
 }
 
@@ -3307,11 +3386,26 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
 }
 
 /*
- * The horizontal system canvas needs both width and a landscape aspect ratio.
- * Switch the entire composition — artwork, loop and labels — to the compact
- * vertical canvas before any one of those pieces has to shrink independently.
+ * Keep the horizontal composition through tablet landscape and compact laptop
+ * sizes. Only genuinely narrow portrait viewports use the circular canvas;
+ * small portrait phones receive tighter refinements farther below.
  */
-@media (max-width: 1099px), (max-aspect-ratio: 6 / 5) {
+@media (max-width: 1024px) and (orientation: portrait) {
+    .system-demonstration {
+        /*
+         * One fluid compact composition instead of separate phone/tablet
+         * scales. The artwork widths shrink continuously as the viewport
+         * grows; extra portrait height becomes breathing room, not larger art.
+         */
+        --system-compact-operator-width: clamp(58%, calc(97% - 5vw), 74%);
+        /*
+         * The robot curve is derived from the operator curve at a constant
+         * visual ratio of roughly 0.86. Do not tune these independently.
+         */
+        --system-compact-robot-width: clamp(50%, calc(83.4% - 4.3vw), 64%);
+        /* Reserve true side corridors on tablet canvases for both labels. */
+        --system-compact-loop-width: clamp(64%, calc(85% - 2.5vw), 72%);
+    }
     .system-section {
         padding-top: 3.5rem;
         padding-bottom: 7rem;
@@ -3342,7 +3436,7 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
     .system-demonstration__stage {
         aspect-ratio: auto;
-        min-height: clamp(49rem, 112vw, 60rem);
+        min-height: clamp(44rem, calc(27.5rem + 66vw), 61rem);
     }
     .system-demonstration__mobile-loop {
         position: absolute;
@@ -3350,8 +3444,8 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
         top: 50%;
         left: 50%;
         display: block;
-        /* The remaining space is the safety zone between signal and artwork. */
-        width: min(78vw, 35rem);
+        /* Scale with the stage: a capped circle can detach from both subjects. */
+        width: var(--system-compact-loop-width);
         aspect-ratio: 1;
         transform: translate(-50%, -50%);
         filter: drop-shadow(0 0 0.38rem rgba(117, 146, 232, 0.12));
@@ -3392,16 +3486,20 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
         display: none;
     }
     .system-demonstration__subject--operator {
-        top: 1%;
+        top: 1.5%;
         left: 0;
-        width: min(50%, 31rem);
-        height: 39%;
+        width: var(--system-compact-operator-render-width, var(--system-compact-operator-width));
+        height: auto;
+        aspect-ratio: 1327 / 1260;
     }
     .system-demonstration__subject--robot {
-        top: 58%;
+        /* Anchor to the lower loop quadrant, not to variable stage height. */
+        top: var(--system-compact-robot-top, 58%);
         right: 0;
-        width: min(62%, 34rem);
-        height: 38%;
+        bottom: auto;
+        width: var(--system-compact-robot-render-width, var(--system-compact-robot-width));
+        height: auto;
+        aspect-ratio: 1325 / 1409;
     }
     .system-demonstration__operator-stack {
         width: 100%;
@@ -3423,36 +3521,34 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
         mask-size: contain;
     }
     .system-demonstration__paton {
-        top: 24%;
-        left: 53%;
+        top: 3.75%;
+        left: 2.25%;
+        max-width: 7rem;
     }
     .system-demonstration__paton::after {
-        top: 50%;
-        right: calc(100% + 0.6rem);
-        left: auto;
-        width: 2.4rem;
+        display: none;
     }
     .system-demonstration__annotation {
         font-size: 0.6rem;
         white-space: normal;
     }
+    .system-demonstration__annotation--forward,
+    .system-demonstration__annotation--return {
+        /* JavaScript owns the compact geometry; desktop arc margins must not
+         * bias the measured midpoint above or below the artwork gap. */
+        margin-top: 0;
+    }
     .system-demonstration__annotation--forward {
-        top: 35.5%;
-        right: 3%;
-        left: auto;
         display: block;
-        width: 10rem;
-        transform: none;
+        width: 6.25rem;
         text-align: right;
+        text-wrap: balance;
     }
     .system-demonstration__annotation--return {
-        top: 63%;
-        right: auto;
-        left: 3%;
         display: block;
-        width: 11rem;
-        transform: none;
+        width: 6rem;
         text-align: left;
+        text-wrap: balance;
     }
     .system-demonstration__caption {
         bottom: auto;
@@ -3473,6 +3569,9 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
     .system-demonstration__caption strong {
         font-size: 1.12rem;
+    }
+    html[lang="de"] .system-demonstration__caption--robot strong {
+        font-size: clamp(0.82rem, 3.6vw, 1.12rem);
     }
     .system-demonstration__caption span {
         font-size: 0.78rem;
@@ -3589,7 +3688,7 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     .footer-legal { flex-wrap: wrap; justify-content: center; gap: 0.65rem 1rem; }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 767px) and (orientation: portrait) {
     .system-demonstration {
         width: 100vw;
         margin-top: 3.25rem;
@@ -3597,12 +3696,12 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
 
     .system-demonstration__stage {
-        min-height: clamp(42rem, 170vw, 46rem);
+        min-height: clamp(43rem, calc(27.5rem + 66vw), 47.5rem);
     }
 
     .system-demonstration__mobile-loop {
-        top: 49.5%;
-        width: min(76vw, 20rem);
+        top: 50%;
+        width: var(--system-compact-loop-width);
     }
 
     .system-demonstration__stage::before {
@@ -3629,10 +3728,11 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
 
     .system-demonstration__subject--operator {
-        top: 2%;
+        top: 1.5%;
         left: 0;
-        width: 78%;
-        height: 43%;
+        width: var(--system-compact-operator-render-width, var(--system-compact-operator-width));
+        height: auto;
+        aspect-ratio: 1327 / 1260;
     }
 
     .system-demonstration__operator-stack {
@@ -3642,10 +3742,12 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
 
     .system-demonstration__subject--robot {
-        top: 54%;
+        top: var(--system-compact-robot-top, 58%);
         right: 0;
-        width: 100%;
-        height: 43%;
+        bottom: auto;
+        width: var(--system-compact-robot-render-width, var(--system-compact-robot-width));
+        height: auto;
+        aspect-ratio: 1325 / 1409;
     }
 
     .system-demonstration__operator-layer {
@@ -3666,9 +3768,9 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
 
     .system-demonstration__paton {
-        top: 5.75%;
-        left: 3.5%;
-        max-width: 5.35rem;
+        top: 4.25%;
+        left: 2.5%;
+        max-width: 4.9rem;
         justify-items: start;
         text-align: left;
     }
@@ -3694,23 +3796,17 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
 
     .system-demonstration__annotation--forward {
-        top: 39%;
-        right: 1.5rem;
-        left: auto;
         display: block;
-        width: 4.25rem;
-        transform: none;
+        width: 4.75rem;
         text-align: right;
+        text-wrap: balance;
     }
 
     .system-demonstration__annotation--return {
-        top: 63.5%;
-        right: auto;
-        left: 2.5rem;
         display: block;
-        width: 6.85rem;
-        transform: none;
+        width: 6rem;
         text-align: left;
+        text-wrap: balance;
     }
 
     .system-demonstration__annotation--return-phone {
@@ -3774,7 +3870,7 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     .contact-title { font-size: 2.65rem; }
     .point-of-view-portrait img { height: auto; }
     .contact-closing { margin-top: 2.75rem; }
-    .system-demonstration__stage { min-height: clamp(42rem, 170vw, 46rem); }
+    .system-demonstration__stage { min-height: clamp(43rem, calc(27.5rem + 66vw), 46rem); }
     .system-demonstration__caption { max-width: 9.4rem; }
 }
 

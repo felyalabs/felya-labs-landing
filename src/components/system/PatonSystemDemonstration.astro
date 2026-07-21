@@ -18,21 +18,47 @@ const { locale } = Astro.props as { locale: Locale };
             viewBox="0 0 100 100"
             aria-hidden="true"
         >
-            <path
-                class="system-demonstration__mobile-loop-path system-demonstration__mobile-loop-path--forward"
-                d="M61 9A41 41 0 0 1 90 54"
-            />
-            <path
-                class="system-demonstration__mobile-loop-path system-demonstration__mobile-loop-path--return"
-                d="M39 91A41 41 0 0 1 9 57"
-            />
-            <g class="system-demonstration__beam system-demonstration__beam--forward system-demonstration__mobile-loop-beam">
-                <path class="system-demonstration__beam-halo" d="M61 9A41 41 0 0 1 90 54" pathLength="1" />
-                <path class="system-demonstration__beam-core" d="M61 9A41 41 0 0 1 90 54" pathLength="1" />
-            </g>
-            <g class="system-demonstration__beam system-demonstration__beam--return system-demonstration__mobile-loop-beam">
-                <path class="system-demonstration__beam-halo" d="M39 91A41 41 0 0 1 9 57" pathLength="1" />
-                <path class="system-demonstration__beam-core" d="M39 91A41 41 0 0 1 9 57" pathLength="1" />
+            <defs>
+                <mask
+                    id="system-demo-mobile-collision-mask"
+                    class="system-demonstration__collision-mask"
+                    x="-100"
+                    y="-100"
+                    width="300"
+                    height="300"
+                    maskUnits="userSpaceOnUse"
+                >
+                    <rect x="-100" y="-100" width="300" height="300" fill="white" />
+                    <image
+                        class="system-demonstration__collision-image system-demonstration__collision-image--operator"
+                        href="/assets/images/system/operator/paton-operator-short-collision.webp"
+                        preserveAspectRatio="none"
+                    />
+                    <image
+                        class="system-demonstration__collision-image system-demonstration__collision-image--robot"
+                        href="/assets/images/system/openarm-system-collision.webp"
+                        preserveAspectRatio="none"
+                    />
+                    <rect class="system-demonstration__collision-label system-demonstration__collision-label--paton" fill="black" />
+                </mask>
+            </defs>
+            <g mask="url(#system-demo-mobile-collision-mask)">
+                <path
+                    class="system-demonstration__mobile-loop-path system-demonstration__mobile-loop-path--forward"
+                    d="M21.716 21.716A40 40 0 0 1 78.284 78.284"
+                />
+                <path
+                    class="system-demonstration__mobile-loop-path system-demonstration__mobile-loop-path--return"
+                    d="M78.284 78.284A40 40 0 0 1 21.716 21.716"
+                />
+                <g class="system-demonstration__beam system-demonstration__beam--forward system-demonstration__mobile-loop-beam">
+                    <path class="system-demonstration__beam-halo" d="M21.716 21.716A40 40 0 0 1 78.284 78.284" pathLength="1" />
+                    <path class="system-demonstration__beam-core" d="M21.716 21.716A40 40 0 0 1 78.284 78.284" pathLength="1" />
+                </g>
+                <g class="system-demonstration__beam system-demonstration__beam--return system-demonstration__mobile-loop-beam">
+                    <path class="system-demonstration__beam-halo" d="M78.284 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
+                    <path class="system-demonstration__beam-core" d="M78.284 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
+                </g>
             </g>
         </svg>
 
@@ -77,17 +103,41 @@ const { locale } = Astro.props as { locale: Locale };
                 <marker class="system-demonstration__fallback-arrow" id="system-demo-return-arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
                     <path d="M0 0 9 4.5 0 9Z" />
                 </marker>
+                <mask
+                    id="system-demo-desktop-collision-mask"
+                    class="system-demonstration__collision-mask"
+                    x="0"
+                    y="0"
+                    width="1400"
+                    height="630"
+                    maskUnits="userSpaceOnUse"
+                >
+                    <rect width="1400" height="630" fill="white" />
+                    <image
+                        class="system-demonstration__collision-image system-demonstration__collision-image--operator"
+                        href="/assets/images/system/operator/paton-operator-long-collision.webp"
+                        preserveAspectRatio="none"
+                    />
+                    <image
+                        class="system-demonstration__collision-image system-demonstration__collision-image--robot"
+                        href="/assets/images/system/openarm-system-collision.webp"
+                        preserveAspectRatio="none"
+                    />
+                    <rect class="system-demonstration__collision-label system-demonstration__collision-label--paton" fill="black" />
+                </mask>
             </defs>
 
-            <path class="system-demonstration__path system-demonstration__path--forward" d="M470 250C604 226 812 226 950 250" marker-end="url(#system-demo-forward-arrow)" />
-            <path class="system-demonstration__path system-demonstration__path--return" d="M950 371C812 395 604 395 470 371" marker-end="url(#system-demo-return-arrow)" />
-            <g class="system-demonstration__beam system-demonstration__beam--forward">
-                <path class="system-demonstration__beam-halo" d="M470 250C604 226 812 226 950 250" pathLength="1" />
-                <path class="system-demonstration__beam-core" d="M470 250C604 226 812 226 950 250" pathLength="1" />
-            </g>
-            <g class="system-demonstration__beam system-demonstration__beam--return">
-                <path class="system-demonstration__beam-halo" d="M950 371C812 395 604 395 470 371" pathLength="1" />
-                <path class="system-demonstration__beam-core" d="M950 371C812 395 604 395 470 371" pathLength="1" />
+            <g mask="url(#system-demo-desktop-collision-mask)">
+                <path class="system-demonstration__path system-demonstration__path--forward" d="M400 250C575 216 825 216 1000 250" marker-end="url(#system-demo-forward-arrow)" />
+                <path class="system-demonstration__path system-demonstration__path--return" d="M1000 371C825 405 575 405 400 371" marker-end="url(#system-demo-return-arrow)" />
+                <g class="system-demonstration__beam system-demonstration__beam--forward">
+                    <path class="system-demonstration__beam-halo" d="M400 250C575 216 825 216 1000 250" pathLength="1" />
+                    <path class="system-demonstration__beam-core" d="M400 250C575 216 825 216 1000 250" pathLength="1" />
+                </g>
+                <g class="system-demonstration__beam system-demonstration__beam--return">
+                    <path class="system-demonstration__beam-halo" d="M1000 371C825 405 575 405 400 371" pathLength="1" />
+                    <path class="system-demonstration__beam-core" d="M1000 371C825 405 575 405 400 371" pathLength="1" />
+                </g>
             </g>
         </svg>
 

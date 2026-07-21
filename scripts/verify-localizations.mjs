@@ -4,7 +4,7 @@ import { translations } from '../src/i18n/translations.ts';
 
 const source = fs.readFileSync(new URL('../src/i18n/translations.ts', import.meta.url), 'utf8');
 const allowedEnglish = new Set([
-  'meta.ogTitle', 'nav.paton', 'hero.product', 'system.stage.paton.label', 'footer.copyright',
+  'meta.title', 'meta.ogTitle', 'nav.paton', 'hero.product', 'system.stage.paton.label', 'system.patonLayer', 'footer.copyright',
   'legal.impressum', 'developmentUpdates.placeholder'
 ]);
 const allowedIdenticalByLocale = {

@@ -5,6 +5,6 @@ export const prerender = true;
 export const GET = createLegalRedirect({
   destination: '/terms/',
   lang: 'en',
-  title: 'Redirecting…',
+  title: 'FELYA LABS',
   linkLabel: 'Continue'
 });

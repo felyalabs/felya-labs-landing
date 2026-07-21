@@ -1,7 +1,7 @@
 import type { Locale } from './config';
 
 const en = {
-  'meta.title': 'FELYA LABS | Interfaces that extend human capability.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS develops wearable interfaces that transfer human movement, touch and skill into robotic systems.',
   'meta.ogTitle': 'FELYA LABS',
   'meta.ogDescription': 'Interfaces that extend human capability.',
@@ -37,7 +37,7 @@ const en = {
   'system.forward': 'Movement and control',
   'system.return': 'Contact, force and resistance',
   'system.returnShort': 'Touch + force',
-  'system.patonLayer': 'Gloves + Suit',
+  'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Human movement',
   'system.stage.movement.aria': 'Human movement: trace movement and control to the robot',
   'system.stage.paton.label': 'PATON',
@@ -118,7 +118,7 @@ export type TranslationDictionary = Record<TranslationKey, string>;
 
 const de: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | Interfaces, die menschliche Fähigkeiten erweitern.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS entwickelt tragbare Interfaces, die menschliche Bewegung, Berührung und Fähigkeiten auf robotische Systeme übertragen.',
   'meta.ogDescription': 'Interfaces, die menschliche Fähigkeiten erweitern.',
   'meta.imageAlt': 'PATON Haptikhandschuh von FELYA LABS mit dem Satz Deine Hände. Überall auf der Welt.',
@@ -133,13 +133,13 @@ const de: TranslationDictionary = {
   'hero.imageAlt': 'Nahaufnahme des haptischen FELYA LABS Handschuhs mit blauer Fingermechanik auf einem Stoffhandschuh.',
   'system.eyebrow': 'Das System', 'system.heading': '<span class="heading-line">PATON schließt</span><span class="heading-line">den Kreis.</span>',
   'system.leadSequence': 'Du bewegst dich. Der Roboter folgt.',
-  'system.leadControl': 'PATON überträgt Arm-, Hand- und Fingerbewegungen direkt auf einen Roboter. Berührung, Kraft und Widerstand werden unmittelbar spürbar.',
+  'system.leadControl': 'PATON ist ein haptisches Exoskelett, das natürliche Arm-, Hand- und Fingerbewegungen direkt auf einen Roboter überträgt und dessen Berührungen und Kräfte in Echtzeit spürbar macht.',
   'system.flowAria': 'Bidirektionaler Fluss zwischen menschlicher Bewegung, PATON und robotischer Aktion',
-  'system.forward': 'Bewegung und Steuerung', 'system.return': 'Berührung, Kraft und Widerstand', 'system.returnShort': 'Berührung + Kraft', 'system.patonLayer': 'GLOVES + SUIT',
+  'system.forward': 'Bewegung und Steuerung', 'system.return': 'Berührung, Kraft und Widerstand', 'system.returnShort': 'Berührung + Kraft', 'system.patonLayer': 'HAPTISCHES EXOSKELETT',
   'system.stage.movement.label': 'Menschliche Bewegung', 'system.stage.movement.aria': 'Menschliche Bewegung: Bewegung und Steuerung zum Roboter verfolgen',
   'system.stage.paton.aria': 'PATON: den vollständigen geschlossenen Regelkreis verfolgen',
   'system.stage.action.label': 'Robotische Aktion', 'system.stage.action.aria': 'Robotische Aktion: Kontakt, Kraft und Widerstand zurück zum Menschen verfolgen',
-  'system.sequence.movement': 'Natürlich bewegen.', 'system.sequence.capture': 'PATON erfasst Arm-, Hand- und Fingerbewegungen.', 'system.sequence.paton': 'Der Roboter folgt.', 'system.sequence.action': 'Spüren, was der Roboter berührt.',
+  'system.sequence.movement': 'Tragen statt steuern.', 'system.sequence.capture': 'PATON folgt jeder natürlichen Bewegung, ohne Controller oder Joystick.', 'system.sequence.paton': 'Spüre, was der Roboter fühlt.', 'system.sequence.action': 'Als wären deine Hände wirklich dort.',
   'developmentUpdates.eyebrow': 'Aus der Entwicklung', 'developmentUpdates.heading1': '<span class="heading-line">Verfolge, wie</span><span class="heading-line">PATON entsteht.</span>',
   'developmentUpdates.description': 'Einblicke in Prototypen, technische Meilensteine und die nächsten Schritte unserer Entwicklung.',
   'developmentUpdates.emailLabel': 'E-Mail-Adresse', 'developmentUpdates.placeholder': 'E-Mail', 'developmentUpdates.button': 'Eintragen', 'developmentUpdates.pendingButton': 'Wird eingetragen...', 'developmentUpdates.pendingStatus': 'Wird gesendet...', 'developmentUpdates.fallbackButton': 'Eintragen',
@@ -156,7 +156,7 @@ const de: TranslationDictionary = {
   'futures.scenario.hazard.title': '<span class="heading-line">Arbeiten, wo Menschen</span><span class="heading-line">es nicht sollten.</span>', 'futures.scenario.hazard.description': 'Menschliches Geschick, ohne sich der Gefahr auszusetzen.',
   'futures.scenario.presence.title': '<span class="heading-line">Präsenz kennt</span><span class="heading-line">keine Distanz.</span>', 'futures.scenario.presence.description': 'Bewegung, Berührung und Ausdruck über Distanz übertragen.',
   'pointOfView.eyebrow': 'Unsere Haltung', 'pointOfView.heading': '<span class="heading-line">Robotik sollte erweitern,</span><span class="heading-line">wozu Menschen fähig sind.</span>',
-  'pointOfView.mission': 'Viele Aufgaben brauchen noch immer menschliches Urteilsvermögen, Geschick und Erfahrung. PATON überträgt diese Fähigkeiten auf robotische Systeme. Der Mensch behält die Kontrolle.',
+  'pointOfView.mission': 'Viele Aufgaben brauchen menschliches Urteilsvermögen, Geschick und Erfahrung. PATON überträgt diese Fähigkeiten auf robotische Systeme. Der Mensch behält die Kontrolle.',
   'pointOfView.principle': 'Denn unser Körper weiß längst, wie Bewegung funktioniert.', 'pointOfView.disciplinesEyebrow': 'Viele Disziplinen. Ein System.',
   'pointOfView.disciplines': 'Mechanik, tragbare Robotik, Elektronik und Software verbinden sich zu einem körpernahen Interface.', 'pointOfView.origin': 'Entstanden an der TH Köln. Gemeinsam mit der Industrie entwickelt.',
   'pointOfView.imageAlt': 'Vier Mitglieder des FELYA LABS Teams halten und tragen Prototypen der haptischen Handschuhe.',
@@ -169,7 +169,7 @@ const de: TranslationDictionary = {
 
 const ky: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | Адамдын мүмкүнчүлүгүн кеңейткен интерфейстер.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS адамдын кыймылын, тийүүсүн жана чеберчилигин роботтук системаларга өткөргөн тагылуучу интерфейстерди иштеп чыгат.',
   'meta.ogDescription': 'Адамдын мүмкүнчүлүгүн кеңейткен интерфейстер.',
   'meta.imageAlt': 'FELYA LABS компаниясынын PATON тактилдик мээлейи жана «Колдоруң. Дүйнөнүн каалаган жеринде.» деген билдирүү.',
@@ -182,7 +182,7 @@ const ky: TranslationDictionary = {
   'hero.imageAlt': 'Кездеме мээлейдин үстүндөгү көк манжа механизмдери бар FELYA LABS тактилдик мээлейинин жакын көрүнүшү.',
   'system.eyebrow': 'Система', 'system.heading': '<span class="heading-line">PATON айлампаны</span><span class="heading-line">жабат.</span>', 'system.leadSequence': 'Сен кыймылдайсың. Робот кайталайт.',
   'system.leadControl': 'PATON колдун, билектин жана манжалардын кыймылын роботтук системаларга өткөрөт. Тийүү, күч жана каршылык ошол замат кайра сезилет.',
-  'system.flowAria': 'Адамдын кыймылы, PATON жана роботтун аракети ортосундагы эки багыттуу агым', 'system.forward': 'Кыймыл жана башкаруу', 'system.return': 'Тийүү, күч жана каршылык', 'system.returnShort': 'Тийүү + күч', 'system.patonLayer': 'Мээлейлер + костюм',
+  'system.flowAria': 'Адамдын кыймылы, PATON жана роботтун аракети ортосундагы эки багыттуу агым', 'system.forward': 'Кыймыл жана башкаруу', 'system.return': 'Тийүү, күч жана каршылык', 'system.returnShort': 'Тийүү + күч', 'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Адамдын кыймылы', 'system.stage.movement.aria': 'Адамдын кыймылы: роботко чейинки кыймыл жана башкаруу агымын көрсөтүү', 'system.stage.paton.aria': 'PATON: толук жабык айлампаны көрсөтүү', 'system.stage.action.label': 'Роботтун аракети', 'system.stage.action.aria': 'Роботтун аракети: тийүүнү, күчтү жана каршылыкты операторго кайтаруу агымын көрсөтүү',
   'system.sequence.movement': 'Сен кыймылдайсың.', 'system.sequence.capture': 'PATON колдун, билектин жана манжалардын кыймылын каттайт.', 'system.sequence.paton': 'Робот кайталайт.', 'system.sequence.action': 'Робот тийген нерсе физикалык түрдө сезилет.',
   'developmentUpdates.eyebrow': 'Өнүгүү жазмалары', 'developmentUpdates.heading1': '<span class="heading-line">PATON кантип өнүгүп</span><span class="heading-line">жатканын байкаңыз.</span>', 'developmentUpdates.description': 'Прототиптер, инженердик этаптар жана кызматташуу мүмкүнчүлүктөрү тууралуу жаңылыктар.',
@@ -198,13 +198,13 @@ const ky: TranslationDictionary = {
 
 const id: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | Antarmuka yang memperluas kemampuan manusia.', 'meta.description': 'FELYA LABS mengembangkan antarmuka wearable yang menyalurkan gerakan, sentuhan, dan keahlian manusia ke sistem robotik.', 'meta.ogDescription': 'Antarmuka yang memperluas kemampuan manusia.', 'meta.imageAlt': 'Sarung tangan haptik PATON dari FELYA LABS dengan pesan Tangan Anda. Di mana pun di dunia.',
+  'meta.title': 'FELYA LABS', 'meta.description': 'FELYA LABS mengembangkan antarmuka wearable yang menyalurkan gerakan, sentuhan, dan keahlian manusia ke sistem robotik.', 'meta.ogDescription': 'Antarmuka yang memperluas kemampuan manusia.', 'meta.imageAlt': 'Sarung tangan haptik PATON dari FELYA LABS dengan pesan Tangan Anda. Di mana pun di dunia.',
   'brand.home': 'Beranda FELYA LABS', 'nav.skip': 'Langsung ke konten', 'nav.primary': 'Navigasi utama', 'nav.open': 'Buka navigasi', 'nav.why': 'Mengapa', 'nav.prototypes': 'Prototipe', 'nav.futures': 'Masa depan', 'nav.contact': 'Kontak',
   'theme.toLight': 'Beralih ke mode terang', 'theme.toDark': 'Beralih ke mode gelap', 'language.open': 'Pilih bahasa', 'language.dialog': 'Pilihan bahasa', 'language.close': 'Tutup pilihan bahasa', 'language.current': 'Bahasa aktif',
   'partners.eyebrow': 'Riset & industri', 'partners.heading': 'Inovasi melangkah lebih jauh bersama.',
   'hero.headlineHands': 'Tangan Anda.', 'hero.headlineAnywhere': 'Di mana pun di dunia.', 'hero.lead': 'Gerakan alami. Umpan balik nyata.', 'hero.languageInteraction': 'Tampilkan bahasa berikutnya', 'hero.imageAlt': 'Tampilan dekat sarung tangan haptik FELYA LABS dengan mekanisme jari biru di atas sarung tangan berbahan kain.',
   'system.eyebrow': 'Sistem', 'system.heading': '<span class="heading-line">PATON menutup</span><span class="heading-line">siklusnya.</span>', 'system.leadSequence': 'Anda bergerak. Robot mengikuti.', 'system.leadControl': 'PATON menyalurkan gerakan alami lengan, tangan, dan jari ke sistem robotik. Sentuhan, gaya, dan resistansi kembali secara real time.',
-  'system.flowAria': 'Aliran dua arah antara gerakan manusia, PATON, dan aksi robotik', 'system.forward': 'Gerakan dan kendali', 'system.return': 'Sentuhan, gaya, dan resistansi', 'system.returnShort': 'Sentuhan + gaya', 'system.patonLayer': 'Sarung tangan + setelan', 'system.stage.movement.label': 'Gerakan manusia', 'system.stage.movement.aria': 'Gerakan manusia: telusuri gerakan dan kendali menuju robot', 'system.stage.paton.aria': 'PATON: telusuri seluruh siklus tertutup', 'system.stage.action.label': 'Aksi robotik', 'system.stage.action.aria': 'Aksi robotik: telusuri sentuhan, gaya, dan resistansi kembali ke operator', 'system.sequence.movement': 'Anda bergerak.', 'system.sequence.capture': 'PATON menangkap gerakan lengan, tangan, dan jari.', 'system.sequence.paton': 'Robot mengikuti.', 'system.sequence.action': 'Sentuhan robot kembali sebagai umpan balik fisik.',
+  'system.flowAria': 'Aliran dua arah antara gerakan manusia, PATON, dan aksi robotik', 'system.forward': 'Gerakan dan kendali', 'system.return': 'Sentuhan, gaya, dan resistansi', 'system.returnShort': 'Sentuhan + gaya', 'system.patonLayer': 'HAPTIC EXOSKELETON', 'system.stage.movement.label': 'Gerakan manusia', 'system.stage.movement.aria': 'Gerakan manusia: telusuri gerakan dan kendali menuju robot', 'system.stage.paton.aria': 'PATON: telusuri seluruh siklus tertutup', 'system.stage.action.label': 'Aksi robotik', 'system.stage.action.aria': 'Aksi robotik: telusuri sentuhan, gaya, dan resistansi kembali ke operator', 'system.sequence.movement': 'Anda bergerak.', 'system.sequence.capture': 'PATON menangkap gerakan lengan, tangan, dan jari.', 'system.sequence.paton': 'Robot mengikuti.', 'system.sequence.action': 'Sentuhan robot kembali sebagai umpan balik fisik.',
   'developmentUpdates.eyebrow': 'Catatan pengembangan', 'developmentUpdates.heading1': '<span class="heading-line">Ikuti perkembangan</span><span class="heading-line">PATON.</span>', 'developmentUpdates.description': 'Kabar prototipe, pencapaian engineering, dan peluang kolaborasi terpilih.', 'developmentUpdates.emailLabel': 'Alamat email', 'developmentUpdates.placeholder': 'Alamat email', 'developmentUpdates.button': 'Terima kabar terbaru', 'developmentUpdates.pendingButton': 'Mengirim...', 'developmentUpdates.pendingStatus': 'Mendaftarkan...', 'developmentUpdates.fallbackButton': 'Terima kabar terbaru', 'developmentUpdates.success': 'Terhubung. Anda sudah masuk dalam daftar.', 'developmentUpdates.error': 'Terjadi kesalahan. Kirim email ke info@felyalabs.com dan kami akan menambahkan Anda secara manual.', 'developmentUpdates.consent': 'Dengan mendaftar, Anda menyetujui Formspark memproses email dan data teknis Anda untuk mengirimkan kabar pengembangan. Persetujuan dapat ditarik kapan saja. Lihat <a href="/privacy/" target="_blank" class="text-gray-300 underline-offset-4 transition-colors hover:text-white hover:underline">Kebijakan Privasi</a> kami.',
   'prototypes.eyebrow': 'Dibangun, bukan sekadar dibayangkan.', 'prototypes.heading': '<span class="heading-line">Disempurnakan</span><span class="heading-line">di setiap versi.</span>', 'prototypes.description': 'Setiap prototipe menentukan langkah berikutnya.', 'prototypes.status': 'PATON adalah platform riset yang terus berkembang bersama setiap prototipe.', 'prototypes.proofAria': 'Siklus tertutup PATON', 'prototypes.proof.0': 'Gerakan manusia', 'prototypes.proof.1': 'Aksi robotik', 'prototypes.proof.2': 'Sentuhan dan gaya', 'prototypes.phase.0': 'Penangkapan', 'prototypes.phase.1': 'Transfer', 'prototypes.phase.2': 'Umpan balik', 'prototypes.playButton': 'Putar', 'prototypes.replayButton': 'Putar ulang', 'prototypes.videoTitle': 'Film prototipe Interface of Craft', 'prototypes.videoLabel': 'Putar film prototipe Interface of Craft', 'prototypes.videoReplayLabel': 'Putar ulang film prototipe Interface of Craft', 'prototypes.videoFallback': 'Browser Anda tidak mendukung video tersemat.',
   'futures.eyebrow': 'Yang menjadi mungkin', 'futures.heading': '<span class="heading-line">Saat kemampuan manusia</span><span class="heading-line">menjangkau lebih jauh.</span>', 'futures.description': 'Melintasi jarak. Memasuki lingkungan berbahaya. Melalui mesin yang membawa intensi manusia.', 'futures.scenario.remote.title': '<span class="heading-line">Simulasikan sebelum</span><span class="heading-line">bertindak.</span>', 'futures.scenario.remote.description': 'Belajar dengan praktik tanpa risiko dunia nyata.', 'futures.scenario.hazard.title': '<span class="heading-line">Bekerja di tempat yang</span><span class="heading-line">tak semestinya dimasuki manusia.</span>', 'futures.scenario.hazard.description': 'Hadirkan keterampilan manusia tanpa menempatkan manusia dalam bahaya.', 'futures.scenario.presence.title': '<span class="heading-line">Biarkan kehadiran</span><span class="heading-line">melampaui jarak.</span>', 'futures.scenario.presence.description': 'Salurkan intensi, sentuhan, dan ekspresi dari kejauhan.',
@@ -215,12 +215,12 @@ const id: TranslationDictionary = {
 
 const ko: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | 인간의 역량을 확장하는 인터페이스.', 'meta.description': 'FELYA LABS는 사람의 움직임과 촉감, 숙련도를 로봇 시스템에 전달하는 웨어러블 인터페이스를 개발합니다.', 'meta.ogDescription': '인간의 역량을 확장하는 인터페이스.', 'meta.imageAlt': '“당신의 두 손. 세계 어디에서나.”라는 문구와 함께 보이는 FELYA LABS의 PATON 햅틱 글러브.',
+  'meta.title': 'FELYA LABS', 'meta.description': 'FELYA LABS는 사람의 움직임과 촉감, 숙련도를 로봇 시스템에 전달하는 웨어러블 인터페이스를 개발합니다.', 'meta.ogDescription': '인간의 역량을 확장하는 인터페이스.', 'meta.imageAlt': '“당신의 두 손. 세계 어디에서나.”라는 문구와 함께 보이는 FELYA LABS의 PATON 햅틱 글러브.',
   'brand.home': 'FELYA LABS 홈', 'nav.skip': '본문으로 건너뛰기', 'nav.primary': '주요 탐색', 'nav.open': '메뉴 열기', 'nav.why': '철학', 'nav.prototypes': '프로토타입', 'nav.futures': '미래', 'nav.contact': '문의',
   'theme.toLight': '라이트 모드로 전환', 'theme.toDark': '다크 모드로 전환', 'language.open': '언어 선택', 'language.dialog': '언어 선택', 'language.close': '언어 선택 닫기', 'language.current': '현재 언어',
   'partners.eyebrow': '연구 & 산업', 'partners.heading': '혁신은 함께할 때 더 멀리 나아갑니다.',
   'hero.headlineHands': '당신의 두 손.', 'hero.headlineAnywhere': '세계 어디에서나.', 'hero.lead': '자연스러운 움직임. 생생한 피드백.', 'hero.languageInteraction': '다음 언어 보기', 'hero.imageAlt': '패브릭 글러브 위에 파란색 손가락 메커니즘이 장착된 FELYA LABS 햅틱 글러브의 클로즈업.',
-  'system.eyebrow': '시스템', 'system.heading': '<span class="heading-line">PATON이 루프를</span><span class="heading-line">완성합니다.</span>', 'system.leadSequence': '사람이 움직이면, 로봇이 따릅니다.', 'system.leadControl': 'PATON은 팔과 손, 손가락의 자연스러운 움직임을 로봇 시스템에 전달합니다. 접촉과 힘, 저항은 실시간으로 사용자에게 돌아옵니다.', 'system.flowAria': '사람의 움직임과 PATON, 로봇 동작 사이의 양방향 흐름', 'system.forward': '움직임과 제어', 'system.return': '접촉, 힘, 저항', 'system.returnShort': '접촉 + 힘', 'system.patonLayer': '글러브 + 수트', 'system.stage.movement.label': '사람의 움직임', 'system.stage.movement.aria': '사람의 움직임: 로봇으로 전달되는 움직임과 제어 흐름 보기', 'system.stage.paton.aria': 'PATON: 전체 폐루프 흐름 보기', 'system.stage.action.label': '로봇 동작', 'system.stage.action.aria': '로봇 동작: 접촉과 힘, 저항이 사용자에게 돌아오는 흐름 보기', 'system.sequence.movement': '사람이 움직입니다.', 'system.sequence.capture': 'PATON이 팔과 손, 손가락의 움직임을 포착합니다.', 'system.sequence.paton': '로봇이 따릅니다.', 'system.sequence.action': '로봇의 접촉이 물리적 피드백으로 돌아옵니다.',
+  'system.eyebrow': '시스템', 'system.heading': '<span class="heading-line">PATON이 루프를</span><span class="heading-line">완성합니다.</span>', 'system.leadSequence': '사람이 움직이면, 로봇이 따릅니다.', 'system.leadControl': 'PATON은 팔과 손, 손가락의 자연스러운 움직임을 로봇 시스템에 전달합니다. 접촉과 힘, 저항은 실시간으로 사용자에게 돌아옵니다.', 'system.flowAria': '사람의 움직임과 PATON, 로봇 동작 사이의 양방향 흐름', 'system.forward': '움직임과 제어', 'system.return': '접촉, 힘, 저항', 'system.returnShort': '접촉 + 힘', 'system.patonLayer': 'HAPTIC EXOSKELETON', 'system.stage.movement.label': '사람의 움직임', 'system.stage.movement.aria': '사람의 움직임: 로봇으로 전달되는 움직임과 제어 흐름 보기', 'system.stage.paton.aria': 'PATON: 전체 폐루프 흐름 보기', 'system.stage.action.label': '로봇 동작', 'system.stage.action.aria': '로봇 동작: 접촉과 힘, 저항이 사용자에게 돌아오는 흐름 보기', 'system.sequence.movement': '사람이 움직입니다.', 'system.sequence.capture': 'PATON이 팔과 손, 손가락의 움직임을 포착합니다.', 'system.sequence.paton': '로봇이 따릅니다.', 'system.sequence.action': '로봇의 접촉이 물리적 피드백으로 돌아옵니다.',
   'developmentUpdates.eyebrow': '개발 노트', 'developmentUpdates.heading1': '<span class="heading-line">진화하는 PATON을</span><span class="heading-line">함께 지켜보세요.</span>', 'developmentUpdates.description': '프로토타입 업데이트와 엔지니어링 이정표, 엄선된 협업 기회를 전합니다.', 'developmentUpdates.emailLabel': '이메일 주소', 'developmentUpdates.placeholder': '이메일', 'developmentUpdates.button': '업데이트 받기', 'developmentUpdates.pendingButton': '전송 중...', 'developmentUpdates.pendingStatus': '등록 중...', 'developmentUpdates.fallbackButton': '업데이트 받기', 'developmentUpdates.success': '연결되었습니다. 소식을 전해드릴게요.', 'developmentUpdates.error': '오류가 발생했습니다. info@felyalabs.com으로 메일을 보내주시면 직접 등록해 드립니다.', 'developmentUpdates.consent': '신청하면 개발 소식을 보내기 위해 Formspark가 이메일과 기술 정보를 처리하는 데 동의하게 됩니다. 동의는 언제든 철회할 수 있습니다. <a href="/privacy/" target="_blank" class="text-gray-300 underline-offset-4 transition-colors hover:text-white hover:underline">개인정보 처리방침</a>을 확인하세요.',
   'prototypes.eyebrow': '생각에 그치지 않고, 직접 만들었습니다.', 'prototypes.heading': '<span class="heading-line">버전을 거듭하며</span><span class="heading-line">더 나아집니다.</span>', 'prototypes.description': '각 프로토타입이 다음 방향을 결정합니다.', 'prototypes.status': 'PATON은 프로토타입과 함께 성장하는 연구 플랫폼입니다.', 'prototypes.proofAria': 'PATON 폐루프 과정', 'prototypes.proof.0': '사람의 움직임', 'prototypes.proof.1': '로봇 동작', 'prototypes.proof.2': '접촉과 힘', 'prototypes.phase.0': '포착', 'prototypes.phase.1': '전달', 'prototypes.phase.2': '피드백', 'prototypes.playButton': '재생', 'prototypes.replayButton': '다시 재생', 'prototypes.videoTitle': 'Interface of Craft 프로토타입 영상', 'prototypes.videoLabel': 'Interface of Craft 프로토타입 영상 재생', 'prototypes.videoReplayLabel': 'Interface of Craft 프로토타입 영상 다시 재생', 'prototypes.videoFallback': '이 브라우저는 삽입된 영상을 지원하지 않습니다.',
   'futures.eyebrow': '가능해지는 것들', 'futures.heading': '<span class="heading-line">인간의 존재가</span><span class="heading-line">새로운 형태를 얻는 곳.</span>', 'futures.description': '거리를 넘어. 위험한 환경으로. 인간의 의도를 전하는 기계를 통해.', 'futures.scenario.remote.title': '<span class="heading-line">행동하기 전에</span><span class="heading-line">시뮬레이션하세요.</span>', 'futures.scenario.remote.description': '현실의 위험 없이 직접 해보며 배웁니다.', 'futures.scenario.hazard.title': '<span class="heading-line">사람이 들어가선 안 될 곳에서</span><span class="heading-line">일합니다.</span>', 'futures.scenario.hazard.description': '사람을 위험에 놓지 않고 인간의 숙련도를 투입합니다.', 'futures.scenario.presence.title': '<span class="heading-line">존재가 거리를</span><span class="heading-line">넘어갑니다.</span>', 'futures.scenario.presence.description': '의도와 촉감, 표현을 먼 곳까지 전달합니다.',
@@ -231,12 +231,12 @@ const ko: TranslationDictionary = {
 
 const ja: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | 人の能力を拡張するインターフェース。', 'meta.description': 'FELYA LABSは、人の動き、触覚、技能をロボットシステムへ伝えるウェアラブルインターフェースを開発しています。', 'meta.ogDescription': '人の能力を拡張するインターフェース。', 'meta.imageAlt': '「あなたの手を、世界のどこへでも。」というメッセージとFELYA LABSのPATONハプティックグローブ。',
+  'meta.title': 'FELYA LABS', 'meta.description': 'FELYA LABSは、人の動き、触覚、技能をロボットシステムへ伝えるウェアラブルインターフェースを開発しています。', 'meta.ogDescription': '人の能力を拡張するインターフェース。', 'meta.imageAlt': '「あなたの手を、世界のどこへでも。」というメッセージとFELYA LABSのPATONハプティックグローブ。',
   'brand.home': 'FELYA LABS ホーム', 'nav.skip': '本文へ移動', 'nav.primary': 'メインナビゲーション', 'nav.open': 'ナビゲーションを開く', 'nav.why': '思想', 'nav.prototypes': 'プロトタイプ', 'nav.futures': '未来', 'nav.contact': 'お問い合わせ',
   'theme.toLight': 'ライトモードに切り替える', 'theme.toDark': 'ダークモードに切り替える', 'language.open': '言語を選択', 'language.dialog': '言語選択', 'language.close': '言語選択を閉じる', 'language.current': '現在の言語',
   'partners.eyebrow': '研究 & 産業', 'partners.heading': '共に進めば、イノベーションはさらに遠くへ。',
   'hero.headlineHands': 'あなたの手を。', 'hero.headlineAnywhere': '世界のどこへでも。', 'hero.lead': '自然な動き。確かな感覚。', 'hero.languageInteraction': '次の言語を表示', 'hero.imageAlt': '布製グローブの上に青い指機構を備えたFELYA LABSハプティックグローブのクローズアップ。',
-  'system.eyebrow': 'システム', 'system.heading': '<span class="heading-line">PATONがループを</span><span class="heading-line">完成させる。</span>', 'system.leadSequence': '人が動く。ロボットが従う。', 'system.leadControl': 'PATONは、腕、手、指の自然な動きをロボットシステムへ伝えます。接触、力、抵抗はリアルタイムで人へ返ります。', 'system.flowAria': '人の動き、PATON、ロボットの動作を結ぶ双方向の流れ', 'system.forward': '動きと制御', 'system.return': '接触、力、抵抗', 'system.returnShort': '接触 + 力', 'system.patonLayer': 'グローブ + スーツ', 'system.stage.movement.label': '人の動き', 'system.stage.movement.aria': '人の動き：ロボットへ向かう動きと制御の流れを表示', 'system.stage.paton.aria': 'PATON：閉じたループ全体を表示', 'system.stage.action.label': 'ロボットの動作', 'system.stage.action.aria': 'ロボットの動作：接触、力、抵抗が操作者へ戻る流れを表示', 'system.sequence.movement': '人が動く。', 'system.sequence.capture': 'PATONが腕、手、指の動きを捉える。', 'system.sequence.paton': 'ロボットが従う。', 'system.sequence.action': 'ロボットの接触が物理的な感覚として返る。',
+  'system.eyebrow': 'システム', 'system.heading': '<span class="heading-line">PATONがループを</span><span class="heading-line">完成させる。</span>', 'system.leadSequence': '人が動く。ロボットが従う。', 'system.leadControl': 'PATONは、腕、手、指の自然な動きをロボットシステムへ伝えます。接触、力、抵抗はリアルタイムで人へ返ります。', 'system.flowAria': '人の動き、PATON、ロボットの動作を結ぶ双方向の流れ', 'system.forward': '動きと制御', 'system.return': '接触、力、抵抗', 'system.returnShort': '接触 + 力', 'system.patonLayer': 'HAPTIC EXOSKELETON', 'system.stage.movement.label': '人の動き', 'system.stage.movement.aria': '人の動き：ロボットへ向かう動きと制御の流れを表示', 'system.stage.paton.aria': 'PATON：閉じたループ全体を表示', 'system.stage.action.label': 'ロボットの動作', 'system.stage.action.aria': 'ロボットの動作：接触、力、抵抗が操作者へ戻る流れを表示', 'system.sequence.movement': '人が動く。', 'system.sequence.capture': 'PATONが腕、手、指の動きを捉える。', 'system.sequence.paton': 'ロボットが従う。', 'system.sequence.action': 'ロボットの接触が物理的な感覚として返る。',
   'developmentUpdates.eyebrow': '開発ノート', 'developmentUpdates.heading1': '<span class="heading-line">進化するPATONを</span><span class="heading-line">追いかける。</span>', 'developmentUpdates.description': 'プロトタイプの更新、技術的な節目、厳選した協業の機会をお届けします。', 'developmentUpdates.emailLabel': 'メールアドレス', 'developmentUpdates.placeholder': 'メール', 'developmentUpdates.button': '更新を受け取る', 'developmentUpdates.pendingButton': '送信中...', 'developmentUpdates.pendingStatus': '登録中...', 'developmentUpdates.fallbackButton': '更新を受け取る', 'developmentUpdates.success': '登録が完了しました。今後の情報をお届けします。', 'developmentUpdates.error': '送信できませんでした。info@felyalabs.comへご連絡いただければ、こちらで登録します。', 'developmentUpdates.consent': '登録すると、開発情報を送るためにFormsparkがメールアドレスと技術情報を処理することに同意したものとみなされます。同意はいつでも撤回できます。詳しくは<a href="/privacy/" target="_blank" class="text-gray-300 underline-offset-4 transition-colors hover:text-white hover:underline">プライバシーポリシー</a>をご覧ください。',
   'prototypes.eyebrow': '考えるだけでなく、つくる。', 'prototypes.heading': '<span class="heading-line">試作を重ね、</span><span class="heading-line">前へ進む。</span>', 'prototypes.description': '一つひとつのプロトタイプが、次の方向を決めます。', 'prototypes.status': 'PATONは、試作とともに成長する研究プラットフォームです。', 'prototypes.proofAria': 'PATONの閉ループプロセス', 'prototypes.proof.0': '人の動き', 'prototypes.proof.1': 'ロボットの動作', 'prototypes.proof.2': '接触と力', 'prototypes.phase.0': '取得', 'prototypes.phase.1': '伝達', 'prototypes.phase.2': 'フィードバック', 'prototypes.playButton': '再生', 'prototypes.replayButton': 'もう一度再生', 'prototypes.videoTitle': 'Interface of Craft プロトタイプ映像', 'prototypes.videoLabel': 'Interface of Craft プロトタイプ映像を再生', 'prototypes.videoReplayLabel': 'Interface of Craft プロトタイプ映像をもう一度再生', 'prototypes.videoFallback': 'このブラウザは埋め込み動画に対応していません。',
   'futures.eyebrow': '可能になること', 'futures.heading': '<span class="heading-line">人の存在が</span><span class="heading-line">新しい形を得る場所。</span>', 'futures.description': '距離を越えて。危険な環境へ。人の意図を運ぶ機械を通して。', 'futures.scenario.remote.title': '<span class="heading-line">行動する前に、</span><span class="heading-line">シミュレーションする。</span>', 'futures.scenario.remote.description': '現実のリスクなく、実践から学ぶ。', 'futures.scenario.hazard.title': '<span class="heading-line">人が入るべきでない場所で、</span><span class="heading-line">作業する。</span>', 'futures.scenario.hazard.description': '人を危険にさらさず、その技能を危険な環境へ届ける。', 'futures.scenario.presence.title': '<span class="heading-line">存在を、距離の</span><span class="heading-line">向こう側へ。</span>', 'futures.scenario.presence.description': '意図、触覚、表現を遠くへ伝える。',
@@ -247,12 +247,12 @@ const ja: TranslationDictionary = {
 
 const zhCn: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | 延展人类能力的交互界面。', 'meta.description': 'FELYA LABS 开发可穿戴交互界面，将人的动作、触觉与技能传递至机器人系统。', 'meta.ogDescription': '延展人类能力的交互界面。', 'meta.imageAlt': 'FELYA LABS 的 PATON 触觉手套，以及“你的双手。遍及世界。”标语。',
+  'meta.title': 'FELYA LABS', 'meta.description': 'FELYA LABS 开发可穿戴交互界面，将人的动作、触觉与技能传递至机器人系统。', 'meta.ogDescription': '延展人类能力的交互界面。', 'meta.imageAlt': 'FELYA LABS 的 PATON 触觉手套，以及“你的双手。遍及世界。”标语。',
   'brand.home': 'FELYA LABS 首页', 'nav.skip': '跳至主要内容', 'nav.primary': '主导航', 'nav.open': '打开导航', 'nav.why': '理念', 'nav.prototypes': '原型', 'nav.futures': '未来', 'nav.contact': '联系',
   'theme.toLight': '切换至浅色模式', 'theme.toDark': '切换至深色模式', 'language.open': '选择语言', 'language.dialog': '语言选择', 'language.close': '关闭语言选择', 'language.current': '当前语言',
   'partners.eyebrow': '研究 & 产业', 'partners.heading': '携手，让创新走得更远。',
   'hero.headlineHands': '你的双手。', 'hero.headlineAnywhere': '遍及世界。', 'hero.lead': '自然动作。真实反馈。', 'hero.languageInteraction': '显示下一种语言', 'hero.imageAlt': 'FELYA LABS 触觉手套的特写：织物手套上装有蓝色手指机构。',
-  'system.eyebrow': '系统', 'system.heading': '<span class="heading-line">PATON 让闭环</span><span class="heading-line">真正成立。</span>', 'system.leadSequence': '人动，机器人随之而动。', 'system.leadControl': 'PATON 将手臂、手部与手指的自然动作传递至机器人系统。接触、力量与阻力则实时返回给操作者。', 'system.flowAria': '人的动作、PATON 与机器人行动之间的双向闭环', 'system.forward': '动作与控制', 'system.return': '接触、力量与阻力', 'system.returnShort': '接触 + 力量', 'system.patonLayer': '手套 + 穿戴系统', 'system.stage.movement.label': '人的动作', 'system.stage.movement.aria': '人的动作：查看动作与控制传向机器人的过程', 'system.stage.paton.aria': 'PATON：查看完整闭环', 'system.stage.action.label': '机器人行动', 'system.stage.action.aria': '机器人行动：查看接触、力量与阻力返回操作者的过程', 'system.sequence.movement': '人开始动作。', 'system.sequence.capture': 'PATON 捕捉手臂、手部和手指的运动。', 'system.sequence.paton': '机器人随之行动。', 'system.sequence.action': '机器人的接触转化为真实的身体反馈。',
+  'system.eyebrow': '系统', 'system.heading': '<span class="heading-line">PATON 让闭环</span><span class="heading-line">真正成立。</span>', 'system.leadSequence': '人动，机器人随之而动。', 'system.leadControl': 'PATON 将手臂、手部与手指的自然动作传递至机器人系统。接触、力量与阻力则实时返回给操作者。', 'system.flowAria': '人的动作、PATON 与机器人行动之间的双向闭环', 'system.forward': '动作与控制', 'system.return': '接触、力量与阻力', 'system.returnShort': '接触 + 力量', 'system.patonLayer': 'HAPTIC EXOSKELETON', 'system.stage.movement.label': '人的动作', 'system.stage.movement.aria': '人的动作：查看动作与控制传向机器人的过程', 'system.stage.paton.aria': 'PATON：查看完整闭环', 'system.stage.action.label': '机器人行动', 'system.stage.action.aria': '机器人行动：查看接触、力量与阻力返回操作者的过程', 'system.sequence.movement': '人开始动作。', 'system.sequence.capture': 'PATON 捕捉手臂、手部和手指的运动。', 'system.sequence.paton': '机器人随之行动。', 'system.sequence.action': '机器人的接触转化为真实的身体反馈。',
   'developmentUpdates.eyebrow': '研发动态', 'developmentUpdates.heading1': '<span class="heading-line">持续关注</span><span class="heading-line">PATON 的进化。</span>', 'developmentUpdates.description': '获取原型进展、工程里程碑与精选合作机会。', 'developmentUpdates.emailLabel': '电子邮箱', 'developmentUpdates.placeholder': '电子邮箱', 'developmentUpdates.button': '订阅动态', 'developmentUpdates.pendingButton': '发送中...', 'developmentUpdates.pendingStatus': '提交中...', 'developmentUpdates.fallbackButton': '订阅动态', 'developmentUpdates.success': '连接成功。后续动态将发送给你。', 'developmentUpdates.error': '提交失败。请发送邮件至 info@felyalabs.com，我们会手动为你添加。', 'developmentUpdates.consent': '提交即表示你同意 Formspark 处理你的邮箱与技术数据，用于发送研发动态。你可以随时撤回同意。请查看我们的<a href="/privacy/" target="_blank" class="text-gray-300 underline-offset-4 transition-colors hover:text-white hover:underline">隐私政策</a>。',
   'prototypes.eyebrow': '不止构想，更要造出来。', 'prototypes.heading': '<span class="heading-line">每一次迭代，</span><span class="heading-line">都让系统更进一步。</span>', 'prototypes.description': '每一个原型都在决定下一步方向。', 'prototypes.status': 'PATON 是一个随原型不断成长的研究平台。', 'prototypes.proofAria': 'PATON 闭环流程', 'prototypes.proof.0': '人的动作', 'prototypes.proof.1': '机器人行动', 'prototypes.proof.2': '接触与力量', 'prototypes.phase.0': '捕捉', 'prototypes.phase.1': '传递', 'prototypes.phase.2': '反馈', 'prototypes.playButton': '播放', 'prototypes.replayButton': '重新播放', 'prototypes.videoTitle': 'Interface of Craft 原型影片', 'prototypes.videoLabel': '播放 Interface of Craft 原型影片', 'prototypes.videoReplayLabel': '重新播放 Interface of Craft 原型影片', 'prototypes.videoFallback': '你的浏览器不支持嵌入式视频。',
   'futures.eyebrow': '由此成为可能', 'futures.heading': '<span class="heading-line">让人的存在，</span><span class="heading-line">拥有新的形态。</span>', 'futures.description': '跨越距离。进入危险环境。借助承载人类意图的机器。', 'futures.scenario.remote.title': '<span class="heading-line">行动之前，</span><span class="heading-line">先行模拟。</span>', 'futures.scenario.remote.description': '在没有现实风险的环境中，通过实践学习。', 'futures.scenario.hazard.title': '<span class="heading-line">在人不该进入的地方，</span><span class="heading-line">完成工作。</span>', 'futures.scenario.hazard.description': '让人的技能进入危险环境，而无需让人身处险境。', 'futures.scenario.presence.title': '<span class="heading-line">让存在感，</span><span class="heading-line">跨越距离。</span>', 'futures.scenario.presence.description': '将意图、触觉与表达传递至远方。',
@@ -263,12 +263,12 @@ const zhCn: TranslationDictionary = {
 
 const zhTw: TranslationDictionary = {
   'meta.ogTitle': 'FELYA LABS', 'nav.paton': 'PATON', 'hero.product': 'PATON', 'system.stage.paton.label': 'PATON', 'footer.copyright': '© FELYA LABS 2026.',
-  'meta.title': 'FELYA LABS | 延伸人類能力的介面。', 'meta.description': 'FELYA LABS 開發穿戴式介面，將人的動作、觸覺與技能帶入機器人系統。', 'meta.ogDescription': '延伸人類能力的介面。', 'meta.imageAlt': 'FELYA LABS 的 PATON 觸覺手套，以及「你的雙手。世界任何角落。」標語。',
+  'meta.title': 'FELYA LABS', 'meta.description': 'FELYA LABS 開發穿戴式介面，將人的動作、觸覺與技能帶入機器人系統。', 'meta.ogDescription': '延伸人類能力的介面。', 'meta.imageAlt': 'FELYA LABS 的 PATON 觸覺手套，以及「你的雙手。世界任何角落。」標語。',
   'brand.home': 'FELYA LABS 首頁', 'nav.skip': '跳至主要內容', 'nav.primary': '主要導覽', 'nav.open': '開啟導覽選單', 'nav.why': '理念', 'nav.prototypes': '原型', 'nav.futures': '未來', 'nav.contact': '聯絡',
   'theme.toLight': '切換至淺色模式', 'theme.toDark': '切換至深色模式', 'language.open': '選擇語言', 'language.dialog': '語言選擇', 'language.close': '關閉語言選擇', 'language.current': '目前語言',
   'partners.eyebrow': '研究與產業', 'partners.heading': '攜手，讓創新走得更遠。',
   'hero.headlineHands': '你的雙手。', 'hero.headlineAnywhere': '世界任何角落。', 'hero.lead': '自然動作。真實回饋。', 'hero.languageInteraction': '顯示下一種語言', 'hero.imageAlt': 'FELYA LABS 觸覺手套特寫：織物手套上裝有藍色手指機構。',
-  'system.eyebrow': '系統', 'system.heading': '<span class="heading-line">PATON 讓控制</span><span class="heading-line">形成完整閉環。</span>', 'system.leadSequence': '你一動，機器人就跟著動。', 'system.leadControl': 'PATON 將手臂、手掌與手指的自然動作直接傳送至機器人系統；觸覺、力量與阻力則即時回到操作者身上。', 'system.flowAria': '人的動作、PATON 與機器人行動之間的雙向閉環', 'system.forward': '動作與控制', 'system.return': '觸覺、力量與阻力', 'system.returnShort': '觸覺 + 力量', 'system.patonLayer': '手套 + 穿戴系統', 'system.stage.movement.label': '人的動作', 'system.stage.movement.aria': '人的動作：查看動作與控制如何傳向機器人', 'system.stage.paton.aria': 'PATON：查看完整的雙向閉環', 'system.stage.action.label': '機器人行動', 'system.stage.action.aria': '機器人行動：查看觸覺、力量與阻力如何回到操作者', 'system.sequence.movement': '人先開始動作。', 'system.sequence.capture': 'PATON 擷取手臂、手掌與手指的動作。', 'system.sequence.paton': '機器人隨之行動。', 'system.sequence.action': '機器人的接觸回到操作者身上，成為真實的身體感受。',
+  'system.eyebrow': '系統', 'system.heading': '<span class="heading-line">PATON 讓控制</span><span class="heading-line">形成完整閉環。</span>', 'system.leadSequence': '你一動，機器人就跟著動。', 'system.leadControl': 'PATON 將手臂、手掌與手指的自然動作直接傳送至機器人系統；觸覺、力量與阻力則即時回到操作者身上。', 'system.flowAria': '人的動作、PATON 與機器人行動之間的雙向閉環', 'system.forward': '動作與控制', 'system.return': '觸覺、力量與阻力', 'system.returnShort': '觸覺 + 力量', 'system.patonLayer': 'HAPTIC EXOSKELETON', 'system.stage.movement.label': '人的動作', 'system.stage.movement.aria': '人的動作：查看動作與控制如何傳向機器人', 'system.stage.paton.aria': 'PATON：查看完整的雙向閉環', 'system.stage.action.label': '機器人行動', 'system.stage.action.aria': '機器人行動：查看觸覺、力量與阻力如何回到操作者', 'system.sequence.movement': '人先開始動作。', 'system.sequence.capture': 'PATON 擷取手臂、手掌與手指的動作。', 'system.sequence.paton': '機器人隨之行動。', 'system.sequence.action': '機器人的接觸回到操作者身上，成為真實的身體感受。',
   'developmentUpdates.eyebrow': '開發札記', 'developmentUpdates.heading1': '<span class="heading-line">跟著 PATON</span><span class="heading-line">一步步成形。</span>', 'developmentUpdates.description': '深入了解原型、工程里程碑，以及下一階段的開發方向。', 'developmentUpdates.emailLabel': '電子郵件地址', 'developmentUpdates.placeholder': '電子郵件地址', 'developmentUpdates.button': '追蹤開發進度', 'developmentUpdates.pendingButton': '傳送中…', 'developmentUpdates.pendingStatus': '正在送出…', 'developmentUpdates.fallbackButton': '追蹤開發進度', 'developmentUpdates.success': '訂閱成功。接下來的開發動態會寄到你的信箱。', 'developmentUpdates.error': '目前無法送出。請寄信至 info@felyalabs.com，我們會協助你完成訂閱。', 'developmentUpdates.consent': '送出即表示你同意由 Formspark 處理你的電子郵件與技術資料，以寄送開發動態。你可以隨時撤回同意。詳情請見我們的<a href="/privacy/" target="_blank" class="text-gray-300 underline-offset-4 transition-colors hover:text-white hover:underline">隱私權政策</a>。',
   'prototypes.eyebrow': '實作，不只停在想像', 'prototypes.heading': '<span class="heading-line">一步一步，</span><span class="heading-line">持續改進。</span>', 'prototypes.description': '每一版原型都在指出下一步方向。', 'prototypes.status': 'PATON 作為研究平台，隨著每一版原型持續成長。', 'prototypes.proofAria': 'PATON 的雙向閉環流程', 'prototypes.proof.0': '人的動作', 'prototypes.proof.1': '機器人行動', 'prototypes.proof.2': '觸覺與力量', 'prototypes.phase.0': '擷取', 'prototypes.phase.1': '傳輸', 'prototypes.phase.2': '回饋', 'prototypes.playButton': '播放', 'prototypes.replayButton': '重新播放', 'prototypes.videoTitle': 'Interface of Craft 原型影片', 'prototypes.videoLabel': '播放 Interface of Craft 原型影片', 'prototypes.videoReplayLabel': '重新播放 Interface of Craft 原型影片', 'prototypes.videoFallback': '你的瀏覽器不支援嵌入式影片。',
   'futures.eyebrow': '由此成為可能', 'futures.heading': '<span class="heading-line">人的存在，</span><span class="heading-line">以全新形式延伸。</span>', 'futures.description': '跨越距離。深入危險環境。透過承載人類意圖的機器。', 'futures.scenario.remote.title': '<span class="heading-line">走進現實之前，</span><span class="heading-line">先在虛擬世界演練。</span>', 'futures.scenario.remote.description': '在沒有現實風險的環境中，透過實作學習。', 'futures.scenario.hazard.title': '<span class="heading-line">前往人不該涉足之處，</span><span class="heading-line">完成必要的工作。</span>', 'futures.scenario.hazard.description': '讓人的技能深入危險環境，而不必讓人置身其中。', 'futures.scenario.presence.title': '<span class="heading-line">透過機器，</span><span class="heading-line">跨越距離存在。</span>', 'futures.scenario.presence.description': '將意圖、觸覺與表達帶到遠方。',
@@ -278,7 +278,7 @@ const zhTw: TranslationDictionary = {
 };
 
 const ru: TranslationDictionary = {
-  'meta.title': 'FELYA LABS | Интерфейсы, расширяющие возможности человека.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS разрабатывает носимые интерфейсы, которые передают движения, прикосновения и навыки человека роботизированным системам.',
   'meta.ogTitle': 'FELYA LABS',
   'meta.ogDescription': 'Интерфейсы, расширяющие возможности человека.',
@@ -314,7 +314,7 @@ const ru: TranslationDictionary = {
   'system.forward': 'Движение и управление',
   'system.return': 'Прикосновение, усилие и сопротивление',
   'system.returnShort': 'Прикосновение + усилие',
-  'system.patonLayer': 'ПЕРЧАТКИ + КОСТЮМ',
+  'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Движение человека',
   'system.stage.movement.aria': 'Движение человека: проследить передачу движения и управления к роботу',
   'system.stage.paton.label': 'PATON',
@@ -391,7 +391,7 @@ const ru: TranslationDictionary = {
 };
 
 const pt: TranslationDictionary = {
-  'meta.title': 'FELYA LABS | Interfaces que ampliam as capacidades humanas.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'A FELYA LABS desenvolve interfaces vestíveis que transferem movimento, toque e destreza humana para sistemas robóticos.',
   'meta.ogTitle': 'FELYA LABS',
   'meta.ogDescription': 'Interfaces que ampliam as capacidades humanas.',
@@ -427,7 +427,7 @@ const pt: TranslationDictionary = {
   'system.forward': 'Movimento e controlo',
   'system.return': 'Toque, força e resistência',
   'system.returnShort': 'Toque + força',
-  'system.patonLayer': 'LUVAS + TRAJE',
+  'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Movimento humano',
   'system.stage.movement.aria': 'Movimento humano: acompanhar o movimento e o controlo até ao robô',
   'system.stage.paton.label': 'PATON',
@@ -504,7 +504,7 @@ const pt: TranslationDictionary = {
 };
 
 const fr: TranslationDictionary = {
-  'meta.title': 'FELYA LABS | Des interfaces qui étendent les capacités humaines.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS développe des interfaces portables qui transmettent les mouvements, le toucher et le savoir-faire humains aux systèmes robotiques.',
   'meta.ogTitle': 'FELYA LABS',
   'meta.ogDescription': 'Des interfaces qui étendent les capacités humaines.',
@@ -540,7 +540,7 @@ const fr: TranslationDictionary = {
   'system.forward': 'Mouvement et contrôle',
   'system.return': 'Toucher, force et résistance',
   'system.returnShort': 'Toucher + force',
-  'system.patonLayer': 'GANTS + COMBINAISON',
+  'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Mouvement humain',
   'system.stage.movement.aria': 'Mouvement humain : suivre le mouvement et le contrôle jusqu’au robot',
   'system.stage.paton.label': 'PATON',
@@ -617,7 +617,7 @@ const fr: TranslationDictionary = {
 };
 
 const es: TranslationDictionary = {
-  'meta.title': 'FELYA LABS | Interfaces que amplían las capacidades humanas.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS desarrolla interfaces vestibles que trasladan el movimiento, el tacto y la destreza humana a sistemas robóticos.',
   'meta.ogTitle': 'FELYA LABS',
   'meta.ogDescription': 'Interfaces que amplían las capacidades humanas.',
@@ -653,7 +653,7 @@ const es: TranslationDictionary = {
   'system.forward': 'Movimiento y control',
   'system.return': 'Tacto, fuerza y resistencia',
   'system.returnShort': 'Tacto + fuerza',
-  'system.patonLayer': 'GUANTES + TRAJE',
+  'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Movimiento humano',
   'system.stage.movement.aria': 'Movimiento humano: seguir el movimiento y el control hasta el robot',
   'system.stage.paton.label': 'PATON',
@@ -730,7 +730,7 @@ const es: TranslationDictionary = {
 };
 
 const it: TranslationDictionary = {
-  'meta.title': 'FELYA LABS | Interfacce che ampliano le capacità umane.',
+  'meta.title': 'FELYA LABS',
   'meta.description': 'FELYA LABS sviluppa interfacce indossabili che trasferiscono movimento, tatto e abilità umane ai sistemi robotici.',
   'meta.ogTitle': 'FELYA LABS',
   'meta.ogDescription': 'Interfacce che ampliano le capacità umane.',
@@ -766,7 +766,7 @@ const it: TranslationDictionary = {
   'system.forward': 'Movimento e controllo',
   'system.return': 'Contatto, forza e resistenza',
   'system.returnShort': 'Tatto + forza',
-  'system.patonLayer': 'GUANTI + TUTA',
+  'system.patonLayer': 'HAPTIC EXOSKELETON',
   'system.stage.movement.label': 'Movimento umano',
   'system.stage.movement.aria': 'Movimento umano: segui il movimento e il controllo fino al robot',
   'system.stage.paton.label': 'PATON',

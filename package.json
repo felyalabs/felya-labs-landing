@@ -8,6 +8,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "generate:system-collision-masks": "node scripts/generate-system-collision-masks.mjs",
     "verify:references": "node scripts/verify-repository.mjs",
     "verify:i18n": "node --experimental-strip-types scripts/verify-localizations.mjs",
     "verify:localized-build": "node --experimental-strip-types scripts/verify-localized-build.mjs",

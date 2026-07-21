@@ -56,6 +56,22 @@ const sketchSource = (name, theme) => `/assets/images/possible-futures/sketches/
                                     loading="lazy"
                                     decoding="async"
                                 />
+                            ) : scenario.key === 'presence' && sketch.position === 'right' ? (
+                                <div class="future-presence-robot">
+                                    <span class="future-presence-rose-fog"></span>
+                                    <img
+                                        class={`future-sketch future-sketch--${scenario.key}-${sketch.position}`}
+                                        src={sketchSource(sketch.name, 'black')}
+                                        data-theme-image
+                                        data-light-src={sketchSource(sketch.name, 'black')}
+                                        data-dark-src={sketchSource(sketch.name, 'white')}
+                                        width={sketch.width}
+                                        height={sketch.height}
+                                        alt=""
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </div>
                             ) : (
                                 <img
                                     class={`future-sketch future-sketch--${scenario.key}-${sketch.position}`}
