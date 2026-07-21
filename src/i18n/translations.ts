@@ -128,7 +128,7 @@ const de: TranslationDictionary = {
   'theme.toLight': 'Zum hellen Farbschema wechseln', 'theme.toDark': 'Zum dunklen Farbschema wechseln',
   'language.open': 'Sprache auswählen', 'language.dialog': 'Sprachauswahl', 'language.close': 'Sprachauswahl schließen', 'language.current': 'Aktuelle Sprache',
   'partners.eyebrow': 'Forschung & Industrie', 'partners.heading': 'Innovation entsteht gemeinsam',
-  'hero.headlineHands': 'Deine Hände.', 'hero.headlineAnywhere': 'Überall auf der Welt.', 'hero.lead': 'Natürlich bewegen. Direkt spüren.',
+  'hero.headlineHands': 'Deine Hände.', 'hero.headlineAnywhere': 'Überall auf der Welt.', 'hero.lead': 'Natürlich bewegen mit haptischem Feedback.',
   'hero.languageInteraction': 'Nächste Sprache anzeigen',
   'hero.imageAlt': 'Nahaufnahme des haptischen FELYA LABS Handschuhs mit blauer Fingermechanik auf einem Stoffhandschuh.',
   'system.eyebrow': 'Das System', 'system.heading': '<span class="heading-line">PATON schließt</span><span class="heading-line">den Kreis.</span>',
