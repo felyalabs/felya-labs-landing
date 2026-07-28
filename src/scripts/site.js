@@ -52,10 +52,13 @@ export function initColorTheme({ root = document, config = colorTheme } = {}) {
   const readStoredTheme = () => {
     try {
       const storedTheme = window.localStorage.getItem(config.storageKey);
-      return isValidTheme(storedTheme) ? storedTheme : config.defaultTheme;
+      if (isValidTheme(storedTheme)) return storedTheme;
     } catch {
-      return config.defaultTheme;
+      // The early theme initializer already provides the automatic fallback.
     }
+
+    const initialTheme = document.documentElement.dataset.theme;
+    return isValidTheme(initialTheme) ? initialTheme : config.defaultTheme;
   };
 
   const persistTheme = (theme) => {
@@ -69,6 +72,7 @@ export function initColorTheme({ root = document, config = colorTheme } = {}) {
     const nextAction = nextTheme === 'dark' ? 'light' : 'dark';
     const labelKey = nextAction === 'light' ? 'theme.toLight' : 'theme.toDark';
     document.documentElement.dataset.theme = nextTheme;
+    if (shouldPersist) document.documentElement.dataset.themeSource = 'user';
     buttons.forEach((button) => {
       button.dataset.themeNext = nextAction;
       button.setAttribute('aria-pressed', String(nextTheme === 'light'));
@@ -339,9 +343,10 @@ export function initHeroHeadlineLanguages({
     const defaultText = translate(headline.dataset.i18n);
     shouldShowEnglishFirst = Boolean(englishLanguage && defaultText !== englishLanguage.text);
     priorityQueue = shuffle(priority).filter((entry) => (
-      !shouldShowEnglishFirst || entry.code !== englishLanguage.code
+      entry.text !== defaultText
+      && (!shouldShowEnglishFirst || entry.code !== englishLanguage.code)
     ));
-    secondaryQueue = shuffle(secondary);
+    secondaryQueue = shuffle(secondary).filter((entry) => entry.text !== defaultText);
   };
 
   resetLanguageCycle();
@@ -383,8 +388,21 @@ export function initHeroHeadlineLanguages({
       return englishLanguage;
     }
     if (priorityQueue.length) return priorityQueue.shift();
-    if (!secondaryQueue.length) secondaryQueue = shuffle(secondary);
+    if (!secondaryQueue.length) {
+      const defaultText = translate(headline.dataset.i18n);
+      secondaryQueue = shuffle(secondary).filter((entry) => entry.text !== defaultText);
+    }
     return secondaryQueue.shift();
+  };
+
+  const peekNextLanguage = () => {
+    if (shouldShowEnglishFirst) return englishLanguage;
+    if (priorityQueue.length) return priorityQueue[0];
+    if (!secondaryQueue.length) {
+      const defaultText = translate(headline.dataset.i18n);
+      secondaryQueue = shuffle(secondary).filter((entry) => entry.text !== defaultText);
+    }
+    return secondaryQueue[0];
   };
 
   const showNextLanguage = () => {
@@ -404,7 +422,7 @@ export function initHeroHeadlineLanguages({
     const maximumAttempts = priority.length + secondary.length + 2;
     for (let attempt = 0; attempt < maximumAttempts; attempt += 1) {
       const entry = nextLanguage();
-      if (!entry || entry.code === 'en' || entry.code === lastAutomaticLanguageCode) continue;
+      if (!entry || entry.code === lastAutomaticLanguageCode) continue;
       return entry;
     }
     return null;
@@ -557,7 +575,7 @@ export function initHeroHeadlineLanguages({
     const runId = previewRunId;
     isPointerPreviewRunning = true;
 
-    const didShowLanguage = await transitionHeadline(showNextLanguage);
+    const didShowLanguage = await transitionHeadline(() => showLanguageEntry(peekNextLanguage()));
     if (!didShowLanguage || runId !== previewRunId) {
       if (runId === previewRunId) isPointerPreviewRunning = false;
       return;
@@ -643,11 +661,11 @@ export function initHeroHeadlineLanguages({
     }
 
     const defaultText = translate(headline.dataset.i18n);
-    const eligibleLanguage = (entry) => entry.code !== 'en' && entry.text !== defaultText;
-    const introLanguages = [
-      shuffle(priority.filter(eligibleLanguage))[0],
-      ...shuffle(secondary.filter(eligibleLanguage)).slice(0, 2)
-    ].filter(Boolean);
+    const eligibleLanguage = (entry) => entry.text !== defaultText;
+    const introLanguages = shuffle([
+      ...priority,
+      ...secondary
+    ].filter(eligibleLanguage)).slice(0, 3);
     if (!introLanguages.length) {
       hitbox.removeAttribute('data-hero-intro-pending');
       isIntroActive = false;
@@ -1033,21 +1051,32 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
     const triggers = Array.from(demonstration.querySelectorAll('[data-system-demo-trigger]'));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const awakeningDuration = 2300;
-    const followUpDelayMin = 4000;
-    const followUpDelayMax = 6500;
-    const ambientDelayMin = 16000;
-    const ambientDelayMax = 26000;
+    const followUpDelayMin = 3000;
+    const followUpDelayMax = 5000;
+    const ambientDelayMin = 9000;
+    const ambientDelayMax = 15000;
     const hapticVisualOnset = 35;
     const desktopSignalArrivalRatio = 0.82;
     const mobileSignalArrivalRatio = 0.96;
+    const compactPacketCount = 7;
+    const compactPacketEdgeInset = 0.025;
+    const compactPacketSpawnHold = 110;
+    const getCompactShortViewportLift = () => (
+      Math.min(18, Math.max(0, (720 - window.innerHeight) * 0.34))
+    );
     let emphasisTimer = 0;
     let awakeningTimer = 0;
     let ambientTimer = 0;
     let isVisible = false;
     let isAwakening = false;
     let hasPlayedAmbientFollowUp = false;
+    let rapidClickCount = 0;
+    let lastSignalClickAt = 0;
+    let sparkleUntil = 0;
+    let signalCycleGeneration = 0;
     const activeSignalPulses = new Set();
     const activeSignalTimers = new Set();
+    const activeSignalFrames = new Set();
     const activeHapticPulses = new Set();
     const activeHapticTimers = new Set();
 
@@ -1090,10 +1119,19 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
     };
 
     const clearSignalCycle = () => {
+      signalCycleGeneration += 1;
       activeSignalTimers.forEach((timer) => window.clearTimeout(timer));
       activeSignalTimers.clear();
+      activeSignalFrames.forEach((frame) => window.cancelAnimationFrame(frame));
+      activeSignalFrames.clear();
       activeSignalPulses.forEach((pulse) => pulse.remove());
       activeSignalPulses.clear();
+      demonstration
+        .querySelectorAll('.system-demonstration__signal-path--active')
+        .forEach((path) => {
+          path.classList.remove('system-demonstration__signal-path--active');
+          path.style.removeProperty('--system-active-path-duration');
+        });
     };
 
     const clearHapticFeedback = () => {
@@ -1103,46 +1141,275 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
       activeHapticPulses.clear();
     };
 
-    const animateSignal = (direction, delay, duration) => {
-      const launch = () => {
-        const beamSelector = `.system-demonstration__beam--${direction}:not(.system-demonstration__beam--pulse)`;
-        const beams = usesMobileSignalLoop()
-          ? demonstration.querySelectorAll(`.system-demonstration__mobile-loop ${beamSelector}`)
-          : demonstration.querySelectorAll(beamSelector);
+    const getSignalPacketConfig = () => {
+      if (!usesMobileSignalLoop()) return { count: 9, spacing: 0 };
 
-        // The compact loop represents one physical signal travelling around
-        // the system. Never leave an earlier point visible when the next half
-        // of that journey begins.
-        if (usesMobileSignalLoop()) {
-          activeSignalPulses.forEach((pulse) => pulse.remove());
-          activeSignalPulses.clear();
+      /*
+       * Compact packets are positioned across the arc at launch instead of
+       * being emitted one after another at the shared forward/return corner.
+       */
+      return { count: compactPacketCount, spacing: 0 };
+    };
+
+    const activateSignalPath = (direction, delay, duration, cycleGeneration) => {
+      const { count, spacing } = getSignalPacketConfig();
+      const activeDuration = duration
+        + (count - 1) * spacing
+        + (usesMobileSignalLoop() ? compactPacketSpawnHold : 0);
+      const signalSvg = usesMobileSignalLoop() ? mobileSignalSvg : desktopSignalSvg;
+      const pathSelector = usesMobileSignalLoop()
+        ? `.system-demonstration__mobile-loop-path--${direction}`
+        : `.system-demonstration__path--${direction}`;
+
+      const activate = () => {
+        if (cycleGeneration !== signalCycleGeneration) return;
+        const path = signalSvg?.querySelector(pathSelector);
+        if (!path) return;
+
+        path.classList.remove('system-demonstration__signal-path--active');
+        path.style.setProperty('--system-active-path-duration', `${activeDuration}ms`);
+        void path.getBoundingClientRect();
+        path.classList.add('system-demonstration__signal-path--active');
+
+        const cleanupTimer = window.setTimeout(() => {
+          activeSignalTimers.delete(cleanupTimer);
+          if (cycleGeneration !== signalCycleGeneration) return;
+          path.classList.remove('system-demonstration__signal-path--active');
+        }, activeDuration + 80);
+        activeSignalTimers.add(cleanupTimer);
+      };
+
+      if (delay <= 0) {
+        activate();
+        return;
+      }
+
+      const timer = window.setTimeout(() => {
+        activeSignalTimers.delete(timer);
+        if (cycleGeneration !== signalCycleGeneration) return;
+        activate();
+      }, delay);
+      activeSignalTimers.add(timer);
+    };
+
+    const animateCompactSignalTrain = (direction, duration, cycleGeneration) => {
+      if (cycleGeneration !== signalCycleGeneration || !mobileSignalSvg) return;
+
+      const sourcePath = mobileSignalSvg.querySelector(
+        `.system-demonstration__beam--${direction}:not(.system-demonstration__beam--pulse) `
+        + '.system-demonstration__beam-core',
+      );
+      const packetLayer = sourcePath?.closest('.system-demonstration__mobile-loop-beam')?.parentNode;
+      if (!sourcePath || !packetLayer) return;
+
+      const pathLength = sourcePath.getTotalLength();
+      const { startInset, coverage } = getCompactPacketTrainGeometry();
+      const travelDistance = 1 - startInset;
+      const renderedWidth = mobileSignalSvg.getBoundingClientRect().width || 100;
+      const svgUnitsPerPixel = 100 / renderedWidth;
+      const svgNamespace = 'http://www.w3.org/2000/svg';
+      const packets = [];
+
+      for (let packetIndex = 0; packetIndex < compactPacketCount; packetIndex += 1) {
+        const packetProgress = compactPacketCount > 1
+          ? packetIndex / (compactPacketCount - 1)
+          : 0;
+        const packet = document.createElementNS(svgNamespace, 'g');
+        packet.classList.add('system-demonstration__compact-packet');
+        if (performance.now() < sparkleUntil) {
+          packet.classList.add('system-demonstration__compact-packet--sparkle');
         }
+        packet.style.setProperty('--system-sparkle-phase', `${-(packetIndex % 4) * 37}ms`);
+
+        const halo = document.createElementNS(svgNamespace, 'circle');
+        halo.classList.add('system-demonstration__compact-packet-halo');
+        halo.setAttribute('r', String(3.25 * svgUnitsPerPixel));
+
+        const core = document.createElementNS(svgNamespace, 'circle');
+        core.classList.add('system-demonstration__compact-packet-core');
+        core.setAttribute('r', String(1.35 * svgUnitsPerPixel));
+
+        const glint = document.createElementNS(svgNamespace, 'circle');
+        glint.classList.add('system-demonstration__compact-packet-glint');
+        glint.setAttribute('r', String(0.58 * svgUnitsPerPixel));
+
+        packet.append(halo, core, glint);
+        packetLayer.append(packet);
+        activeSignalPulses.add(packet);
+        packets.push({
+          element: packet,
+          startProgress: startInset + packetProgress * coverage,
+        });
+      }
+
+      const startedAt = performance.now();
+      let frameId = 0;
+      const removeTrain = () => {
+        activeSignalFrames.delete(frameId);
+        packets.forEach(({ element }) => {
+          element.remove();
+          activeSignalPulses.delete(element);
+        });
+      };
+      const renderFrame = (now) => {
+        activeSignalFrames.delete(frameId);
+        if (cycleGeneration !== signalCycleGeneration) {
+          removeTrain();
+          return;
+        }
+
+        const movementElapsed = Math.max(0, now - startedAt - compactPacketSpawnHold);
+        const movementProgress = Math.min(1, movementElapsed / duration);
+        packets.forEach(({ element, startProgress }) => {
+          const positionProgress = startProgress + movementProgress * travelDistance;
+          if (positionProgress > 1) {
+            element.style.opacity = '0';
+            return;
+          }
+
+          const point = sourcePath.getPointAtLength(positionProgress * pathLength);
+          element.style.opacity = '1';
+          element.setAttribute('transform', `translate(${point.x} ${point.y})`);
+        });
+
+        if (movementProgress >= 1) {
+          removeTrain();
+          return;
+        }
+
+        frameId = window.requestAnimationFrame(renderFrame);
+        activeSignalFrames.add(frameId);
+      };
+
+      frameId = window.requestAnimationFrame(renderFrame);
+      activeSignalFrames.add(frameId);
+    };
+
+    const animateSignal = (direction, delay, duration, cycleGeneration) => {
+      const { count, spacing } = getSignalPacketConfig();
+      activateSignalPath(direction, delay, duration, cycleGeneration);
+      if (usesMobileSignalLoop()) {
+        const launchTrain = () => {
+          if (cycleGeneration !== signalCycleGeneration) return;
+          animateCompactSignalTrain(direction, duration, cycleGeneration);
+        };
+
+        if (delay <= 0) {
+          launchTrain();
+          return;
+        }
+
+        const timer = window.setTimeout(() => {
+          activeSignalTimers.delete(timer);
+          launchTrain();
+        }, delay);
+        activeSignalTimers.add(timer);
+        return;
+      }
+
+      const compactGeometry = usesMobileSignalLoop()
+        ? getCompactPacketTrainGeometry()
+        : { startInset: 0, coverage: 0 };
+      const launchPacket = (packetIndex) => {
+        if (cycleGeneration !== signalCycleGeneration) return;
+        const beamSelector = `.system-demonstration__beam--${direction}:not(.system-demonstration__beam--pulse)`;
+        const signalRoot = usesMobileSignalLoop() ? mobileSignalSvg : desktopSignalSvg;
+        const beams = signalRoot?.querySelectorAll(beamSelector) || [];
+        const isMobile = usesMobileSignalLoop();
+        const progress = count > 1
+          ? packetIndex / (isMobile ? count - 1 : count)
+          : 0;
+        const pathSpread = isMobile
+          ? compactGeometry.startInset + progress * compactGeometry.coverage
+          : progress * 0.82;
+        const startOffset = -pathSpread;
+        /*
+         * Compact packets form one coherent train. Varying their size and
+         * opacity made the tighter spacing read as a single fading blob rather
+         * than seven equal data points.
+         */
+        const strength = isMobile ? 0.9 : 0.3 + progress * 0.7;
+        /*
+         * Compact packets are one rigid train: every point travels the same
+         * normalized distance in the same time. Points that start farther
+         * along the arc leave through its endpoint instead of compressing into
+         * the points behind them. Desktop keeps its established arrival model.
+         */
+        const compactTravelDistance = 1 - compactGeometry.startInset;
+        const packetDuration = isMobile
+          ? duration
+          : duration * (1 - pathSpread);
+        const endOffset = isMobile
+          ? startOffset - compactTravelDistance
+          : -1;
 
         beams.forEach((beam) => {
           const pulse = beam.cloneNode(true);
           pulse.classList.add('system-demonstration__beam--pulse');
-          pulse.style.setProperty('--system-signal-delay', '0ms');
-          pulse.style.setProperty('--system-signal-duration', `${duration}ms`);
+          if (performance.now() < sparkleUntil) {
+            pulse.classList.add('system-demonstration__beam--sparkle');
+          }
+          pulse.style.setProperty(
+            '--system-signal-delay',
+            `${isMobile ? compactPacketSpawnHold : 0}ms`,
+          );
+          pulse.style.setProperty('--system-signal-duration', `${packetDuration}ms`);
+          pulse.style.setProperty(
+            '--system-packet-start-offset',
+            String(startOffset),
+          );
+          pulse.style.setProperty(
+            '--system-packet-end-offset',
+            String(endOffset),
+          );
+          pulse.style.setProperty(
+            '--system-packet-core-start',
+            String((isMobile ? 0.66 : 0.32) * strength),
+          );
+          pulse.style.setProperty('--system-packet-core-peak', String(strength));
+          pulse.style.setProperty('--system-packet-core-cruise', String(0.76 * strength));
+          pulse.style.setProperty('--system-packet-halo-start', String(0.14 * strength));
+          pulse.style.setProperty('--system-packet-halo-peak', String(0.42 * strength));
+          pulse.style.setProperty('--system-packet-halo-cruise', String(0.27 * strength));
+          pulse.style.setProperty('--system-packet-glint-peak', String(0.82 * strength));
+          pulse.style.setProperty('--system-packet-glint-cruise', String(0.42 * strength));
+          pulse.style.setProperty('--system-sparkle-phase', `${-(packetIndex % 4) * 37}ms`);
+
+          const core = pulse.querySelector('.system-demonstration__beam-core');
+          const halo = pulse.querySelector('.system-demonstration__beam-halo');
+          const coreWidth = isMobile ? 2.7 : 1.85 + progress * 0.65;
+          const haloWidth = isMobile ? 6.5 : 5.8 + progress * 2.2;
+          core?.style.setProperty('stroke-width', String(coreWidth));
+          halo?.style.setProperty('stroke-width', String(haloWidth));
+          pulse.style.setProperty(
+            '--system-packet-glint-width',
+            String(isMobile ? 1.15 : Math.max(0.78, coreWidth * 0.42)),
+          );
+
           beam.parentNode?.append(pulse);
           activeSignalPulses.add(pulse);
 
           window.setTimeout(() => {
             pulse.remove();
             activeSignalPulses.delete(pulse);
-          }, duration + 100);
+          }, packetDuration + (isMobile ? compactPacketSpawnHold : 0) + 100);
         });
       };
 
-      if (delay <= 0) {
-        launch();
-        return;
-      }
+      for (let packetIndex = 0; packetIndex < count; packetIndex += 1) {
+        const packetDelay = delay + packetIndex * spacing;
+        if (packetDelay <= 0) {
+          launchPacket(packetIndex);
+          continue;
+        }
 
-      const timer = window.setTimeout(() => {
-        activeSignalTimers.delete(timer);
-        launch();
-      }, delay);
-      activeSignalTimers.add(timer);
+        const timer = window.setTimeout(() => {
+          activeSignalTimers.delete(timer);
+          if (cycleGeneration !== signalCycleGeneration) return;
+          launchPacket(packetIndex);
+        }, packetDelay);
+        activeSignalTimers.add(timer);
+      }
     };
 
     const playHapticFeedback = (selectors) => {
@@ -1201,12 +1468,27 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
     const robotSubject = demonstration.querySelector('.system-demonstration__subject--robot');
     const desktopSignalSvg = demonstration.querySelector('.system-demonstration__signals--desktop');
     const mobileSignalSvg = demonstration.querySelector('.system-demonstration__mobile-loop');
+    const mobileCollisionClearance = mobileSignalSvg?.querySelector(
+      '.system-demonstration__collision-clearance',
+    );
     const patonLabel = demonstration.querySelector('.system-demonstration__paton');
     const forwardLabel = demonstration.querySelector('.system-demonstration__annotation--forward');
     const returnLabel = demonstration.querySelector('.system-demonstration__annotation--return');
     const operatorSourceSize = { width: 1327, height: 1688 };
     const robotSourceSize = { width: 1325, height: 1409 };
     let collisionGeometryFrame = 0;
+
+    const getCompactPacketTrainGeometry = () => {
+      /*
+       * Compact beams use dedicated paths that contain only their exposed
+       * right/left arc. Distribute the train from the first visible endpoint
+       * to the last, retaining only enough room for the packet radius.
+       */
+      const startInset = compactPacketEdgeInset;
+      const coverage = 1 - compactPacketEdgeInset * 2;
+
+      return { startInset, coverage };
+    };
 
     const getContainedArtworkRect = (containerRect, sourceSize, alignX, alignY) => {
       const scale = Math.min(
@@ -1266,6 +1548,61 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
       );
       maskRect.setAttribute('width', String((elementRect.width + padding * 2) * scaleX));
       maskRect.setAttribute('height', String((elementRect.height + padding * 2) * scaleY));
+    };
+
+    const positionCompactSignalLoop = () => {
+      if (!stage || !mobileSignalSvg || !operatorStack || !robotSubject) return;
+
+      const stageRect = stage.getBoundingClientRect();
+      const operatorRect = operatorStack.getBoundingClientRect();
+      const robotRect = robotSubject.getBoundingClientRect();
+      if (
+        stageRect.width <= 0
+        || stageRect.height <= 0
+        || operatorRect.height <= 0
+        || robotRect.height <= 0
+      ) return;
+
+      const operatorBottom = operatorRect.bottom - stageRect.top;
+      const robotTop = robotRect.top - stageRect.top;
+      const artworkGap = Math.max(0, robotTop - operatorBottom);
+      const attachmentOverlap = Math.min(16, Math.max(10, stageRect.width * 0.025));
+
+      /*
+       * The visible circle has a radius of 40% of its SVG box. Size it so its
+       * upper and lower extrema overlap both artwork boundaries slightly; the
+       * collision mask then cuts those overlaps back to a constant clearance.
+       */
+      const idealLoopSize = (artworkGap + attachmentOverlap * 2) / 0.8;
+      const loopSize = Math.min(
+        stageRect.width * 0.72,
+        Math.max(stageRect.width * 0.64, idealLoopSize),
+      );
+      const loopCenterY = Math.min(
+        stageRect.height - loopSize / 2,
+        Math.max(
+          loopSize / 2,
+          (operatorBottom + robotTop) / 2 - getCompactShortViewportLift() / 2,
+        ),
+      );
+
+      const setStableLength = (property, value) => {
+        const nextValue = `${Math.round(value * 100) / 100}px`;
+        if (mobileSignalSvg.style.getPropertyValue(property) !== nextValue) {
+          mobileSignalSvg.style.setProperty(property, nextValue);
+        }
+      };
+      setStableLength('--system-compact-loop-render-size', loopSize);
+      setStableLength('--system-compact-loop-top', loopCenterY);
+
+      if (mobileCollisionClearance) {
+        const clearanceCssPixels = Math.min(18, Math.max(12, stageRect.width * 0.036));
+        const clearanceInViewBox = clearanceCssPixels * (100 / loopSize);
+        mobileCollisionClearance.setAttribute(
+          'radius',
+          String(Math.round(clearanceInViewBox * 1000) / 1000),
+        );
+      }
     };
 
     const positionCompactSignalLabels = () => {
@@ -1403,7 +1740,7 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
           robotWidth,
         );
         const robotRect = robotSubject.getBoundingClientRect();
-        const desiredTop = stageRect.height * 0.58;
+        const desiredTop = stageRect.height * 0.58 - getCompactShortViewportLift();
         const baselineTop = stageRect.height * 0.985 - robotRect.height;
         const robotTop = Math.min(desiredTop, baselineTop);
         const currentTop = robotSubject.style.getPropertyValue('--system-compact-robot-top');
@@ -1411,11 +1748,14 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
         if (currentTop !== nextTop) {
           robotSubject.style.setProperty('--system-compact-robot-top', nextTop);
         }
+        positionCompactSignalLoop();
         positionCompactSignalLabels();
       } else {
         robotSubject.style.removeProperty('--system-compact-robot-top');
         operatorStack.parentElement?.style.removeProperty('--system-compact-operator-render-width');
         robotSubject.style.removeProperty('--system-compact-robot-render-width');
+        mobileSignalSvg?.style.removeProperty('--system-compact-loop-render-size');
+        mobileSignalSvg?.style.removeProperty('--system-compact-loop-top');
         resetSignalLabelPositions();
       }
 
@@ -1482,12 +1822,30 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
       return Math.round(signalDelay + signalDuration * arrivalRatio);
     };
 
+    const getLandscapeLeadingArrivalDelay = (signalDelay, signalDuration) => {
+      const { count } = getSignalPacketConfig();
+      const leadingPacketSpread = ((count - 1) / count) * 0.82;
+      return Math.round(signalDelay + signalDuration * (1 - leadingPacketSpread));
+    };
+
+    const getCompactLeadingArrivalDelay = (signalDelay, signalDuration) => {
+      const { startInset, coverage } = getCompactPacketTrainGeometry();
+      return Math.round(
+        signalDelay
+        + compactPacketSpawnHold
+        + signalDuration * (1 - startInset - coverage) / (1 - startInset),
+      );
+    };
+
     const scheduleHapticAtReturnArrival = (returnDelay, returnDuration) => {
       // Begin the transparent pulse just before the visible signal reaches the
       // operator so the first perceptible feedback frame lands with it.
+      const arrivalDelay = usesMobileSignalLoop()
+        ? getCompactLeadingArrivalDelay(returnDelay, returnDuration)
+        : getSignalArrivalDelay(returnDelay, returnDuration);
       scheduleHapticFeedback(
         playSuitFeedback,
-        Math.max(0, getSignalArrivalDelay(returnDelay, returnDuration) - hapticVisualOnset),
+        Math.max(0, arrivalDelay - hapticVisualOnset),
       );
     };
 
@@ -1498,31 +1856,34 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
     const playSignalCycle = (origin = '') => {
       if (reduceMotion.matches) return;
 
+      const cycleGeneration = ++signalCycleGeneration;
       const isMobileSignalLoop = usesMobileSignalLoop();
-      const forwardDuration = isMobileSignalLoop ? 400 : 820;
-      const returnDuration = isMobileSignalLoop ? 380 : 720;
+      const forwardDuration = isMobileSignalLoop ? 680 : 1200;
+      const returnDuration = isMobileSignalLoop ? 650 : 1100;
 
       if (origin === 'return') {
-        animateSignal('return', 0, returnDuration);
+        animateSignal('return', 0, returnDuration, cycleGeneration);
         scheduleHapticAtReturnArrival(0, returnDuration);
         return;
       }
 
       if (origin === 'forward') {
-        animateSignal('forward', 0, forwardDuration);
+        animateSignal('forward', 0, forwardDuration, cycleGeneration);
         const returnDelay = isMobileSignalLoop
-          ? forwardDuration
-          : getSignalArrivalDelay(0, forwardDuration);
-        animateSignal('return', returnDelay, returnDuration);
+          ? getCompactLeadingArrivalDelay(0, forwardDuration)
+          : getLandscapeLeadingArrivalDelay(0, forwardDuration);
+        animateSignal('return', returnDelay, returnDuration, cycleGeneration);
         scheduleGlovesAtForwardStart(0);
         scheduleHapticAtReturnArrival(returnDelay, returnDuration);
         return;
       }
 
       const forwardDelay = isMobileSignalLoop ? 420 : 880;
-      const returnDelay = getSignalArrivalDelay(forwardDelay, forwardDuration);
-      animateSignal('forward', forwardDelay, forwardDuration);
-      animateSignal('return', returnDelay, returnDuration);
+      const returnDelay = isMobileSignalLoop
+        ? getCompactLeadingArrivalDelay(forwardDelay, forwardDuration)
+        : getLandscapeLeadingArrivalDelay(forwardDelay, forwardDuration);
+      animateSignal('forward', forwardDelay, forwardDuration, cycleGeneration);
+      animateSignal('return', returnDelay, returnDuration, cycleGeneration);
       scheduleGlovesAtForwardStart(forwardDelay);
       scheduleHapticAtReturnArrival(returnDelay, returnDuration);
     };
@@ -1573,6 +1934,16 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
 
     triggers.forEach((trigger) => {
       const action = trigger.dataset.systemDemoTrigger;
+      trigger.addEventListener('pointerdown', (event) => {
+        if (!usesMobileSignalLoop() || event.button !== 0) return;
+        /*
+         * A click is dispatched after pointer-down/up. Clear the preceding
+         * compact cycle at the first physical interaction frame so its final
+         * return packet cannot be perceived as part of the new forward train.
+         */
+        clearSignalCycle();
+        clearHapticFeedback();
+      });
       trigger.addEventListener('pointerenter', (event) => {
         if (event.pointerType === 'touch') return;
         setEmphasis(action);
@@ -1586,6 +1957,13 @@ export function initPatonSystemDemonstration({ root = document } = {}) {
       });
       trigger.addEventListener('blur', () => setEmphasis());
       trigger.addEventListener('click', () => {
+        const clickTime = performance.now();
+        rapidClickCount = clickTime - lastSignalClickAt <= 650
+          ? rapidClickCount + 1
+          : 1;
+        lastSignalClickAt = clickTime;
+        if (rapidClickCount >= 3) sparkleUntil = clickTime + 2200;
+
         holdEmphasis(action);
         playAwakening({
           restart: true,

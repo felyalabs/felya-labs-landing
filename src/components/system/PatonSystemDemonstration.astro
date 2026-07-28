@@ -19,6 +19,26 @@ const { locale } = Astro.props as { locale: Locale };
             aria-hidden="true"
         >
             <defs>
+                <filter
+                    id="system-demo-mobile-collision-clearance"
+                    x="-100"
+                    y="-100"
+                    width="300"
+                    height="300"
+                    filterUnits="userSpaceOnUse"
+                    primitiveUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB"
+                >
+                    <feMorphology
+                        class="system-demonstration__collision-clearance"
+                        in="SourceAlpha"
+                        operator="dilate"
+                        radius="1"
+                        result="expanded-collision"
+                    />
+                    <feFlood flood-color="black" result="collision-color" />
+                    <feComposite in="collision-color" in2="expanded-collision" operator="in" />
+                </filter>
                 <mask
                     id="system-demo-mobile-collision-mask"
                     class="system-demonstration__collision-mask"
@@ -33,11 +53,13 @@ const { locale } = Astro.props as { locale: Locale };
                         class="system-demonstration__collision-image system-demonstration__collision-image--operator"
                         href="/assets/images/system/operator/paton-operator-short-collision.webp"
                         preserveAspectRatio="none"
+                        filter="url(#system-demo-mobile-collision-clearance)"
                     />
                     <image
                         class="system-demonstration__collision-image system-demonstration__collision-image--robot"
                         href="/assets/images/system/openarm-system-collision.webp"
                         preserveAspectRatio="none"
+                        filter="url(#system-demo-mobile-collision-clearance)"
                     />
                     <rect class="system-demonstration__collision-label system-demonstration__collision-label--paton" fill="black" />
                 </mask>
@@ -52,12 +74,14 @@ const { locale } = Astro.props as { locale: Locale };
                     d="M78.284 78.284A40 40 0 0 1 21.716 21.716"
                 />
                 <g class="system-demonstration__beam system-demonstration__beam--forward system-demonstration__mobile-loop-beam">
-                    <path class="system-demonstration__beam-halo" d="M21.716 21.716A40 40 0 0 1 78.284 78.284" pathLength="1" />
-                    <path class="system-demonstration__beam-core" d="M21.716 21.716A40 40 0 0 1 78.284 78.284" pathLength="1" />
+                    <path class="system-demonstration__beam-halo" d="M50 10A40 40 0 0 1 78.284 78.284" pathLength="1" />
+                    <path class="system-demonstration__beam-core" d="M50 10A40 40 0 0 1 78.284 78.284" pathLength="1" />
+                    <path class="system-demonstration__beam-glint" d="M50 10A40 40 0 0 1 78.284 78.284" pathLength="1" />
                 </g>
                 <g class="system-demonstration__beam system-demonstration__beam--return system-demonstration__mobile-loop-beam">
-                    <path class="system-demonstration__beam-halo" d="M78.284 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
-                    <path class="system-demonstration__beam-core" d="M78.284 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
+                    <path class="system-demonstration__beam-halo" d="M21.716 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
+                    <path class="system-demonstration__beam-core" d="M21.716 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
+                    <path class="system-demonstration__beam-glint" d="M21.716 78.284A40 40 0 0 1 21.716 21.716" pathLength="1" />
                 </g>
             </g>
         </svg>
@@ -133,10 +157,12 @@ const { locale } = Astro.props as { locale: Locale };
                 <g class="system-demonstration__beam system-demonstration__beam--forward">
                     <path class="system-demonstration__beam-halo" d="M400 250C575 216 825 216 1000 250" pathLength="1" />
                     <path class="system-demonstration__beam-core" d="M400 250C575 216 825 216 1000 250" pathLength="1" />
+                    <path class="system-demonstration__beam-glint" d="M400 250C575 216 825 216 1000 250" pathLength="1" />
                 </g>
                 <g class="system-demonstration__beam system-demonstration__beam--return">
                     <path class="system-demonstration__beam-halo" d="M1000 371C825 405 575 405 400 371" pathLength="1" />
                     <path class="system-demonstration__beam-core" d="M1000 371C825 405 575 405 400 371" pathLength="1" />
+                    <path class="system-demonstration__beam-glint" d="M1000 371C825 405 575 405 400 371" pathLength="1" />
                 </g>
             </g>
         </svg>

@@ -1100,21 +1100,22 @@ html[data-theme="light"] .future-scenario::after {
 .future-presence-rose-fog {
     position: absolute;
     z-index: 0;
-    top: 21%;
-    left: 8%;
-    width: 43%;
+    top: 23%;
+    left: 9%;
+    width: 135%;
     aspect-ratio: 1;
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
     background: radial-gradient(
         circle,
-        rgba(78, 115, 224, 0.3) 0%,
-        rgba(78, 115, 224, 0.16) 38%,
-        rgba(78, 115, 224, 0.06) 58%,
-        transparent 74%
+        rgba(78, 115, 224, 0.23) 0%,
+        rgba(78, 115, 224, 0.13) 34%,
+        rgba(78, 115, 224, 0.055) 55%,
+        rgba(78, 115, 224, 0.018) 70%,
+        transparent 84%
     );
-    filter: blur(0.3rem);
+    filter: blur(0.8rem);
 }
 
 html[data-theme="light"] .future-sketch {
@@ -1174,13 +1175,65 @@ html[data-theme="light"] .future-scenario--presence::after {
     --future-blueprint-glow: transparent;
 }
 
+html:not([data-theme="light"]) .future-scenario--remote::after {
+    background:
+        radial-gradient(
+            ellipse 58% 68% at var(--future-blueprint-glow-x) var(--future-blueprint-glow-y),
+            rgba(78, 115, 224, 0.26) 0%,
+            rgba(78, 115, 224, 0.14) 38%,
+            rgba(78, 115, 224, 0.045) 62%,
+            transparent 86%
+        ),
+        linear-gradient(110deg, transparent 46%, rgba(103, 133, 223, 0.035) 72%, transparent 100%);
+}
+
+html:not([data-theme="light"]) .future-scenario--hazard::after {
+    background: linear-gradient(110deg, transparent 46%, rgba(103, 133, 223, 0.035) 72%, transparent 100%);
+}
+
+html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::before,
+html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 58%;
+    width: 50%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle,
+        rgba(78, 115, 224, 0.24) 0%,
+        rgba(78, 115, 224, 0.135) 34%,
+        rgba(78, 115, 224, 0.055) 57%,
+        rgba(78, 115, 224, 0.015) 72%,
+        transparent 86%
+    );
+    filter: blur(0.85rem);
+}
+
+html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::before {
+    left: 27%;
+}
+
+html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+    left: 72.5%;
+    top: 57%;
+}
+
 @media (min-width: 1024px) {
     .future-sketch--hazard-left {
         bottom: 19%;
     }
 
     .future-sketch--hazard-right {
+        right: 10%;
         bottom: 17.5%;
+    }
+
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+        left: 69.5%;
     }
 
     .future-scenario--hazard {
@@ -1312,6 +1365,17 @@ html[data-theme="light"] .future-scenario--presence::after {
         min-height: 0;
         padding: 2rem 1.5rem 2.5rem;
     }
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::before,
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+        top: 50%;
+        width: 58%;
+    }
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::before {
+        left: 25%;
+    }
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+        left: 75%;
+    }
 
     .future-sketch--remote-center {
         right: auto;
@@ -1351,6 +1415,20 @@ html[data-theme="light"] .future-scenario--presence::after {
         bottom: 10%;
         width: min(65%, 20.5rem);
     }
+    .future-presence-rose-fog {
+        top: 24%;
+        left: 9%;
+        width: 150%;
+        filter: blur(1.15rem);
+        background: radial-gradient(
+            circle,
+            rgba(78, 115, 224, 0.23) 0%,
+            rgba(78, 115, 224, 0.135) 32%,
+            rgba(78, 115, 224, 0.065) 52%,
+            rgba(78, 115, 224, 0.025) 68%,
+            transparent 84%
+        );
+    }
     .future-scenario--remote {
         --future-blueprint-glow-x: 51%;
         --future-blueprint-glow-y: 68%;
@@ -1368,6 +1446,17 @@ html[data-theme="light"] .future-scenario--presence::after {
     .future-sketch--hazard-left,
     .future-sketch--hazard-right {
         width: min(76%, 17rem);
+    }
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::before,
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+        left: 50%;
+        width: 92%;
+    }
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::before {
+        top: 25%;
+    }
+    html:not([data-theme="light"]) .future-scenario--hazard .future-scenario__visual::after {
+        top: 75%;
     }
 }
 
@@ -2390,7 +2479,8 @@ html[data-theme="light"] .system-demonstration__stage::after {
 
 .system-demonstration__path,
 .system-demonstration__beam-halo,
-.system-demonstration__beam-core {
+.system-demonstration__beam-core,
+.system-demonstration__beam-glint {
     fill: none;
     vector-effect: non-scaling-stroke;
 }
@@ -2407,12 +2497,21 @@ html[data-theme="light"] .system-demonstration__stage::after {
     opacity: 1;
 }
 
+.system-demonstration__signal-path--active {
+    animation: system-signal-path-active var(--system-active-path-duration, 1s) ease-in-out both;
+}
+
 .system-demonstration__beam-halo,
-.system-demonstration__beam-core {
+.system-demonstration__beam-core,
+.system-demonstration__beam-glint {
     stroke: var(--system-demo-signal);
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-dasharray: 0.105 0.895;
+    /*
+     * A repeat interval longer than the normalized path prevents packets from
+     * wrapping to the path origin as they approach their fade-out.
+     */
+    stroke-dasharray: 0.009 1.08;
     stroke-dashoffset: 0;
     opacity: 0;
 }
@@ -2428,12 +2527,65 @@ html[data-theme="light"] .system-demonstration__stage::after {
     filter: drop-shadow(0 0 2.5px rgba(117, 146, 232, 0.5));
 }
 
+.system-demonstration__beam-glint {
+    display: none;
+    stroke: #fff;
+    stroke-width: var(--system-packet-glint-width, 0.7);
+}
+
 .system-demonstration__beam--pulse .system-demonstration__beam-core {
     animation: system-awaken-signal-core var(--system-signal-duration) linear var(--system-signal-delay) both;
 }
 
 .system-demonstration__beam--pulse .system-demonstration__beam-halo {
     animation: system-awaken-signal-halo var(--system-signal-duration) linear var(--system-signal-delay) both;
+}
+
+.system-demonstration__beam--pulse.system-demonstration__beam--sparkle .system-demonstration__beam-core {
+    animation:
+        system-awaken-signal-core var(--system-signal-duration) linear var(--system-signal-delay) both,
+        system-data-point-sparkle 180ms steps(2, end) 0ms infinite alternate;
+}
+
+/*
+ * On a light canvas, a broad additive glow loses its edge and reads as blue
+ * haze. Keep the packet crisp instead: a restrained corona, a cobalt edge and
+ * a tiny near-white specular flash provide the contrast that a star needs.
+ * Dark mode intentionally retains the softer luminous treatment above.
+ */
+html[data-theme="light"] .system-demonstration__beam-halo {
+    filter: blur(1.45px);
+}
+
+html[data-theme="light"] .system-demonstration__beam-core {
+    stroke: #4164c5;
+    filter:
+        drop-shadow(0 0 0.45px rgba(31, 58, 135, 0.96))
+        drop-shadow(0 0 1.35px rgba(79, 112, 207, 0.34));
+}
+
+html[data-theme="light"] .system-demonstration__beam-glint {
+    display: block;
+    stroke: #f8fbff;
+    filter:
+        drop-shadow(0 0 0.45px rgba(255, 255, 255, 1))
+        drop-shadow(0 0 1px rgba(73, 108, 207, 0.62));
+}
+
+html[data-theme="light"] .system-demonstration__beam--pulse .system-demonstration__beam-glint {
+    animation: system-awaken-signal-glint var(--system-signal-duration) linear var(--system-signal-delay) both;
+}
+
+html[data-theme="light"] .system-demonstration__beam--pulse.system-demonstration__beam--sparkle .system-demonstration__beam-core {
+    animation:
+        system-awaken-signal-core var(--system-signal-duration) linear var(--system-signal-delay) both,
+        system-data-point-sparkle-light 190ms steps(3, end) 0ms infinite;
+}
+
+html[data-theme="light"] .system-demonstration__beam--pulse.system-demonstration__beam--sparkle .system-demonstration__beam-glint {
+    animation:
+        system-awaken-signal-glint var(--system-signal-duration) linear var(--system-signal-delay) both,
+        system-data-point-glint-light 170ms steps(3, end) var(--system-sparkle-phase, 0ms) infinite;
 }
 
 .system-demonstration__paton {
@@ -2593,17 +2745,138 @@ html[data-theme="dark"] .system-demonstration__operator-layer--suit.system-demon
 }
 
 @keyframes system-awaken-signal-core {
-    0% { opacity: 0.72; stroke-dashoffset: 0; }
-    6% { opacity: 1; }
-    82% { opacity: 1; }
-    100% { opacity: 0; stroke-dashoffset: -1; }
+    0% { opacity: var(--system-packet-core-start, 0.72); stroke-dashoffset: var(--system-packet-start-offset, 0); }
+    10% { opacity: var(--system-packet-core-peak, 1); }
+    68% { opacity: var(--system-packet-core-cruise, 0.76); }
+    100% { opacity: 0; stroke-dashoffset: var(--system-packet-end-offset, -1); }
 }
 
 @keyframes system-awaken-signal-halo {
-    0% { opacity: 0.12; stroke-dashoffset: 0; }
-    8% { opacity: 0.24; }
-    78% { opacity: 0.2; }
-    100% { opacity: 0; stroke-dashoffset: -1; }
+    0% { opacity: var(--system-packet-halo-start, 0.12); stroke-dashoffset: var(--system-packet-start-offset, 0); }
+    12% { opacity: var(--system-packet-halo-peak, 0.24); }
+    68% { opacity: var(--system-packet-halo-cruise, 0.16); }
+    100% { opacity: 0; stroke-dashoffset: var(--system-packet-end-offset, -1); }
+}
+
+@keyframes system-awaken-signal-glint {
+    0% {
+        opacity: 0;
+        stroke-dashoffset: var(--system-packet-start-offset, 0);
+    }
+    9% { opacity: var(--system-packet-glint-peak, 0.7); }
+    58% { opacity: var(--system-packet-glint-cruise, 0.34); }
+    100% {
+        opacity: 0;
+        stroke-dashoffset: var(--system-packet-end-offset, -1);
+    }
+}
+
+@keyframes system-signal-path-active {
+    0% {
+        stroke: var(--system-demo-signal-soft);
+        stroke-width: 1.5;
+        filter: drop-shadow(0 0 0 rgba(117, 146, 232, 0));
+    }
+    10% {
+        stroke: var(--system-demo-signal);
+        stroke-width: 1.42;
+        opacity: 0.48;
+        filter:
+            drop-shadow(0 0 1px rgba(117, 146, 232, 0.16))
+            drop-shadow(0 0 3px rgba(117, 146, 232, 0.06));
+    }
+    82% {
+        stroke: var(--system-demo-signal);
+        stroke-width: 1.42;
+        opacity: 0.48;
+        filter:
+            drop-shadow(0 0 1px rgba(117, 146, 232, 0.16))
+            drop-shadow(0 0 3px rgba(117, 146, 232, 0.06));
+    }
+    100% {
+        stroke: var(--system-demo-signal-soft);
+        stroke-width: 1.5;
+        filter: drop-shadow(0 0 0 rgba(117, 146, 232, 0));
+    }
+}
+
+@keyframes system-data-point-sparkle {
+    0% {
+        filter:
+            brightness(0.92)
+            drop-shadow(0 0 2px rgba(117, 146, 232, 0.48));
+    }
+    45% {
+        filter:
+            brightness(1.5)
+            drop-shadow(0 0 3px rgba(205, 218, 255, 0.92))
+            drop-shadow(0 0 7px rgba(117, 146, 232, 0.7));
+    }
+    100% {
+        filter:
+            brightness(1.08)
+            drop-shadow(0 0 2.5px rgba(153, 178, 255, 0.62));
+    }
+}
+
+@keyframes system-data-point-sparkle-light {
+    0%,
+    100% {
+        filter:
+            brightness(0.88)
+            drop-shadow(0 0 0.5px rgba(26, 50, 121, 1))
+            drop-shadow(0 0 1.15px rgba(49, 87, 184, 0.38));
+    }
+    38% {
+        filter:
+            brightness(1)
+            drop-shadow(0 0 0.55px rgba(26, 50, 121, 1))
+            drop-shadow(0 0 1.45px rgba(49, 87, 184, 0.52));
+    }
+    52% {
+        filter:
+            brightness(1.62)
+            drop-shadow(0 0 0.35px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 0.85px rgba(225, 234, 255, 0.98))
+            drop-shadow(0 0 1.75px rgba(49, 87, 184, 0.62));
+    }
+    68% {
+        filter:
+            brightness(0.96)
+            drop-shadow(0 0 0.5px rgba(26, 50, 121, 1))
+            drop-shadow(0 0 1.25px rgba(49, 87, 184, 0.44));
+    }
+}
+
+@keyframes system-data-point-glint-light {
+    0%,
+    100% {
+        stroke-width: var(--system-packet-glint-width, 0.75);
+        filter:
+            brightness(0.82)
+            drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+    }
+    38% {
+        stroke-width: var(--system-packet-glint-width, 0.75);
+        filter:
+            brightness(1.15)
+            drop-shadow(0 0 0.7px rgba(255, 255, 255, 0.95))
+            drop-shadow(0 0 1.5px rgba(62, 96, 196, 0.62));
+    }
+    50% {
+        stroke-width: calc(var(--system-packet-glint-width, 0.75) + 0.7);
+        filter:
+            brightness(2.15)
+            drop-shadow(0 0 1px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 2.4px rgba(214, 227, 255, 1))
+            drop-shadow(0 0 4px rgba(49, 87, 184, 0.72));
+    }
+    64% {
+        stroke-width: calc(var(--system-packet-glint-width, 0.75) - 0.12);
+        filter:
+            brightness(0.92)
+            drop-shadow(0 0 0.55px rgba(255, 255, 255, 0.78));
+    }
 }
 
 .development-updates-section {
@@ -3441,11 +3714,14 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     .system-demonstration__mobile-loop {
         position: absolute;
         z-index: 1;
-        top: 50%;
+        top: var(--system-compact-loop-top, 50%);
         left: 50%;
         display: block;
-        /* Scale with the stage: a capped circle can detach from both subjects. */
-        width: var(--system-compact-loop-width);
+        /*
+         * JavaScript derives the rendered size and vertical center from the
+         * actual artwork gap. The fluid CSS value remains the safe fallback.
+         */
+        width: var(--system-compact-loop-render-size, var(--system-compact-loop-width));
         aspect-ratio: 1;
         transform: translate(-50%, -50%);
         filter: drop-shadow(0 0 0.38rem rgba(117, 146, 232, 0.12));
@@ -3460,16 +3736,88 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
         vector-effect: non-scaling-stroke;
     }
     .system-demonstration__mobile-loop .system-demonstration__beam-core,
-    .system-demonstration__mobile-loop .system-demonstration__beam-halo {
-        stroke-dasharray: 0.008 0.992;
+    .system-demonstration__mobile-loop .system-demonstration__beam-halo,
+    .system-demonstration__mobile-loop .system-demonstration__beam-glint {
+        /*
+         * One packet travels a full normalized path length. A pattern period
+         * longer than two paths prevents its next repeated dash from entering
+         * at the opposite endpoint before the original packet has faded.
+         */
+        stroke-dasharray: 0.008 2.05;
     }
     .system-demonstration__mobile-loop .system-demonstration__beam-core {
-        stroke-width: 3.2;
-        filter: drop-shadow(0 0 3.6px rgba(131, 162, 255, 0.88));
+        stroke-width: 2.7;
+        filter:
+            drop-shadow(0 0 1px rgba(205, 218, 255, 0.72))
+            drop-shadow(0 0 2.4px rgba(117, 146, 232, 0.58));
     }
     .system-demonstration__mobile-loop .system-demonstration__beam-halo {
-        stroke-width: 9;
-        filter: blur(3.2px);
+        stroke-width: 6.5;
+        filter: blur(1.8px);
+    }
+    .system-demonstration__compact-packet {
+        pointer-events: none;
+    }
+    .system-demonstration__compact-packet-halo {
+        fill: var(--system-demo-signal);
+        opacity: 0.3;
+        filter: blur(1.8px);
+    }
+    .system-demonstration__compact-packet-core {
+        fill: var(--system-demo-signal);
+        opacity: 0.94;
+        filter:
+            drop-shadow(0 0 1px rgba(205, 218, 255, 0.72))
+            drop-shadow(0 0 2.4px rgba(117, 146, 232, 0.58));
+    }
+    .system-demonstration__compact-packet-glint {
+        fill: #edf3ff;
+        opacity: 0.78;
+        filter:
+            drop-shadow(0 0 0.55px rgba(255, 255, 255, 0.96))
+            drop-shadow(0 0 1.6px rgba(131, 162, 255, 0.72));
+    }
+    .system-demonstration__compact-packet--sparkle .system-demonstration__compact-packet-core {
+        animation: system-data-point-sparkle 180ms steps(2, end) infinite alternate;
+    }
+    .system-demonstration__compact-packet--sparkle .system-demonstration__compact-packet-glint {
+        animation:
+            system-data-point-glint-light 170ms steps(3, end)
+            var(--system-sparkle-phase, 0ms) infinite;
+    }
+    html[data-theme="light"] .system-demonstration__compact-packet-halo {
+        opacity: 0.2;
+        filter: blur(1.2px);
+    }
+    html[data-theme="light"] .system-demonstration__compact-packet-core {
+        fill: #4164c5;
+        filter:
+            drop-shadow(0 0 0.45px rgba(31, 58, 135, 0.96))
+            drop-shadow(0 0 1.35px rgba(79, 112, 207, 0.34));
+    }
+    html[data-theme="light"] .system-demonstration__compact-packet-glint {
+        fill: #f8fbff;
+        filter:
+            drop-shadow(0 0 0.45px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 1px rgba(73, 108, 207, 0.62));
+    }
+    html[data-theme="light"] .system-demonstration__compact-packet--sparkle .system-demonstration__compact-packet-core {
+        animation: system-data-point-sparkle-light 190ms steps(3, end) infinite;
+    }
+    html:not([data-theme="light"]) .system-demonstration__mobile-loop .system-demonstration__beam-glint {
+        display: block;
+        stroke: #edf3ff;
+        filter:
+            drop-shadow(0 0 0.55px rgba(255, 255, 255, 0.96))
+            drop-shadow(0 0 1.6px rgba(131, 162, 255, 0.72));
+    }
+    html:not([data-theme="light"]) .system-demonstration__mobile-loop .system-demonstration__beam--pulse .system-demonstration__beam-glint {
+        animation: system-awaken-signal-glint var(--system-signal-duration) linear var(--system-signal-delay) both;
+    }
+    html:not([data-theme="light"]) .system-demonstration__mobile-loop .system-demonstration__beam--pulse.system-demonstration__beam--sparkle .system-demonstration__beam-glint {
+        animation:
+            system-awaken-signal-glint var(--system-signal-duration) linear var(--system-signal-delay) both,
+            system-data-point-glint-light 170ms steps(3, end) var(--system-sparkle-phase, 0ms) infinite;
     }
     .system-demonstration__operator-layer--suit.system-demonstration__operator-layer--feedback-pulse {
         animation-name: system-haptic-feedback-suit-mobile;
@@ -3700,8 +4048,8 @@ html[data-theme="light"] .footer-brand img { filter: invert(1); }
     }
 
     .system-demonstration__mobile-loop {
-        top: 50%;
-        width: var(--system-compact-loop-width);
+        top: var(--system-compact-loop-top, 50%);
+        width: var(--system-compact-loop-render-size, var(--system-compact-loop-width));
     }
 
     .system-demonstration__stage::before {
