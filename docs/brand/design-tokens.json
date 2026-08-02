@@ -1,0 +1,291 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "meta": {
+    "brand": "FELYA LABS",
+    "version": "1.1.0",
+    "updated": "2026-07-20",
+    "systemDate": "Juli 2026",
+    "description": "Canonical corporate design tokens derived from the FELYA LABS website.",
+    "brandArchitecture": {
+      "masterBrand": "FELYA LABS",
+      "featuredProduct": "PATON",
+      "claim": "Interfaces that extend human capability."
+    }
+  },
+  "color": {
+    "dark": {
+      "page": { "$type": "color", "$value": "#000000" },
+      "surface": { "$type": "color", "$value": "#111111" },
+      "surfaceMuted": { "$type": "color", "$value": "#141414" },
+      "surfaceBorder": { "$type": "color", "$value": "#222222" },
+      "textStrong": { "$type": "color", "$value": "#FFFFFF" },
+      "textSoft": { "$type": "color", "$value": "#D1D5DB" },
+      "textMuted": { "$type": "color", "$value": "#6B7280" },
+      "textFaint": { "$type": "color", "$value": "#4B5563" },
+      "heroHeadlineSecondary": {
+        "$type": "color",
+        "$value": "#A2A6AE",
+        "$description": "Second line of two-part hero, brand and campaign claims in dark mode."
+      },
+      "accent": { "$type": "color", "$value": "#6785DF", "$description": "Functional PATON accent in dark mode: signals, focus, active outlines and interaction emphasis." },
+      "accentStrong": { "$type": "color", "$value": "#7895EC", "$description": "High-contrast dark-mode accent for product eyebrows and short active labels." },
+      "accentSoft": { "$type": "color", "$value": "rgba(103, 133, 223, 0.14)" },
+      "signalGold": { "$type": "color", "$value": "#DEB45F", "$description": "Rare warm event color on dark surfaces; not a default CTA, data-stream or general hover color." },
+      "line": { "$type": "color", "$value": "rgba(255, 255, 255, 0.12)" },
+      "lineStrong": { "$type": "color", "$value": "rgba(255, 255, 255, 0.20)" }
+    },
+    "light": {
+      "page": { "$type": "color", "$value": "#F4F6F8" },
+      "surface": { "$type": "color", "$value": "rgba(255, 255, 255, 0.78)" },
+      "surfaceMuted": { "$type": "color", "$value": "rgba(248, 249, 251, 0.90)" },
+      "surfaceBorder": { "$type": "color", "$value": "#DDE3EA" },
+      "textStrong": { "$type": "color", "$value": "#090B0F" },
+      "textSoft": { "$type": "color", "$value": "#2D333D" },
+      "textMuted": { "$type": "color", "$value": "#656D7A" },
+      "textFaint": { "$type": "color", "$value": "#87909E" },
+      "heroHeadlineSecondary": {
+        "$type": "color",
+        "$value": "#686E78",
+        "$description": "Second line of two-part hero, brand and campaign claims in light mode."
+      },
+      "accent": { "$type": "color", "$value": "#4F70CF", "$description": "Functional PATON accent in light mode: signals, focus, active outlines and interaction emphasis." },
+      "accentStrong": { "$type": "color", "$value": "#3F60BD", "$description": "High-contrast light-mode accent for product eyebrows and short active labels." },
+      "accentSoft": { "$type": "color", "$value": "rgba(79, 112, 207, 0.10)" },
+      "signalGold": { "$type": "color", "$value": "#A97825", "$description": "Rare warm event color on light surfaces; not a default CTA, data-stream or general hover color." },
+      "line": { "$type": "color", "$value": "rgba(15, 23, 42, 0.12)" },
+      "lineStrong": { "$type": "color", "$value": "rgba(15, 23, 42, 0.20)" }
+    },
+    "system": {
+      "dark": {
+        "suit": { "$type": "color", "$value": "#5475D8", "$description": "PATON suit layer in the dark system visualization; not a general UI accent." },
+        "gloves": { "$type": "color", "$value": "#83A2FF", "$description": "PATON glove layer and haptic response in the dark system visualization." },
+        "robotRest": { "$type": "color", "$value": "#A0AAB8" },
+        "signal": { "$type": "color", "$value": "#7592E8" }
+      },
+      "light": {
+        "suit": { "$type": "color", "$value": "#355BC3", "$description": "PATON suit layer in the light system visualization; not a general UI accent." },
+        "gloves": { "$type": "color", "$value": "#507BE8", "$description": "PATON glove layer and haptic response in the light system visualization." },
+        "robotRest": { "$type": "color", "$value": "#596371" },
+        "signal": { "$type": "color", "$value": "#4F70CF" }
+      }
+    },
+    "blueprint": {
+      "dark": {
+        "surface": { "$type": "color", "$value": "#090E19" },
+        "gridMinor": { "$type": "color", "$value": "rgba(123, 151, 229, 0.07)" },
+        "gridMajor": { "$type": "color", "$value": "rgba(123, 151, 229, 0.13)" },
+        "border": { "$type": "color", "$value": "rgba(123, 151, 229, 0.22)" },
+        "glow": { "$type": "color", "$value": "rgba(78, 115, 224, 0.20)" }
+      },
+      "light": {
+        "surface": { "$type": "color", "$value": "#F3F6FB" },
+        "gridMinor": { "$type": "color", "$value": "rgba(58, 91, 176, 0.065)" },
+        "gridMajor": { "$type": "color", "$value": "rgba(58, 91, 176, 0.12)" },
+        "border": { "$type": "color", "$value": "rgba(58, 91, 176, 0.20)" },
+        "glow": { "$type": "color", "$value": "rgba(72, 108, 211, 0.14)" }
+      }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "brand": {
+        "$type": "fontFamily",
+        "$value": ["Manrope", "system-ui", "-apple-system", "Segoe UI", "sans-serif"]
+      }
+    },
+    "fontWeight": {
+      "regular": { "$type": "number", "$value": 400 },
+      "text": { "$type": "number", "$value": 520 },
+      "semibold": { "$type": "number", "$value": 650 },
+      "bold": { "$type": "number", "$value": 700 },
+      "eyebrow": { "$type": "number", "$value": 750 },
+      "extraBold": { "$type": "number", "$value": 800 }
+    },
+    "fontSize": {
+      "caption": { "$type": "dimension", "$value": "0.74rem" },
+      "eyebrow": { "$type": "dimension", "$value": "0.76rem" },
+      "body": { "$type": "dimension", "$value": "1rem" },
+      "lead": { "$type": "dimension", "$value": "1.1rem" },
+      "sectionMobile": { "$type": "dimension", "$value": "3rem" },
+      "sectionDesktop": { "$type": "dimension", "$value": "4.5rem" },
+      "heroMaximum": { "$type": "dimension", "$value": "5.2rem" }
+    },
+    "lineHeight": {
+      "displayTight": { "$type": "number", "$value": 0.96 },
+      "heading": { "$type": "number", "$value": 1.02 },
+      "body": { "$type": "number", "$value": 1.7 },
+      "eyebrow": { "$type": "number", "$value": 1.2 }
+    },
+    "letterSpacing": {
+      "display": { "$type": "dimension", "$value": "-0.045em" },
+      "section": { "$type": "dimension", "$value": "-0.035em" },
+      "eyebrow": { "$type": "dimension", "$value": "0.12em" },
+      "utility": { "$type": "dimension", "$value": "0.08em" }
+    }
+  },
+  "space": {
+    "1": { "$type": "dimension", "$value": "0.25rem" },
+    "2": { "$type": "dimension", "$value": "0.5rem" },
+    "3": { "$type": "dimension", "$value": "0.75rem" },
+    "4": { "$type": "dimension", "$value": "1rem" },
+    "6": { "$type": "dimension", "$value": "1.5rem" },
+    "8": { "$type": "dimension", "$value": "2rem" },
+    "12": { "$type": "dimension", "$value": "3rem" },
+    "16": { "$type": "dimension", "$value": "4rem" },
+    "24": { "$type": "dimension", "$value": "6rem" },
+    "sectionMobile": { "$type": "dimension", "$value": "6.5rem" },
+    "sectionCompact": { "$type": "dimension", "$value": "8rem" },
+    "sectionDesktop": { "$type": "dimension", "$value": "9rem" }
+  },
+  "radius": {
+    "small": {
+      "$type": "dimension",
+      "$value": "0.5rem",
+      "$description": "Small repeated UI: social links, compact menu items and inline actions."
+    },
+    "medium": {
+      "$type": "dimension",
+      "$value": "0.875rem",
+      "$description": "Interactive controls and compact surfaces: inputs, buttons, compact CTAs and selection items."
+    },
+    "large": {
+      "$type": "dimension",
+      "$value": "1.5rem",
+      "$description": "Standard structural surfaces on desktop and tablet: navigation, media and content frames."
+    },
+    "surfaceLarge": {
+      "$type": "dimension",
+      "$value": "2rem",
+      "$description": "Immersive or near-full-width surfaces: dialogs, mobile navigation and large mobile media frames."
+    },
+    "shape": { "$type": "string", "$value": "squircle" }
+  },
+  "layout": {
+    "contentMax": { "$type": "dimension", "$value": "104rem" },
+    "textMax": { "$type": "dimension", "$value": "44rem" },
+    "textWideMax": { "$type": "dimension", "$value": "48rem" },
+    "pageInsetMobile": { "$type": "dimension", "$value": "1.5rem" },
+    "pageInsetDesktop": { "$type": "dimension", "$value": "3rem" },
+    "logoHeaderHeight": { "$type": "dimension", "$value": "2rem" },
+    "logoMinimumWidth": { "$type": "dimension", "$value": "5rem" },
+    "logoClearspaceRatio": { "$type": "number", "$value": 0.5 }
+  },
+  "header": {
+    "outerInsetDesktop": { "$type": "dimension", "$value": "4rem", "$description": "Desktop page inset from 1024px upward." },
+    "outerInsetTablet": { "$type": "dimension", "$value": "3rem", "$description": "Tablet header inset." },
+    "outerInsetMobile": { "$type": "dimension", "$value": "1rem", "$description": "Mobile header inset." },
+    "containerMax": { "$type": "dimension", "$value": "104rem" },
+    "paddingBlock": { "$type": "dimension", "$value": "0.75rem" },
+    "paddingInlineDesktop": { "$type": "dimension", "$value": "2rem" },
+    "radius": { "$type": "dimension", "$value": "1.5rem" },
+    "logoHeightDesktop": { "$type": "dimension", "$value": "2rem" },
+    "logoHeightMobile": { "$type": "dimension", "$value": "1.75rem" },
+    "logoAspectRatio": { "$type": "number", "$value": 2.8385 },
+    "navigationFontSize": { "$type": "dimension", "$value": "0.875rem" },
+    "navigationGap": { "$type": "dimension", "$value": "2rem" },
+    "controlSize": { "$type": "dimension", "$value": "2.625rem" },
+    "controlGap": { "$type": "dimension", "$value": "0.5rem" }
+  },
+  "visualSystem": {
+    "closedLoop": {
+      "hierarchy": { "$type": "string", "$value": "human -> PATON -> robot -> physical return" },
+      "gridMajor": { "$type": "dimension", "$value": "11.5rem" },
+      "gridMinor": { "$type": "dimension", "$value": "2.875rem" },
+      "fogBehavior": { "$type": "string", "$value": "steady elongated field connecting operator and robot; never pulses" },
+      "forwardDirection": { "$type": "string", "$value": "operator to robot" },
+      "returnDirection": { "$type": "string", "$value": "robot to operator" },
+      "desktopPathGeometry": { "$type": "string", "$value": "two mirrored horizontal arcs forming a symmetrical eye between operator and robot" },
+      "labelPlacement": { "$type": "string", "$value": "movement above the loop and physical return below it; labels never intersect paths or visible linework" },
+      "signalBehavior": { "$type": "string", "$value": "visible signals always move and finish their path; no static waiting state" },
+      "signalSequence": { "$type": "string", "$value": "forward signal completes first; return signal starts immediately on arrival and travels in the opposite direction" },
+      "productBehavior": { "$type": "string", "$value": "suit and gloves remain blue in both themes; neutral linework remains steady" },
+      "responsiveBehavior": { "$type": "string", "$value": "switch to a dedicated vertical mobile composition with a rotated symmetrical loop when desktop proportions no longer work" }
+    },
+    "futureCanvas": {
+      "gridMajor": { "$type": "dimension", "$value": "10rem" },
+      "gridMinor": { "$type": "dimension", "$value": "2.5rem" },
+      "composition": { "$type": "string", "$value": "one scenario, one focal point, deliberate negative space and no more than two dominant color accents" },
+      "headlineComposition": { "$type": "string", "$value": "scenario headlines are editorially composed in no more than two lines" },
+      "darkSketch": { "$type": "string", "$value": "white linework at approximately 0.90 opacity" },
+      "lightSketch": { "$type": "string", "$value": "black linework at approximately 0.78 opacity" },
+      "mobileBehavior": { "$type": "string", "$value": "vertical, individually readable and collision-free; no forced horizontal scrolling" }
+    }
+  },
+  "interaction": {
+    "navigationUnderline": {
+      "thickness": { "$type": "dimension", "$value": "1px" },
+      "duration": { "$type": "duration", "$value": "180ms" },
+      "origin": { "$type": "string", "$value": "center" },
+      "restingScale": { "$type": "number", "$value": 0 },
+      "activeScale": { "$type": "number", "$value": 1 },
+      "behavior": { "$type": "string", "$value": "Hover and focus only; never persist as a selected navigation state." }
+    },
+    "focus": {
+      "outlineWidth": { "$type": "dimension", "$value": "2px" },
+      "outlineOffset": { "$type": "dimension", "$value": "3px" },
+      "behavior": { "$type": "string", "$value": "Visible on keyboard focus; uses the functional PATON accent of the active theme." }
+    },
+    "dialog": {
+      "backdrop": { "$type": "string", "$value": "light blur with moderate dimming; background remains recognizable" },
+      "surface": { "$type": "string", "$value": "high-legibility foreground panel using large or surfaceLarge continuous corners" }
+    }
+  },
+  "motion": {
+    "duration": {
+      "micro": { "$type": "duration", "$value": "180ms" },
+      "ui": { "$type": "duration", "$value": "220ms" },
+      "theme": { "$type": "duration", "$value": "360ms" },
+      "reveal": { "$type": "duration", "$value": "650ms" },
+      "product": { "$type": "duration", "$value": "900ms" },
+      "cinematic": { "$type": "duration", "$value": "1450ms" }
+    },
+    "easing": {
+      "standard": { "$type": "cubicBezier", "$value": [0.4, 0, 0.2, 1] },
+      "enter": { "$type": "cubicBezier", "$value": [0.22, 0.75, 0.25, 1] },
+      "expressive": { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1] }
+    }
+  },
+  "content": {
+    "masterBrand": { "$type": "string", "$value": "FELYA LABS" },
+    "featuredProduct": { "$type": "string", "$value": "PATON" },
+    "logoNarrative": {
+      "human": { "$type": "string", "$value": "The point represents the human as the source of intent, movement and development." },
+      "horizon": { "$type": "string", "$value": "The circle represents the current horizon of human influence." },
+      "technology": { "$type": "string", "$value": "The flame represents technology as the Promethean fire that enables human development." },
+      "purpose": { "$type": "string", "$value": "The flame breaks through the circle: FELYA LABS technology extends the horizon of human influence." },
+      "nameBalance": { "$type": "string", "$value": "FELYA gives the profound symbol a softer, lighter and more human counterweight; feel you is an association, not a required literal derivation." }
+    },
+    "brandClaim": { "$type": "string", "$value": "Interfaces that extend human capability." },
+    "productPromise": { "$type": "string", "$value": "Your hands. Anywhere on Earth." },
+    "campaignClaims": {
+      "presence": {
+        "$type": "string",
+        "$value": "Be there. From anywhere.",
+        "$description": "For personal profiles and communication focused on telepresence across distance."
+      },
+      "connectedCraft": {
+        "$type": "string",
+        "$value": "Craft. Connected.",
+        "$description": "For engineering, development and collaboration communication."
+      }
+    },
+    "technicalSignature": { "$type": "string", "$value": "Natural movement. Physical feedback." },
+    "narrative": {
+      "source": { "$type": "string", "$value": "Human movement" },
+      "interface": { "$type": "string", "$value": "PATON" },
+      "action": { "$type": "string", "$value": "Robotic action" },
+      "return": { "$type": "string", "$value": "Touch, force and resistance" }
+    },
+    "localization": {
+      "canonicalLanguage": { "$type": "string", "$value": "English" },
+      "translationRule": { "$type": "string", "$value": "Each locale is translated semantically from the canonical English source and remains independently editable." },
+      "claimComposition": { "$type": "string", "$value": "Display claims are editorially composed in no more than two lines for every locale." }
+    }
+  },
+  "documentation": {
+    "contentMax": { "$type": "dimension", "$value": "104rem" },
+    "languageConvention": { "$type": "string", "$value": "Approved claims remain in canonical English; explanatory documentation is German." },
+    "standaloneAssetPolicy": { "$type": "string", "$value": "Use normal browser-portable image sources for critical demonstrations; avoid external CSS masks in standalone files." },
+    "systemDate": { "$type": "string", "$value": "Juli 2026" }
+  }
+}

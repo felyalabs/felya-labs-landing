@@ -27,8 +27,8 @@ const navigationHref = (href: string) => `${navigationBase}${href}`;
                  class="theme-brand-logo block h-7 w-auto -translate-y-[0.12rem] object-contain md:h-8">
         </a>
         <div class="header-controls order-2 ml-auto flex items-center gap-2 md:order-3 md:ml-0">
-            <ThemeToggle locale={locale} />
             {showLanguageSelector && <LanguageSelector locale={locale} />}
+            <ThemeToggle locale={locale} />
         </div>
         <details class="mobile-navigation order-3 md:hidden">
             <summary class="mobile-nav-toggle flex h-11 w-11 cursor-pointer items-center justify-center text-gray-300 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"

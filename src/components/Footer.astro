@@ -28,6 +28,7 @@ const { locale } = Astro.props as { locale: Locale };
                 {legalLinks.map((link) => (
                     <a href={link.href} data-i18n={`legal.${link.key}`}>{t(locale, `legal.${link.key}` as TranslationKey)}</a>
                 ))}
+                <a href="https://brand.felyalabs.com" target="_blank" rel="noopener noreferrer">Brand Guide</a>
             </nav>
         </div>
     </div>

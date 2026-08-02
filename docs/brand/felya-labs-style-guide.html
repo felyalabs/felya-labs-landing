@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FELYA LABS — Corporate Design Style Sheet</title>
+  <style>
+    @font-face {
+      font-family: Manrope;
+      src: url("../../public/fonts/manrope-variable.ttf") format("truetype");
+      font-weight: 400 800;
+      font-display: swap;
+    }
+    :root {
+      --blue: #4f70cf;
+      --blue-strong: #3f60bd;
+      --gold: #a97825;
+      --ink: #090b0f;
+      --soft: #2d333d;
+      --muted: #656d7a;
+      --mist: #f4f6f8;
+      --line: rgba(15, 23, 42, .12);
+      --card: rgba(255,255,255,.78);
+      --page: #f4f6f8;
+      --radius: 32px;
+      --content-max: 104rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 75% 3%, rgba(79,112,207,.09), transparent 34rem),
+        linear-gradient(180deg, #fcfdfe, var(--page));
+      font-family: Manrope, system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    .shell { width: min(var(--content-max), calc(100% - 8rem)); margin-inline: auto; }
+    .topbar {
+      position: sticky;
+      z-index: 10;
+      top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(104rem, calc(100% - 8rem));
+      min-height: 68px;
+      margin-top: 20px;
+      padding: 12px 32px;
+      border: 1px solid var(--line);
+      border-color: rgba(203,212,224,.88);
+      border-radius: 24px;
+      corner-shape: squircle;
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 16px 48px rgba(32,45,64,.08);
+      backdrop-filter: blur(20px) saturate(120%);
+    }
+    .topbar-logo { display: block; flex: 0 0 auto; }
+    .topbar-logo img { width: auto; height: 32px; transform: translateY(-.12rem); filter: invert(1); }
+    .topbar-meta { margin: 0; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .hero { display: grid; min-height: 78vh; place-items: center; padding: 96px 0 80px; }
+    .hero-inner { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 48px; }
+    .eyebrow { margin: 0 0 16px; color: var(--blue-strong); font-size: 12px; font-weight: 780; letter-spacing: .12em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 28px; font-size: clamp(46px, 4.8vw, 64px); font-weight: 700; letter-spacing: -.045em; line-height: .98; }
+    .headline-line { display: block; }
+    .hero-brand-claim__secondary { margin-top: .08em; color: #686e78; }
+    .hero p:not(.eyebrow) { max-width: 620px; color: var(--soft); font-size: 19px; }
+    .hero-product { position: relative; min-height: 520px; }
+    .hero-product::before { content: ""; position: absolute; inset: 14% 0 4%; border-radius: 50%; background: radial-gradient(circle, rgba(79,112,207,.16), transparent 65%); filter: blur(14px); }
+    .hero-product img { position: relative; width: min(100%, 440px); margin-inline: auto; }
+    section { padding: 96px 0; border-top: 1px solid var(--line); }
+    .intro { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: end; margin-bottom: 48px; }
+    h2 { max-width: 820px; margin-bottom: 0; font-size: clamp(36px, 4.2vw, 64px); font-weight: 700; letter-spacing: -.035em; line-height: 1.02; }
+    .intro > p { max-width: 580px; margin-bottom: 4px; color: var(--muted); font-size: 17px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+    .card { padding: 28px; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--card); }
+    .card h3 { margin-bottom: 10px; font-size: 22px; line-height: 1.2; }
+    .card p:last-child { margin-bottom: 0; color: var(--muted); }
+    .principle { grid-column: span 4; min-height: 218px; }
+    .principle b { display: block; margin-bottom: 20px; color: var(--blue); font-size: 12px; letter-spacing: .12em; }
+    .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .theme { overflow: hidden; min-height: 500px; padding: 38px; border-radius: var(--radius); corner-shape: squircle; }
+    .theme--light { color: #090b0f; background: linear-gradient(160deg, #fff, #eef2f5); border: 1px solid #dde3ea; }
+    .theme--dark { color: #fff; background: #000; border: 1px solid #222; }
+    .theme-logo { width: 116px; margin-bottom: 72px; }
+    .theme--light .theme-logo { filter: invert(1); }
+    .theme h3 { max-width: 450px; margin-bottom: 18px; font-size: clamp(38px, 4vw, 58px); line-height: .98; letter-spacing: -.04em; }
+    .theme--light h3 span:first-child { color: #090b0f; }
+    .theme--light h3 span:last-child { color: #686e78; }
+    .theme--dark h3 span:first-child { color: #fff; }
+    .theme--dark h3 span:last-child { color: #a2a6ae; }
+    .theme p { max-width: 420px; color: inherit; opacity: .72; }
+    .theme .eyebrow { opacity: 1; }
+    .theme--light .eyebrow { color: #3f60bd; }
+    .theme--dark .eyebrow { color: #7895ec; }
+    .hero-color-roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; margin-top: 20px; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--line); }
+    .hero-color-role { min-height: 190px; padding: 24px; background: rgba(255,255,255,.82); }
+    .hero-color-role b, .hero-color-role strong, .hero-color-role span { display: block; }
+    .hero-color-role b { margin-bottom: 48px; color: var(--blue-strong); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .hero-color-role strong { margin-bottom: 7px; font-size: 17px; line-height: 1.25; }
+    .hero-color-role span { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .hero-color-role .hero-color-values { display: flex; flex-wrap: wrap; gap: 7px 14px; margin-bottom: 5px; }
+    .hero-color-role .hero-color-value { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .hero-color-role .hero-color-chip { display: inline-block; width: 17px; height: 17px; flex: 0 0 17px; border: 1px solid rgba(15,23,42,.16); border-radius: 8px; corner-shape: squircle; background: var(--chip-color); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+    .hero-color-role .hero-color-description { display: block; }
+    .navigation-rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--line); }
+    .navigation-rule { min-height: 190px; padding: 24px; background: rgba(255,255,255,.82); }
+    .navigation-rule b, .navigation-rule strong, .navigation-rule span { display: block; }
+    .navigation-rule b { margin-bottom: 48px; color: var(--blue-strong); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .navigation-rule strong { margin-bottom: 7px; font-size: 17px; line-height: 1.25; }
+    .navigation-rule span { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .navigation-link-demo { position: relative; display: inline-block; margin-top: 20px; padding-block: .45rem; color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; transition: color 300ms ease; }
+    .navigation-link-demo::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: var(--blue); transform: scaleX(0); transform-origin: center; transition: transform 180ms ease; }
+    .navigation-link-demo:is(:hover, :focus-visible) { color: var(--ink); outline: none; }
+    .navigation-link-demo:is(:hover, :focus-visible)::after { transform: scaleX(1); }
+    .guide-index { padding-block: 42px; }
+    .guide-index__inner { display: grid; grid-template-columns: .75fr 1.25fr; gap: 48px; align-items: start; }
+    .guide-index h2 { font-size: clamp(28px, 3vw, 42px); }
+    .guide-index nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 24px; }
+    .guide-index a { color: var(--muted); font-size: 13px; text-decoration: none; }
+    .guide-index a:hover, .guide-index a:focus-visible { color: var(--blue-strong); }
+    .contrast-grid, .application-grid, .do-dont-grid, .motion-grid, .language-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    .contrast-sample, .application-rule, .do-dont-rule, .motion-rule, .language-sample { min-height: 170px; padding: 22px; border: 1px solid var(--line); border-radius: 14px; corner-shape: squircle; background: var(--card); }
+    .contrast-sample { display: flex; flex-direction: column; justify-content: space-between; }
+    .contrast-sample b, .application-rule b, .do-dont-rule b, .motion-rule b, .language-sample b { display: block; margin-bottom: 22px; color: var(--blue-strong); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .contrast-sample strong, .application-rule strong, .do-dont-rule strong, .motion-rule strong, .language-sample strong { display: block; margin-bottom: 7px; font-size: 16px; line-height: 1.25; }
+    .contrast-sample span, .application-rule span, .do-dont-rule span, .motion-rule span, .language-sample span { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .contrast-sample--dark { color: #fff; background: #000; }
+    .contrast-sample--dark span { color: #d1d5db; }
+    .contrast-sample--accent { color: #fff; background: #3f60bd; }
+    .contrast-sample--accent b, .contrast-sample--accent span { color: rgba(255,255,255,.82); }
+    .contrast-sample--soft { background: #f4f6f8; }
+    .do-dont-rule[data-kind="dont"] { opacity: .76; }
+    .motion-line { position: relative; height: 44px; margin: 18px 0 10px; border-top: 1px solid var(--line); }
+    .motion-line::after { content: ""; position: absolute; top: -4px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); animation: motion-proof 2.4s cubic-bezier(.22,.75,.25,1) infinite; }
+    @keyframes motion-proof { 0%, 12% { left: 0; opacity: 0; } 20% { opacity: 1; } 70% { opacity: 1; } 82%, 100% { left: calc(100% - 8px); opacity: 0; } }
+    .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .swatch { overflow: hidden; border: 1px solid var(--line); border-radius: 14px; corner-shape: squircle; background: #fff; }
+    .swatch-color { height: 110px; background: var(--swatch); }
+    .swatch-label { min-height: 150px; padding: 14px; font-size: 12px; }
+    .swatch-label b, .swatch-label span { display: block; }
+    .swatch-label span { margin-top: 3px; color: var(--muted); font-family: ui-monospace, SFMono-Regular, monospace; }
+    .swatch-label small { display: block; margin-top: 12px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .color-rule { max-width: 920px; margin: 24px 0 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .type-specimen { grid-column: span 8; }
+    .type-info { grid-column: span 4; }
+    .display-sample { margin: 20px 0 26px; font-size: clamp(48px, 7vw, 86px); font-weight: 700; line-height: .96; letter-spacing: -.045em; }
+    .body-sample { max-width: 650px; color: var(--soft); font-size: 18px; line-height: 1.75; }
+    .kicker-sample { color: var(--blue-strong); font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .logo-stage { grid-column: span 8; display: grid; place-items: center; min-height: 360px; background: #070707; }
+    .logo-stage img { width: min(340px, 65%); }
+    .logo-rules { grid-column: span 4; }
+    .clearspace { position: relative; display: grid; width: min(450px, 80%); aspect-ratio: 2.84 / 1; place-items: center; border: 1px dashed rgba(255,255,255,.35); }
+    .clearspace::after { content: "0.5 H Schutzraum"; position: absolute; bottom: -32px; color: rgba(255,255,255,.62); font-size: 11px; letter-spacing: .08em; }
+    .clearspace img { width: 72%; }
+    .symbol-story { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; margin-top: 20px; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--line); }
+    .symbol-story article { min-height: 390px; padding: 24px; background: rgba(255,255,255,.82); }
+    .symbol-story b, .symbol-story strong { display: block; }
+    .symbol-story b { color: var(--blue-strong); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .symbol-story strong { margin-bottom: 8px; font-size: 18px; line-height: 1.2; }
+    .symbol-story p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.58; }
+    .logo-anatomy { position: relative; width: 116px; aspect-ratio: 865 / 1032; margin: 24px 0 22px; }
+    .logo-anatomy__layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    .logo-anatomy__full { opacity: .18; }
+    .logo-anatomy__horizon { position: absolute; z-index: 2; top: 19.1%; right: -10%; left: -10%; height: 1px; background: var(--gold); box-shadow: 0 0 0 3px rgba(194,143,48,.1); }
+    .logo-anatomy__beyond { z-index: 3; clip-path: inset(0 0 80.9% 0); }
+    .symbol-note { max-width: 880px; margin: 18px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .name-balance { display: grid; grid-template-columns: .7fr 1.3fr; gap: 48px; align-items: start; margin-top: 20px; padding: 28px; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: rgba(255,255,255,.62); }
+    .name-balance strong { font-size: 22px; line-height: 1.2; }
+    .name-balance p { max-width: 680px; margin: 0; color: var(--muted); font-size: 14px; }
+    .rule-list { margin: 0; padding-left: 18px; color: var(--muted); }
+    .rule-list li + li { margin-top: 10px; }
+    .corner-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .corner { display: grid; min-height: 240px; align-content: end; justify-items: start; padding: 24px; border: 1px solid #cfd7e2; background: rgba(255,255,255,.6); corner-shape: squircle; }
+    .corner:nth-child(1) { border-radius: 8px; }
+    .corner:nth-child(2) { border-radius: 14px; }
+    .corner:nth-child(3) { border-radius: 24px; }
+    .corner:nth-child(4) { border-radius: 32px; }
+    .corner b { margin-bottom: auto; color: var(--blue-strong); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+    .corner strong { margin-bottom: 8px; font-size: 18px; line-height: 1.2; }
+    .corner span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .corner-rule { max-width: 760px; margin: 24px 0 0; color: var(--muted); font-size: 14px; }
+    .imagery { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+    .image-figure { min-width: 0; margin: 0; }
+    .image-card { position: relative; overflow: hidden; min-height: 480px; border-radius: var(--radius); corner-shape: squircle; background: #090e19; }
+    .image-card img { width: 100%; height: 100%; object-fit: cover; }
+    .image-card--product { display: grid; place-items: center; background: #000; }
+    .image-card--product img { width: 72%; height: 84%; object-fit: contain; }
+    .image-card--blueprint { background-image: linear-gradient(rgba(123,151,229,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(123,151,229,.08) 1px, transparent 1px); background-size: 44px 44px; }
+    .image-card--blueprint img { object-fit: contain; padding: 44px; }
+    .image-caption { padding: 20px 4px 0; color: var(--ink); }
+    .image-caption span, .image-caption strong { display: block; }
+    .image-caption__eyebrow { margin-bottom: 12px; color: var(--blue-strong); font-size: 10px; font-weight: 780; letter-spacing: .12em; text-transform: uppercase; }
+    .image-caption strong { margin-bottom: 6px; font-size: 18px; font-weight: 680; letter-spacing: -.02em; line-height: 1.2; }
+    .image-caption__detail { max-width: 440px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .mode-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .mode-figure { min-width: 0; margin: 0; }
+    .mode-caption { padding: 18px 4px 0; }
+    .mode-caption b, .mode-caption span { display: block; }
+    .mode-caption b { margin-bottom: 5px; font-size: 16px; }
+    .mode-caption span { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .system-stage {
+      --stage-bg: #050810;
+      --stage-grid-minor: rgba(123,151,229,.055);
+      --stage-grid-major: rgba(123,151,229,.12);
+      --stage-fog: rgba(91,124,220,.17);
+      --stage-neutral: #a0aab8;
+      --stage-suit: #5475d8;
+      --stage-gloves: #83a2ff;
+      --stage-signal: #7592e8;
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1.42 / 1;
+      border: 1px solid rgba(123,151,229,.22);
+      border-radius: 32px;
+      corner-shape: squircle;
+      color: #fff;
+      background-color: var(--stage-bg);
+      isolation: isolate;
+    }
+    .system-stage--light {
+      --stage-bg: #f3f6fb;
+      --stage-grid-minor: rgba(58,91,176,.05);
+      --stage-grid-major: rgba(58,91,176,.11);
+      --stage-fog: rgba(53,91,195,.1);
+      --stage-neutral: #596371;
+      --stage-suit: #355bc3;
+      --stage-gloves: #507be8;
+      --stage-signal: #4f70cf;
+      border-color: rgba(58,91,176,.2);
+      color: #090b0f;
+    }
+    .system-stage::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--stage-grid-major) 1px, transparent 1px),
+        linear-gradient(90deg, var(--stage-grid-major) 1px, transparent 1px),
+        linear-gradient(var(--stage-grid-minor) 1px, transparent 1px),
+        linear-gradient(90deg, var(--stage-grid-minor) 1px, transparent 1px);
+      background-size: 128px 128px, 128px 128px, 32px 32px, 32px 32px;
+      mask-image: radial-gradient(ellipse 88% 82% at 50% 55%, #000 38%, transparent 92%);
+    }
+    .system-stage::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 16% -5% 2%;
+      background: radial-gradient(ellipse 72% 45% at 48% 58%, var(--stage-fog), transparent 72%);
+      filter: blur(16px);
+    }
+    .system-operator { position: absolute; z-index: 2; left: 1%; top: 50%; width: 39%; aspect-ratio: 1327 / 1688; transform: translateY(-50%); }
+    .system-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    .system-layer--base { opacity: .78; }
+    .system-robot { position: absolute; z-index: 2; right: 1%; top: 50%; width: 29%; aspect-ratio: 1325 / 1409; object-fit: contain; opacity: .82; transform: translateY(-50%); }
+    .system-paths { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .system-path { fill: none; stroke: var(--stage-signal); stroke-width: 1.3; opacity: .52; }
+    .system-beam { fill: none; stroke: var(--stage-gloves); stroke-width: 4; stroke-linecap: round; stroke-dasharray: .055 .945; filter: drop-shadow(0 0 7px var(--stage-signal)); animation: system-signal-forward 4.8s linear infinite; }
+    .system-beam--return { animation-name: system-signal-return; }
+    .system-direction { position: absolute; z-index: 3; left: 50%; width: max-content; max-width: 46%; color: var(--stage-neutral); font-size: clamp(8px, .74vw, 11px); font-weight: 700; letter-spacing: .08em; line-height: 1.35; text-align: center; text-transform: uppercase; transform: translateX(-50%); }
+    .system-direction--out { top: 8%; }
+    .system-direction--return { bottom: 8%; }
+    @keyframes system-signal-forward {
+      0% { opacity: 0; stroke-dashoffset: 0; }
+      2%, 46% { opacity: 1; }
+      48% { opacity: 0; stroke-dashoffset: -1; }
+      100% { opacity: 0; stroke-dashoffset: -1; }
+    }
+    @keyframes system-signal-return {
+      0%, 49% { opacity: 0; stroke-dashoffset: 0; }
+      51%, 95% { opacity: 1; }
+      97%, 100% { opacity: 0; stroke-dashoffset: -1; }
+    }
+    .system-mobile-reference { width: min(430px, 100%); margin: 28px auto 0; }
+    .system-stage--mobile { aspect-ratio: .72 / 1; }
+    .system-stage--mobile .system-operator { top: 4%; left: -2%; width: 72%; transform: none; }
+    .system-stage--mobile .system-robot { top: auto; right: -5%; bottom: -2%; width: 62%; transform: none; }
+    .system-stage--mobile .system-direction { max-width: 54%; font-size: 9px; }
+    .system-stage--mobile .system-direction--out { top: 43%; }
+    .system-stage--mobile .system-direction--return { bottom: 42%; }
+    .system-rules, .future-rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; margin-top: 20px; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--line); }
+    .system-rules article, .future-rules article { min-height: 188px; padding: 22px; background: rgba(255,255,255,.82); }
+    .system-rules b, .future-rules b { display: block; margin-bottom: 38px; color: var(--blue-strong); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .system-rules strong, .future-rules strong { display: block; margin-bottom: 7px; font-size: 16px; line-height: 1.25; }
+    .system-rules span, .future-rules span { color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .future-stage {
+      --future-bg: #090e19;
+      --future-grid-minor: rgba(123,151,229,.07);
+      --future-grid-major: rgba(123,151,229,.13);
+      --future-border: rgba(123,151,229,.22);
+      --future-glow: rgba(78,115,224,.2);
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1.3 / 1;
+      border: 1px solid var(--future-border);
+      border-radius: 32px;
+      corner-shape: squircle;
+      color: #fff;
+      background-color: var(--future-bg);
+      isolation: isolate;
+    }
+    .future-stage--light {
+      --future-bg: #f3f6fb;
+      --future-grid-minor: rgba(58,91,176,.065);
+      --future-grid-major: rgba(58,91,176,.12);
+      --future-border: rgba(58,91,176,.2);
+      --future-glow: rgba(72,108,211,.14);
+      color: #090b0f;
+    }
+    .future-stage::before { content: ""; position: absolute; z-index: -2; inset: 0; background-image: linear-gradient(var(--future-grid-major) 1px, transparent 1px), linear-gradient(90deg, var(--future-grid-major) 1px, transparent 1px), linear-gradient(var(--future-grid-minor) 1px, transparent 1px), linear-gradient(90deg, var(--future-grid-minor) 1px, transparent 1px); background-size: 120px 120px, 120px 120px, 30px 30px, 30px 30px; mask-image: linear-gradient(145deg, #000 22%, rgba(0,0,0,.82) 57%, transparent 100%); }
+    .future-stage::after { content: ""; position: absolute; z-index: -1; inset: 20% 4% 2%; background: radial-gradient(circle at 54% 42%, var(--future-glow), transparent 58%); filter: blur(12px); }
+    .future-copy { position: absolute; z-index: 2; top: 7%; left: 7%; max-width: 64%; }
+    .future-copy .eyebrow { margin-bottom: 10px; }
+    .future-copy h3 { max-width: none; margin: 0; font-size: clamp(20px, 2.35vw, 34px); letter-spacing: -.035em; line-height: 1.02; }
+    .future-copy h3 span { display: block; white-space: nowrap; }
+    .future-sketch { position: absolute; right: 3%; bottom: -17%; width: 58%; height: 88%; object-fit: contain; object-position: right bottom; filter: drop-shadow(0 18px 38px rgba(40,66,140,.22)); }
+    .future-sketch--mirrored { transform: scaleX(-1); }
+    .future-stage--dark .future-sketch--light { display: none; }
+    .future-stage--light .future-sketch--dark { display: none; }
+    .voice { grid-column: span 6; }
+    .voice--do { border-color: rgba(79,112,207,.35); }
+    .voice--dont { opacity: .82; }
+    .quote { margin: 20px 0 12px; font-size: 28px; font-weight: 680; line-height: 1.2; letter-spacing: -.02em; }
+    .campaign-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .campaign-card { overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--card); }
+    .campaign-card img { display: block; width: 100%; aspect-ratio: 4 / 1; object-fit: cover; }
+    .campaign-card figcaption { padding: 18px 20px 20px; }
+    .campaign-card figcaption strong, .campaign-card figcaption span { display: block; }
+    .campaign-card figcaption strong { margin-bottom: 5px; font-size: 16px; }
+    .campaign-card figcaption span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .campaign-rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; margin-top: 20px; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--line); }
+    .campaign-rules div { min-height: 150px; padding: 22px; background: rgba(255,255,255,.82); }
+    .campaign-rules b { display: block; margin-bottom: 34px; color: var(--blue); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .campaign-rules span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; corner-shape: squircle; background: var(--line); }
+    .timeline div { min-height: 190px; padding: 26px; background: rgba(255,255,255,.82); }
+    .timeline b { display: block; margin-bottom: 50px; color: var(--blue); font-size: 12px; letter-spacing: .12em; }
+    .timeline strong { display: block; margin-bottom: 8px; font-size: 20px; }
+    .timeline span { color: var(--muted); font-size: 14px; }
+    .footer { padding: 48px 0 72px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: end; gap: 32px; }
+    .footer img { width: 108px; filter: invert(1); }
+    .footer p { max-width: 520px; margin: 0; color: var(--muted); font-size: 13px; text-align: right; }
+    @media (max-width: 900px) {
+      .topbar { width: calc(100% - 6rem); }
+      .hero-inner, .intro, .imagery { grid-template-columns: 1fr; }
+      .hero-product { min-height: auto; }
+      .hero-product img { width: min(82vw, 410px); }
+      .principle, .type-specimen, .type-info, .logo-stage, .logo-rules, .voice { grid-column: 1 / -1; }
+      .themes, .mode-pair { grid-template-columns: 1fr; }
+      .swatches, .corner-grid, .timeline, .campaign-rules, .hero-color-roles, .navigation-rules, .symbol-story, .system-rules, .future-rules { grid-template-columns: 1fr 1fr; }
+      .name-balance { grid-template-columns: 1fr; gap: 16px; }
+      .guide-index__inner { grid-template-columns: 1fr; gap: 24px; }
+      .contrast-grid, .application-grid, .do-dont-grid, .motion-grid, .language-grid { grid-template-columns: 1fr 1fr; }
+      .swatches { row-gap: 20px; }
+      .footer-inner { align-items: start; flex-direction: column; }
+      .footer p { text-align: left; }
+    }
+    @media (max-width: 540px) {
+      .shell { width: min(100% - 28px, var(--content-max)); }
+      .topbar { width: calc(100% - 2rem); padding-inline: 20px; }
+      .topbar-logo img { height: 28px; }
+      .topbar-meta { display: none; }
+      .hero { min-height: auto; padding-block: 80px; }
+      h1, h2 { font-size: clamp(24px, 8vw, 44px); }
+      .theme h3 { font-size: clamp(26px, 8vw, 38px); }
+      .display-sample { font-size: clamp(32px, 10vw, 52px); }
+      section { padding-block: 72px; }
+      .themes, .swatches, .corner-grid, .timeline, .campaign-grid, .campaign-rules, .hero-color-roles, .navigation-rules, .symbol-story, .system-rules, .future-rules { grid-template-columns: 1fr; }
+      .guide-index nav, .contrast-grid, .application-grid, .do-dont-grid, .motion-grid, .language-grid { grid-template-columns: 1fr; }
+      .hero .headline-line, .theme .headline-line, .display-sample .headline-line, .future-copy h3 span { white-space: nowrap; }
+      .theme { min-height: 430px; padding: 28px; }
+      .timeline div { min-height: 150px; }
+      .timeline b { margin-bottom: 28px; }
+    }
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+    @media print {
+      html, body {
+        background: #fff;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      body {
+        font-size: 8.5pt;
+        line-height: 1.42;
+      }
+      .shell {
+        width: 100%;
+        max-width: none;
+      }
+      .topbar {
+        position: static;
+        width: 100%;
+        min-height: 13mm;
+        margin: 0 0 4mm;
+        padding: 2mm 7mm;
+        box-shadow: none;
+      }
+      .topbar-logo img { height: 22px; }
+      .topbar-meta { font-size: 7.5pt; }
+      .hero {
+        min-height: 168mm;
+        padding-block: 8mm 5mm;
+        break-after: page;
+      }
+      .hero-inner {
+        min-height: 145mm;
+        grid-template-columns: 1.28fr .72fr;
+        gap: 9mm;
+      }
+      .hero h1 { font-size: 38pt; }
+      .hero p:not(.eyebrow) { font-size: 12pt; }
+      .hero-product { min-height: 118mm; }
+      .hero-product img { width: min(100%, 92mm); }
+      .guide-index {
+        min-height: 176mm;
+        padding-block: 12mm;
+        break-after: page;
+      }
+      .guide-index__inner { gap: 12mm; }
+      .guide-index nav { gap: 4mm 8mm; }
+      .guide-index a { font-size: 9pt; }
+      section {
+        min-height: 176mm;
+        padding-block: 5mm;
+        break-before: page;
+        break-inside: avoid-page;
+      }
+      section:not(#governance) { break-after: page; }
+      section > .shell {
+        width: 125%;
+        zoom: .8;
+      }
+      #logo-system > .shell,
+      #future-language > .shell {
+        width: 142.857%;
+        zoom: .7;
+      }
+      .intro {
+        gap: 10mm;
+        margin-bottom: 5mm;
+      }
+      h2 { font-size: 27pt; }
+      .intro > p { font-size: 10.5pt; }
+      .eyebrow { margin-bottom: 3mm; font-size: 8pt; }
+      .grid { gap: 3mm; }
+      .card { padding: 4mm; }
+      section > .shell > h2,
+      section > .shell > .intro,
+      h3,
+      .eyebrow {
+        break-after: avoid-page;
+      }
+      .principle,
+      .intro,
+      .theme,
+      .swatch,
+      .corner,
+      .type-specimen,
+      .type-info,
+      .contrast-card,
+      .logo-stage,
+      .logo-rules,
+      .image-figure,
+      .mode-figure,
+      .symbol-story > *,
+      .system-figure,
+      .future-card,
+      .campaign-card,
+      .application-card,
+      .do-dont,
+      .governance-card,
+      .motion-card {
+        break-inside: avoid-page;
+      }
+      .principle {
+        min-height: 34mm;
+        padding: 4mm;
+      }
+      .principle b { margin-bottom: 3mm; }
+      .theme {
+        min-height: 66mm;
+        padding: 5mm;
+      }
+      .theme-logo {
+        width: 22mm;
+        margin-bottom: 8mm;
+      }
+      .theme h3 { margin-bottom: 3mm; font-size: 25pt; }
+      .hero-color-role,
+      .navigation-rule {
+        min-height: 27mm;
+        padding: 3.5mm;
+      }
+      .hero-color-role b,
+      .navigation-rule b { margin-bottom: 5mm; }
+      .hero-color-role .hero-color-chip {
+        width: 12px;
+        height: 12px;
+        flex-basis: 12px;
+      }
+      .swatches { grid-template-columns: repeat(6, 1fr); gap: 2mm; }
+      .swatch-color { height: 14mm; }
+      .swatch-label {
+        min-height: 25mm;
+        padding: 2.5mm;
+      }
+      .swatch-label small { margin-top: 1.5mm; font-size: 7.5pt; line-height: 1.35; }
+      .color-rule { margin-top: 3mm; font-size: 8.5pt; line-height: 1.4; }
+      .contrast-grid,
+      .application-grid,
+      .do-dont-grid,
+      .motion-grid,
+      .language-grid {
+        gap: 2mm;
+        margin-top: 3mm;
+      }
+      .contrast-sample,
+      .application-rule,
+      .do-dont-rule,
+      .motion-rule,
+      .language-sample {
+        min-height: 26mm;
+        padding: 3mm;
+      }
+      .contrast-sample b,
+      .application-rule b,
+      .do-dont-rule b,
+      .motion-rule b,
+      .language-sample b { margin-bottom: 3mm; }
+      .logo-stage { min-height: 52mm; }
+      .logo-stage img { width: min(250px, 55%); }
+      .clearspace { width: min(310px, 72%); }
+      .clearspace::after { bottom: -18px; font-size: 7pt; }
+      .symbol-story {
+        margin-top: 3mm;
+        border-radius: 16px;
+      }
+      .symbol-story article {
+        min-height: 59mm;
+        padding: 3mm;
+      }
+      .logo-anatomy {
+        width: 19mm;
+        margin: 3mm 0;
+      }
+      .symbol-story strong { font-size: 12pt; }
+      .symbol-story p { font-size: 8pt; line-height: 1.35; }
+      .symbol-note { margin-top: 2mm; font-size: 7.5pt; line-height: 1.35; }
+      .name-balance {
+        gap: 8mm;
+        margin-top: 2mm;
+        padding: 3mm;
+        border-radius: 16px;
+      }
+      .name-balance strong { font-size: 13pt; }
+      .name-balance p { font-size: 8.5pt; }
+      .display-sample { margin: 3mm 0 4mm; font-size: 36pt; }
+      .body-sample { font-size: 11pt; line-height: 1.55; }
+      .rule-list li + li { margin-top: 1.5mm; }
+      .corner-grid { gap: 3mm; }
+      .corner {
+        min-height: 42mm;
+        padding: 3.5mm;
+      }
+      .corner-rule { margin-top: 3mm; font-size: 8.5pt; }
+      .imagery {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3mm;
+      }
+      .image-card {
+        height: 76mm;
+        min-height: 0;
+      }
+      .image-card img { min-height: 0; }
+      .image-card--blueprint img { padding: 7mm; }
+      .image-caption { padding-top: 3mm; }
+      .image-caption__eyebrow { margin-bottom: 1.5mm; }
+      .mode-caption { padding-top: 2mm; }
+      .mode-caption span { font-size: 8pt; line-height: 1.35; }
+      #system-language .shell {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 3mm;
+      }
+      #system-language .intro,
+      #system-language .system-rules { grid-column: 1 / -1; }
+      #system-language .mode-pair { display: contents; }
+      #system-language .system-mobile-reference {
+        width: auto;
+        margin: 0;
+      }
+      #system-language .system-stage {
+        height: 54mm;
+        aspect-ratio: auto;
+      }
+      #system-language .system-stage--mobile .system-operator { width: 65%; }
+      #system-language .system-stage--mobile .system-robot { width: 54%; }
+      .system-rules,
+      .future-rules { margin-top: 2mm; border-radius: 16px; }
+      .system-rules article,
+      .future-rules article {
+        min-height: 27mm;
+        padding: 3mm;
+      }
+      .system-rules b,
+      .future-rules b { margin-bottom: 3mm; }
+      .future-stage { height: 58mm; aspect-ratio: auto; }
+      .future-copy h3 { font-size: 19pt; }
+      #future-language .application-grid { margin-top: 2mm; }
+      .motion-line { height: 7mm; margin: 3mm 0 1.5mm; }
+      .campaign-grid { gap: 3mm; }
+      .campaign-card figcaption { padding: 2.5mm 3mm; }
+      .campaign-rules { margin-top: 3mm; border-radius: 16px; }
+      .campaign-rules div {
+        min-height: 24mm;
+        padding: 3mm;
+      }
+      .campaign-rules b { margin-bottom: 3mm; }
+      .timeline div { min-height: 28mm; padding: 3mm; }
+      .footer {
+        padding: 4mm 0 3mm;
+        break-before: auto;
+      }
+      .footer img { width: 22mm; }
+      .footer p { font-size: 8pt; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .system-beam { animation: none; opacity: 0; }
+      .motion-line::after { animation: none; left: 50%; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar shell">
+    <div class="topbar-logo">
+      <img src="../../public/assets/images/brand/felya-labs-logo/felya-labs-wordmark-white.webp" alt="FELYA LABS">
+    </div>
+    <p class="topbar-meta">Corporate Design System · Juli 2026</p>
+  </header>
+
+  <main>
+    <div class="hero" id="brand-system">
+      <div class="hero-inner shell">
+        <div>
+          <p class="eyebrow">Brand System</p>
+          <h1><span class="headline-line">Interfaces that extend</span><span class="headline-line hero-brand-claim__secondary">human capability.</span></h1>
+          <p>Eine ruhige, physische und selbstbewusste Designsprache für Interfaces, die menschliche Fähigkeiten erweitern.</p>
+        </div>
+        <div class="hero-product">
+          <img src="../../public/assets/images/hero/paton-glove/paton-glove-light-premium-v1-768.webp" alt="PATON haptic glove">
+        </div>
+      </div>
+    </div>
+
+    <section class="guide-index" aria-labelledby="guide-index-title">
+      <div class="guide-index__inner shell">
+        <div><p class="eyebrow">Scope · Juli 2026</p><h2 id="guide-index-title"><span class="headline-line">One system.</span><span class="headline-line">Every touchpoint.</span></h2></div>
+        <nav aria-label="Inhaltsübersicht des Corporate Design Systems">
+          <a href="#principles">01 · Principles</a><a href="#logo-system">02 · Logo</a><a href="#themes">03 · Light &amp; Dark</a>
+          <a href="#color-system">04 · Color</a><a href="#typography">05 · Typography</a><a href="#corners">06 · Corners</a>
+          <a href="#navigation">07 · Navigation</a><a href="#imagery">08 · Imagery</a><a href="#system-language">09 · System</a>
+          <a href="#future-language">10 · Futures</a><a href="#motion-language">11 · Motion</a><a href="#voice">12 · Voice</a>
+          <a href="#applications">13 · Applications</a><a href="#campaigns">14 · Claims</a><a href="#governance">15 · Governance</a>
+        </nav>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Six principles.</span><span class="headline-line">One clear language.</span></h2><p>Jede Entscheidung dient der Verständlichkeit des Systems. Die Marke wird nicht durch Dekoration, sondern durch Hierarchie, Materialität und gebaute Beweise unverwechselbar.</p></div>
+        <div class="grid">
+          <article class="card principle"><b>01</b><h3>Human first</h3><p>Der Mensch ist Ursprung, Maßstab und aktiver Teil des Systems.</p></article>
+          <article class="card principle"><b>02</b><h3>Physical, not abstract</h3><p>Mechanik, Berührung und reale Hardware ersetzen generische Tech-Symbolik.</p></article>
+          <article class="card principle"><b>03</b><h3>Calm confidence</h3><p>Große Typografie und negativer Raum schaffen Autorität ohne Lautstärke.</p></article>
+          <article class="card principle"><b>04</b><h3>Engineering is evidence</h3><p>Prototypen, Iteration und Partner belegen die Aussage.</p></article>
+          <article class="card principle"><b>05</b><h3>Motion has a job</h3><p>Animation erklärt Richtung, Ursache oder Rückmeldung.</p></article>
+          <article class="card principle"><b>06</b><h3>One system, two atmospheres</h3><p>Light und Dark Mode bleiben dieselbe Komposition, präzise neu kalibriert.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="logo-system">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">The mark needs room.</span></h2><p>Das Unternehmenslogo bleibt neutral, proportional und frei von Effekten. PATON-Blau gehört zum Produkt, nicht in die Wortmarke.</p></div>
+        <div class="grid">
+          <div class="card logo-stage"><div class="clearspace"><img src="../../public/assets/images/brand/felya-labs-logo/felya-labs-wordmark-white.webp" alt="FELYA LABS logo clearspace"></div></div>
+          <div class="card logo-rules"><h3>Logo rules</h3><ul class="rule-list"><li>0.5 H Schutzraum</li><li>Mindestens 80px Breite digital</li><li>Bevorzugt 28–32px hoch im Header</li><li>Weiß auf dunkel, Schwarz auf hell</li><li>Nicht strecken, rotieren oder einfärben</li><li>Symbol allein nur in kleinen Systemflächen</li></ul></div>
+        </div>
+        <div class="symbol-story">
+          <article>
+            <b>01 · Point</b>
+            <div class="logo-anatomy" aria-hidden="true"><img class="logo-anatomy__layer logo-anatomy__full" src="assets/logo-anatomy/full-mark-muted.png" alt=""><img class="logo-anatomy__layer" src="assets/logo-anatomy/point-blue.png" alt=""></div>
+            <strong>The human.</strong><p>Der Punkt steht für den Menschen als Ursprung von Absicht, Bewegung und Entwicklung.</p>
+          </article>
+          <article>
+            <b>02 · Circle</b>
+            <div class="logo-anatomy" aria-hidden="true"><img class="logo-anatomy__layer logo-anatomy__full" src="assets/logo-anatomy/full-mark-muted.png" alt=""><img class="logo-anatomy__layer" src="assets/logo-anatomy/circle-blue.png" alt=""></div>
+            <strong>The horizon.</strong><p>Der Kreis beschreibt den gegenwärtigen Einflusshorizont: den Raum, in dem ein Mensch handeln kann.</p>
+          </article>
+          <article>
+            <b>03 · Flame</b>
+            <div class="logo-anatomy" aria-hidden="true"><img class="logo-anatomy__layer logo-anatomy__full" src="assets/logo-anatomy/full-mark-muted.png" alt=""><img class="logo-anatomy__layer" src="assets/logo-anatomy/flame-blue.png" alt=""></div>
+            <strong>The technology.</strong><p>Die Flamme trägt das prometheische Feuer weiter. Sie steht für Technologie als Werkzeug menschlicher Entwicklung.</p>
+          </article>
+          <article>
+            <b>04 · Beyond</b>
+            <div class="logo-anatomy" aria-hidden="true"><img class="logo-anatomy__layer logo-anatomy__full" src="assets/logo-anatomy/full-mark-muted.png" alt=""><img class="logo-anatomy__layer" src="assets/logo-anatomy/circle-blue.png" alt=""><img class="logo-anatomy__layer" src="assets/logo-anatomy/flame-blue.png" alt=""><span class="logo-anatomy__horizon"></span><img class="logo-anatomy__layer logo-anatomy__beyond" src="assets/logo-anatomy/flame-gold.png" alt=""></div>
+            <strong>Capability extended.</strong><p>Die Flamme durchbricht den Kreis. Technologie erweitert den menschlichen Einflusshorizont über seine bisherige Grenze hinaus.</p>
+          </article>
+        </div>
+        <p class="symbol-note">Die blauen und goldenen Flächen dienen ausschließlich der anatomischen Erklärung. Das Logo selbst bleibt in Anwendungen immer monochrom; die vier Darstellungen sind keine zusätzlichen Logovarianten.</p>
+        <div class="name-balance"><strong>Meaning, balanced by lightness.</strong><p>Das Symbol trägt die tiefe strategische Bedeutung der Marke. Der Name FELYA LABS bildet dazu einen weicheren, leichteren Gegenpol: Seine feminine Klangfarbe und die mögliche Assoziation mit „feel you“ unterstützen Nähe und Menschlichkeit, ohne als starre wörtliche Herleitung funktionieren zu müssen.</p></div>
+      </div>
+    </section>
+
+    <section id="themes">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Light and dark.</span><span class="headline-line">Equal authority.</span></h2><p>Neutralflächen dominieren. PATON-Blau führt den Blick. Die Produkthierarchie bleibt in beiden Modi identisch.</p></div>
+        <div class="grid themes">
+          <article class="theme theme--light"><img class="theme-logo" src="../../public/assets/images/brand/felya-labs-logo/felya-labs-wordmark-white.webp" alt=""><p class="eyebrow">PATON</p><h3><span class="headline-line">Your hands.</span><span class="headline-line">Anywhere on Earth.</span></h3><p>Natural movement. Physical feedback.</p></article>
+          <article class="theme theme--dark"><img class="theme-logo" src="../../public/assets/images/brand/felya-labs-logo/felya-labs-wordmark-white.webp" alt=""><p class="eyebrow">PATON</p><h3><span class="headline-line">Your hands.</span><span class="headline-line">Anywhere on Earth.</span></h3><p>Natural movement. Physical feedback.</p></article>
+        </div>
+        <div class="hero-color-roles">
+          <div class="hero-color-role"><b>01 · Product</b><strong>PATON Blue Strong</strong><span class="hero-color-values"><span class="hero-color-value">Light <i class="hero-color-chip" style="--chip-color:#3F60BD" aria-hidden="true"></i>#3F60BD</span><span class="hero-color-value">Dark <i class="hero-color-chip" style="--chip-color:#7895EC" aria-hidden="true"></i>#7895EC</span></span><span class="hero-color-description">Eyebrow und Produktzuordnung.</span></div>
+          <div class="hero-color-role"><b>02 · Statement</b><strong>Text Strong</strong><span class="hero-color-values"><span class="hero-color-value">Light <i class="hero-color-chip" style="--chip-color:#090B0F" aria-hidden="true"></i>#090B0F</span><span class="hero-color-value">Dark <i class="hero-color-chip" style="--chip-color:#FFFFFF" aria-hidden="true"></i>#FFFFFF</span></span><span class="hero-color-description">Erste, stärkste Headline-Zeile.</span></div>
+          <div class="hero-color-role"><b>03 · Expansion</b><strong>Hero Secondary</strong><span class="hero-color-values"><span class="hero-color-value">Light <i class="hero-color-chip" style="--chip-color:#686E78" aria-hidden="true"></i>#686E78</span><span class="hero-color-value">Dark <i class="hero-color-chip" style="--chip-color:#A2A6AE" aria-hidden="true"></i>#A2A6AE</span></span><span class="hero-color-description">Zweite Zeile, ruhiger aber klar lesbar.</span></div>
+          <div class="hero-color-role"><b>04 · Signature</b><strong>Text Soft</strong><span class="hero-color-values"><span class="hero-color-value">Light <i class="hero-color-chip" style="--chip-color:#2D333D" aria-hidden="true"></i>#2D333D</span><span class="hero-color-value">Dark <i class="hero-color-chip" style="--chip-color:#D1D5DB" aria-hidden="true"></i>#D1D5DB</span></span><span class="hero-color-description">Kurze technische Einordnung.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="color-system">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Color is function.</span></h2><p>Jede Farbe besitzt eine konkrete Aufgabe. Allgemeines PATON-Blau führt durch die Oberfläche; Suit und Glove Blue erklären Komponenten; Gold bleibt ein seltenes Ereignis.</p></div>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="--swatch:#000"></div><div class="swatch-label"><b>Page Black</b><span>#000000</span><small>Dark-Mode-Seitenbasis und Systematmosphäre.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#f4f6f8"></div><div class="swatch-label"><b>Page Mist</b><span>#F4F6F8</span><small>Light-Mode-Seitenbasis und ruhiger Hintergrund.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#6785df"></div><div class="swatch-label"><b>PATON Blue · Dark</b><span>#6785DF</span><small>Signale, Fokus und funktionale Akzente im Dark Mode.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#4f70cf"></div><div class="swatch-label"><b>PATON Blue · Light</b><span>#4F70CF</span><small>Signale, Fokus und funktionale Akzente im Light Mode.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#7895ec"></div><div class="swatch-label"><b>PATON Blue Strong · Dark</b><span>#7895EC</span><small>Eyebrows, Produktnamen und kleine kontraststarke Labels im Dark Mode.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#3f60bd"></div><div class="swatch-label"><b>PATON Blue Strong · Light</b><span>#3F60BD</span><small>Eyebrows, Produktnamen und kleine kontraststarke Labels im Light Mode.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#5475d8"></div><div class="swatch-label"><b>Suit Blue · Dark</b><span>#5475D8</span><small>PATON-Suit-Layer in der dunklen Systemvisualisierung.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#355bc3"></div><div class="swatch-label"><b>Suit Blue · Light</b><span>#355BC3</span><small>PATON-Suit-Layer in der hellen Systemvisualisierung.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#83a2ff"></div><div class="swatch-label"><b>Glove Blue · Dark</b><span>#83A2FF</span><small>Glove-Layer und haptischer Impuls im Dark Mode.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#507be8"></div><div class="swatch-label"><b>Glove Blue · Light</b><span>#507BE8</span><small>Glove-Layer und Feedbackreaktion im Light Mode.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#deb45f"></div><div class="swatch-label"><b>Signal Gold · Dark</b><span>#DEB45F</span><small>Seltener warmer Theme- oder Ausnahmemoment auf dunkel.</small></div></div>
+          <div class="swatch"><div class="swatch-color" style="--swatch:#a97825"></div><div class="swatch-label"><b>Signal Gold · Light</b><span>#A97825</span><small>Seltener warmer Theme- oder Ausnahmemoment auf hell.</small></div></div>
+        </div>
+        <p class="color-rule"><strong>Merksatz:</strong> Neutralfarben tragen die Marke. PATON Blue erklärt Produkt und Funktion. Suit und Glove Blue differenzieren Komponenten. Signal Gold markiert nur seltene besondere Momente – niemals den normalen CTA oder Datenstrom.</p>
+        <div class="contrast-grid" aria-label="Freigegebene Kontrastkombinationen">
+          <div class="contrast-sample contrast-sample--dark"><b>Dark foundation</b><div><strong>White on Page Black</strong><span>Haupttext und Headlines auf dunklen Grundflächen.</span></div></div>
+          <div class="contrast-sample contrast-sample--soft"><b>Light foundation</b><div><strong>Text Strong on Page Mist</strong><span>Haupttext und Headlines im hellen System.</span></div></div>
+          <div class="contrast-sample contrast-sample--accent"><b>Functional accent</b><div><strong>White on Blue Strong</strong><span>Nur für kurze, kontraststarke Produkt- oder Fokusmomente.</span></div></div>
+          <div class="contrast-sample"><b>Secondary hierarchy</b><div><strong style="color:#686e78">Hero Secondary</strong><span>Zweite Claim-Zeile: ruhiger als die erste, niemals deaktiviert wirkend.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="typography">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Manrope.</span><span class="headline-line">Precise and human.</span></h2><p>Eine variable Familie für Display, Text und UI. Große Aussagen bleiben kompakt und werden in höchstens zwei Zeilen komponiert.</p></div>
+        <div class="grid">
+          <div class="card type-specimen"><span class="kicker-sample">The system</span><div class="display-sample"><span class="headline-line">PATON closes</span><span class="headline-line">the loop.</span></div><p class="body-sample">You move. The robot follows. PATON transfers natural arm, hand and finger movement to robotic systems. Touch, force and resistance return in real time.</p></div>
+          <div class="card type-info"><h3>Type hierarchy</h3><ul class="rule-list"><li>Display: 700 / 0.96–1.02</li><li>Lead: 480–560 / 1.6–1.75</li><li>Body: 400–520 / 1.55–1.75</li><li>Eyebrow: 750 / uppercase / 0.12em</li><li>Maximal zwei Headline-Zeilen</li><li>Textbreite 44–48rem</li></ul></div>
+        </div>
+        <div class="language-grid" aria-label="Mehrsprachige Typografiebeispiele">
+          <div class="language-sample"><b>Latin</b><strong>Your hands.<br>Anywhere on Earth.</strong><span>Redaktioneller Zweizeiler, keine automatische dritte Zeile.</span></div>
+          <div class="language-sample" lang="de"><b>Deutsch</b><strong>Deine Hände.<br>Überall auf der Welt.</strong><span>Sinngemäßer Rhythmus statt wörtlicher Längenübernahme.</span></div>
+          <div class="language-sample" lang="ru"><b>Кириллица</b><strong>Ваши руки.<br>В любой точке мира.</strong><span>Kyrillische Formen mit derselben optischen Autorität prüfen.</span></div>
+          <div class="language-sample" lang="zh-Hant"><b>繁體中文</b><strong>你的雙手。<br>跨越世界各地。</strong><span>Zeilenfall und Interpunktion werden sprachspezifisch komponiert.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="corners">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Continuous corners.</span></h2><p>Die Flächen wirken präzise und weich, ohne verspielt zu werden. Der Radius folgt immer Größe und Funktion der Komponente.</p></div>
+        <div class="corner-grid">
+          <div class="corner"><b>08 · Small</b><strong>Micro UI</strong><span>Social Links, kompakte Menüeinträge und kleine Inline-Aktionen.</span></div>
+          <div class="corner"><b>14 · Medium</b><strong>Controls</strong><span>Inputs, Buttons, Video-CTA und kompakte interaktive Flächen.</span></div>
+          <div class="corner"><b>24 · Large</b><strong>Content frames</strong><span>Header, Video, Teamfoto, Future Canvas und reguläre große Flächen.</span></div>
+          <div class="corner"><b>32 · Surface</b><strong>Immersive surfaces</strong><span>Dialoge, mobiles Menü und nahezu bildschirmbreite mobile Frames.</span></div>
+        </div>
+        <p class="corner-rule"><strong>Grundregel:</strong> Größere und dominantere Flächen erhalten größere Radien. Verschachtelte Elemente gehen mindestens eine Stufe zurück. Kreisrunde Controls bleiben echte Kreise.</p>
+      </div>
+    </section>
+
+    <section id="navigation">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Navigation frames</span><span class="headline-line">the experience.</span></h2><p>Der Header ist eine ruhige, funktionale Oberfläche. Proportionen, Logo und Interaktionshinweise bleiben über alle Seiten hinweg konsistent.</p></div>
+        <div class="navigation-rules">
+          <div class="navigation-rule"><b>01 · Frame</b><strong>68 px Höhe</strong><span>64 px äußerer Desktop-Inset, 12 px vertikal und 32 px horizontal innen, 24 px Continuous Corner.</span></div>
+          <div class="navigation-rule"><b>02 · Mark</b><strong>32 px Logohöhe</strong><span>Immer mit natürlichem Seitenverhältnis; 28 px auf Mobile. Keine feste Breite erzwingen.</span></div>
+          <div class="navigation-rule"><b>03 · Rhythm</b><strong>14 px / 32 px</strong><span>Navigation in 14 px Medium mit 32 px Abstand. Controls bleiben 42 px große Kreise.</span></div>
+          <div class="navigation-rule"><b>04 · Intent</b><strong>Hover und Fokus</strong><span>Text wird kräftiger; eine 1 px starke blaue Linie wächst in 180 ms aus der Mitte.</span><a class="navigation-link-demo" href="#navigation">Interaktion testen</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="imagery">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Real hardware.</span><span class="headline-line">Technical imagination.</span></h2><p>Produktbilder liefern Beweis. Blueprint-Skizzen öffnen Möglichkeiten. Beide Welten bleiben materialnah und funktional.</p></div>
+        <div class="imagery">
+          <figure class="image-figure"><div class="image-card image-card--product"><img src="../../public/assets/images/hero/paton-glove/paton-glove-dark-premium-v1-768.webp" alt="PATON glove on dark background"></div><figcaption class="image-caption"><span class="image-caption__eyebrow">Product evidence</span><strong>Mechanics stay visible.</strong><span class="image-caption__detail">Real hardware. Clear materials. PATON blue remains true.</span></figcaption></figure>
+          <figure class="image-figure"><div class="image-card image-card--blueprint"><img src="../../public/assets/images/possible-futures/sketches/webp/operator-vr-paton-glove-white.webp" alt="Blueprint sketch of an operator wearing a VR headset and PATON glove"></div><figcaption class="image-caption"><span class="image-caption__eyebrow">Human interface</span><strong>The operator remains visible.</strong><span class="image-caption__detail">Menschen werden als Ursprung der Handlung gezeigt. PATON bleibt am Körper erkennbar; technisches Linework erklärt die Verbindung ohne das Motiv zu überzeichnen.</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="system-language">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">The system.</span><span class="headline-line">A visible loop.</span></h2><p>Die Systemdarstellung ist das funktionale Zentrum der Marke: Der Mensch initiiert Bewegung, PATON macht das Interface sichtbar, der Roboter reagiert und physische Rückmeldung kehrt zurück.</p></div>
+        <div class="mode-pair">
+          <figure class="mode-figure">
+            <div class="system-stage system-stage--dark">
+              <div class="system-operator" aria-hidden="true"><img class="system-layer system-layer--base" src="assets/system-demo/operator-long-dark.png" alt=""><img class="system-layer" src="assets/system-demo/operator-suit-dark.png" alt=""><img class="system-layer" src="assets/system-demo/operator-glove-left-dark.png" alt=""><img class="system-layer" src="assets/system-demo/operator-glove-right-dark.png" alt=""></div>
+              <img class="system-robot" src="assets/system-demo/robot-dark.png" alt="" aria-hidden="true">
+              <svg class="system-paths" viewBox="0 0 1000 700" aria-hidden="true"><path class="system-path" pathLength="1" d="M350 350 C445 155 605 155 700 350"/><path class="system-beam" pathLength="1" d="M350 350 C445 155 605 155 700 350"/><path class="system-path" pathLength="1" d="M700 350 C605 545 445 545 350 350"/><path class="system-beam system-beam--return" pathLength="1" d="M700 350 C605 545 445 545 350 350"/></svg>
+              <div class="system-direction system-direction--out">Movement and control</div><div class="system-direction system-direction--return">Contact, force and resistance</div>
+            </div>
+            <figcaption class="mode-caption"><b>Dark system</b><span>Stärkerer Fog und helleres neutrales Linework. Suit und Gloves bleiben dauerhaft blau; der Roboter bleibt als funktionaler Beweis klar lesbar.</span></figcaption>
+          </figure>
+          <figure class="mode-figure">
+            <div class="system-stage system-stage--light">
+              <div class="system-operator" aria-hidden="true"><img class="system-layer system-layer--base" src="assets/system-demo/operator-long-light.png" alt=""><img class="system-layer" src="assets/system-demo/operator-suit-light.png" alt=""><img class="system-layer" src="assets/system-demo/operator-glove-left-light.png" alt=""><img class="system-layer" src="assets/system-demo/operator-glove-right-light.png" alt=""></div>
+              <img class="system-robot" src="assets/system-demo/robot-light.png" alt="" aria-hidden="true">
+              <svg class="system-paths" viewBox="0 0 1000 700" aria-hidden="true"><path class="system-path" pathLength="1" d="M350 350 C445 155 605 155 700 350"/><path class="system-beam" pathLength="1" d="M350 350 C445 155 605 155 700 350"/><path class="system-path" pathLength="1" d="M700 350 C605 545 445 545 350 350"/><path class="system-beam system-beam--return" pathLength="1" d="M700 350 C605 545 445 545 350 350"/></svg>
+              <div class="system-direction system-direction--out">Movement and control</div><div class="system-direction system-direction--return">Contact, force and resistance</div>
+            </div>
+            <figcaption class="mode-caption"><b>Light system</b><span>Dunkleres neutrales Linework und zurückgenommener Fog. Die räumliche Komposition und die funktionale Hierarchie bleiben identisch.</span></figcaption>
+          </figure>
+        </div>
+        <figure class="mode-figure system-mobile-reference">
+          <div class="system-stage system-stage--dark system-stage--mobile">
+            <div class="system-operator" aria-hidden="true"><img class="system-layer system-layer--base" src="assets/system-demo/operator-short-dark.png" alt=""><img class="system-layer" src="assets/system-demo/operator-suit-dark.png" alt=""><img class="system-layer" src="assets/system-demo/operator-glove-left-dark.png" alt=""><img class="system-layer" src="assets/system-demo/operator-glove-right-dark.png" alt=""></div>
+            <img class="system-robot" src="assets/system-demo/robot-dark.png" alt="" aria-hidden="true">
+            <svg class="system-paths" viewBox="0 0 700 1000" aria-hidden="true"><path class="system-path" pathLength="1" d="M280 300 C525 375 525 625 280 700"/><path class="system-beam" pathLength="1" d="M280 300 C525 375 525 625 280 700"/><path class="system-path" pathLength="1" d="M280 700 C35 625 35 375 280 300"/><path class="system-beam system-beam--return" pathLength="1" d="M280 700 C35 625 35 375 280 300"/></svg>
+            <div class="system-direction system-direction--out">Movement and control</div><div class="system-direction system-direction--return">Contact, force and resistance</div>
+          </div>
+          <figcaption class="mode-caption"><b>Mobile system composition</b><span>Mobile ist keine verkleinerte Desktopgrafik. Operator und Roboter werden vertikal neu komponiert; der geschlossene Weg verbindet beide Motive weiterhin eindeutig und bleibt frei von sichtbarem Linework.</span></figcaption>
+        </figure>
+        <div class="system-rules">
+          <article><b>01 · Hierarchy</b><strong>PATON is the product.</strong><span>Der Operator ist das größte Motiv: neutrales menschliches Linework trägt dauerhaft blaue Suit- und Glove-Layer. Der Roboter bleibt kleiner und sekundär – als Beweis der übertragenen Handlung.</span></article>
+          <article><b>02 · Atmosphere</b><strong>Grid + steady fog.</strong><span>Das technische Raster schafft Maßstab. Der längliche blaue Fog verbindet beide Seiten und pulsiert niemals.</span></article>
+          <article><b>03 · Causality</b><strong>Signals always move.</strong><span>Oben läuft Steuerung zum Roboter, unten Rückmeldung zum Menschen. Signale warten nie statisch auf der Linie.</span></article>
+          <article><b>04 · Physical return</b><strong>Response has a source.</strong><span>Gloves reagieren auf Bewegung; der Suit reagiert beim Eintreffen von Berührung, Kraft und Widerstand.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="future-language">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Possible futures.</span><span class="headline-line">Blueprints with purpose.</span></h2><p>Die Future Canvases sind keine Galerie. Jede Karte ist eine eigenständige räumliche These, in der technisches Linework, negativer Raum und höchstens zwei Farbakzente eine konkrete Möglichkeit zeigen.</p></div>
+        <div class="mode-pair">
+          <figure class="mode-figure">
+            <div class="future-stage future-stage--dark"><div class="future-copy"><p class="eyebrow">Possible futures</p><h3><span>Be present through</span><span>a machine.</span></h3></div><img class="future-sketch future-sketch--dark future-sketch--mirrored" src="../../public/assets/images/possible-futures/sketches/webp/humanoid-with-rose-white.webp" alt=""><img class="future-sketch future-sketch--light future-sketch--mirrored" src="../../public/assets/images/possible-futures/sketches/webp/humanoid-with-rose-black.webp" alt=""></div>
+            <figcaption class="mode-caption"><b>Dark blueprint canvas</b><span>Fast schwarze technische Fläche, weiße Skizze, stärkerer blauer Tiefenraum und klar sichtbares Raster.</span></figcaption>
+          </figure>
+          <figure class="mode-figure">
+            <div class="future-stage future-stage--light"><div class="future-copy"><p class="eyebrow">Possible futures</p><h3><span>Be present through</span><span>a machine.</span></h3></div><img class="future-sketch future-sketch--dark future-sketch--mirrored" src="../../public/assets/images/possible-futures/sketches/webp/humanoid-with-rose-white.webp" alt=""><img class="future-sketch future-sketch--light future-sketch--mirrored" src="../../public/assets/images/possible-futures/sketches/webp/humanoid-with-rose-black.webp" alt=""></div>
+            <figcaption class="mode-caption"><b>Light blueprint canvas</b><span>Kühle helle technische Fläche, dunkle Skizze und leiserer Glow. Position, Szenario und Hierarchie bleiben gleich.</span></figcaption>
+          </figure>
+        </div>
+        <div class="application-grid" aria-label="Drei freigegebene Future-Canvas-Archetypen">
+          <article class="application-rule"><b>01 · Remote skill</b><strong>Work from anywhere.</strong><span>Mensch und Maschine werden als getrennte Orte komponiert. Ein gerichteter Zusammenhang zeigt, wie Geschick zur entfernten Handlung wird.</span></article>
+          <article class="application-rule"><b>02 · Protected presence</b><strong>Enter places people should not.</strong><span>Die Gefahrenzone bleibt räumlich vom Operator getrennt. Technik erklärt Distanz und Schutz, nicht Spektakel.</span></article>
+          <article class="application-rule"><b>03 · Embodied presence</b><strong>Be present through a machine.</strong><span>Eine menschliche Geste trägt die Komposition. Nähe, Berührung und Perspektive sind wichtiger als industrielle Kulisse.</span></article>
+          <article class="application-rule"><b>Shared rule</b><strong>One focal point.</strong><span>Jedes Szenario besitzt eine eindeutige These, viel negativen Raum und höchstens zwei dominante Farbakzente.</span></article>
+        </div>
+        <div class="future-rules">
+          <article><b>01 · Scenario</b><strong>One proposition.</strong><span>Jede Karte beantwortet eine Zukunftsfrage. Sie ist keine austauschbare Produkt- oder Feature-Karte.</span></article>
+          <article><b>02 · Composition</b><strong>Negative space leads.</strong><span>Text und Hauptmotiv besitzen getrennte Zonen. Skizzen dürfen angeschnitten, aber niemals unlesbar werden.</span></article>
+          <article><b>03 · Theme pair</b><strong>White on dark. Black on light.</strong><span>Nur Linework-Variante, Kontraststärke, Grid-Deckkraft und Lichtatmosphäre werden neu kalibriert.</span></article>
+          <article><b>04 · Mobile</b><strong>Vertical and collision-free.</strong><span>Szenarien werden einzeln lesbar. Motive stehen neben- oder übereinander und überlappen sich nie zufällig.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="motion-language">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Movement proves.</span><span class="headline-line">It never decorates.</span></h2><p>Motion macht Ursache, Richtung und physische Rückmeldung sichtbar. Sie beginnt durch ein Ereignis, endet kontrolliert und bleibt ohne Bewegung vollständig verständlich.</p></div>
+        <div class="motion-grid">
+          <article class="motion-rule"><b>01 · Cause</b><strong>Input starts motion.</strong><div class="motion-line" aria-hidden="true"></div><span>Hover, Fokus, Klick, Scrollposition oder ein reales Systemereignis geben den Impuls.</span></article>
+          <article class="motion-rule"><b>02 · Transfer</b><strong>Signals finish their path.</strong><div class="motion-line" aria-hidden="true"></div><span>Begonnene Information läuft vollständig. Kein Signal wartet statisch oder verschwindet unterwegs.</span></article>
+          <article class="motion-rule"><b>03 · Response</b><strong>Feedback has a source.</strong><div class="motion-line" aria-hidden="true"></div><span>Eine Reaktion erscheint dort und dann, wo Bewegung, Kontakt oder Widerstand eintreffen.</span></article>
+          <article class="motion-rule"><b>04 · Reduced motion</b><strong>Meaning remains.</strong><div class="motion-line" aria-hidden="true"></div><span>Statische Zustände zeigen dieselbe Hierarchie. Atmosphärischer Fog bleibt ruhig und pulsiert nie.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="voice">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Say less.</span><span class="headline-line">Mean more.</span></h2><p>Die Sprache ist aktiv, physisch und belegt. Sie beschreibt, was Menschen und Maschinen tun – nicht, wie beeindruckend das Unternehmen sein möchte.</p></div>
+        <div class="do-dont-grid">
+          <article class="do-dont-rule"><b>Do · Say less</b><strong>Interfaces that extend human capability.</strong><span>Kurze Aussage, aktives Verb, menschliche Relevanz und technische Wirkung.</span></article>
+          <article class="do-dont-rule" data-kind="dont"><b>Don't · Advertise</b><strong>A revolutionary, cutting-edge solution.</strong><span>Keine unbewiesenen Superlative oder austauschbare Startup-Sprache.</span></article>
+          <article class="do-dont-rule"><b>Do · Start human</b><strong>Your hands. Anywhere on Earth.</strong><span>Der Mensch ist Ursprung, Maßstab und handelnde Instanz.</span></article>
+          <article class="do-dont-rule" data-kind="dont"><b>Don't · Remove people</b><strong>Autonomy replaces the operator.</strong><span>Robotik wird nicht so erzählt, als sei der Mensch ein zu beseitigendes Problem.</span></article>
+          <article class="do-dont-rule"><b>Do · Show evidence</b><strong>Built through iteration.</strong><span>Reale Hardware und überprüfbare Wirkung tragen die Aussage.</span></article>
+          <article class="do-dont-rule" data-kind="dont"><b>Don't · Simulate proof</b><strong>Future-ready by design.</strong><span>Keine abstrakte Zukunftsrhetorik anstelle realer Entwicklung.</span></article>
+          <article class="do-dont-rule"><b>Do · Compose possibility</b><strong>One scenario. One focal point.</strong><span>Zukunftsbilder erklären eine konkrete Beziehung zwischen Mensch, Interface und Maschine.</span></article>
+          <article class="do-dont-rule" data-kind="dont"><b>Don't · Decorate</b><strong>Particles, glows and motion everywhere.</strong><span>Kein Effekt ohne funktionale oder räumliche Aufgabe.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="applications">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Rules become.</span><span class="headline-line">Real interfaces.</span></h2><p>Die Designsprache bleibt über Zustände und Touchpoints konsistent. Jede Oberfläche übernimmt nur so viel visuelle Autorität, wie ihre Aufgabe benötigt.</p></div>
+        <div class="application-grid">
+          <article class="application-rule"><b>Forms + focus</b><strong>Clarity before polish.</strong><span>Explizite Labels, sichtbarer blauer Fokus, verständliche Fehlertexte und stabile Erfolgszustände. Farbe ist nie der einzige Hinweis.</span></article>
+          <article class="application-rule"><b>Dialogs + menus</b><strong>Foreground, not blackout.</strong><span>Hintergrund leicht blurrieren und moderat dimmen. Das Panel bleibt hell, lesbar und mit Large Surface Continuous Corners gefasst.</span></article>
+          <article class="application-rule"><b>Video + media</b><strong>Evidence gets presence.</strong><span>Eine dauerhafte feine Kontur, klarer Play-Button und stärkerer Fokus im Viewport. Glow unterstützt, ersetzt aber nie die Bedienung.</span></article>
+          <article class="application-rule"><b>Partner logos</b><strong>Trust, quietly.</strong><span>Logos erscheinen als ruhige Referenz: neutrales Grau im Ruhezustand, Originalfarbe nur bei Hover oder Fokus, optisch statt mathematisch skaliert.</span></article>
+          <article class="application-rule"><b>Footer + legal</b><strong>Compact and recoverable.</strong><span>Logo, Social Links und Rechtliches sind semantisch gruppiert. Separate Seiten bewahren Header, Lesebreite und einen intuitiven Rückweg.</span></article>
+          <article class="application-rule"><b>States</b><strong>Hover guides. Focus confirms.</strong><span>Hover verstärkt Orientierung, Fokus sichert Bedienbarkeit. Ein permanenter Selected-State wird nur verwendet, wenn eine echte Auswahl besteht.</span></article>
+          <article class="application-rule"><b>Cards</b><strong>One surface. One purpose.</strong><span>Die gesamte Karte ist nur dann klickbar, wenn alle Inhalte dasselbe Ziel besitzen. Karten werden nicht als universelle Layoutlösung eingesetzt.</span></article>
+          <article class="application-rule"><b>Theme pair</b><strong>Equal authority.</strong><span>Light und Dark teilen Geometrie und Hierarchie, werden aber separat für Kontrast, Fog, Linework und Assetwahl kalibriert.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="campaigns">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">Claims in context.</span></h2><p>Ein Claim ist keine Dekoration, sondern eine präzise Perspektive auf dieselbe Marke. Die aktuellen LinkedIn-Banner zeigen zwei freigegebene Anwendungen in Light und Dark.</p></div>
+        <div class="campaign-grid">
+          <figure class="campaign-card"><img src="../../assets-source/brand/linkedin-profile/exports/linkedin%20banner%20light%20be%20there%20from%20anywhere%20golden%20ratio.png" alt="Helles FELYA LABS LinkedIn-Banner mit dem Claim Be there. From anywhere."><figcaption><strong>Be there. From anywhere.</strong><span>Präsenz und Teleoperation · Light</span></figcaption></figure>
+          <figure class="campaign-card"><img src="../../assets-source/brand/linkedin-profile/exports/linkedin%20banner%20dark%20be%20there%20from%20anywhere%20golden%20ratio.png" alt="Dunkles FELYA LABS LinkedIn-Banner mit dem Claim Be there. From anywhere."><figcaption><strong>Be there. From anywhere.</strong><span>Präsenz und Teleoperation · Dark</span></figcaption></figure>
+          <figure class="campaign-card"><img src="../../assets-source/brand/linkedin-profile/exports/linkedin%20banner%20light%20craft%20connected%20golden%20ratio.png" alt="Helles FELYA LABS LinkedIn-Banner mit dem Claim Craft. Connected."><figcaption><strong>Craft. Connected.</strong><span>Engineering und Zusammenarbeit · Light</span></figcaption></figure>
+          <figure class="campaign-card"><img src="../../assets-source/brand/linkedin-profile/exports/linkedin%20banner%20dark%20craft%20connected%20golden%20ratio.png" alt="Dunkles FELYA LABS LinkedIn-Banner mit dem Claim Craft. Connected."><figcaption><strong>Craft. Connected.</strong><span>Engineering und Zusammenarbeit · Dark</span></figcaption></figure>
+        </div>
+        <div class="campaign-rules">
+          <div><b>01 · Sender</b><span>FELYA LABS · PATON bleibt klein, blau und eindeutig.</span></div>
+          <div><b>02 · Statement</b><span>Zwei redaktionell gesetzte Zeilen, niemals ein zufälliger Dreizeiler.</span></div>
+          <div><b>03 · Evidence</b><span>Reale Hardware macht aus der Aussage eine belegbare Produktgeschichte.</span></div>
+          <div><b>04 · Space</b><span>Safe Areas und negativer Raum schützen Hierarchie und Lesbarkeit.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="governance">
+      <div class="shell">
+        <div class="intro"><h2><span class="headline-line">One continuous story.</span></h2><p>Jede Sektion beantwortet eine neue Frage. Vision wird Verständnis, Verständnis wird Beweis, Beweis wird Möglichkeit und Möglichkeit wird Einladung.</p></div>
+        <div class="timeline"><div><b>01</b><strong>Vision</strong><span>Was wird möglich?</span></div><div><b>02</b><strong>Understanding</strong><span>Wie funktioniert es?</span></div><div><b>03</b><strong>Evidence</strong><span>Was wurde real gebaut?</span></div><div><b>04</b><strong>Invitation</strong><span>Wer baut daran mit?</span></div></div>
+        <div class="application-grid">
+          <article class="application-rule"><b>Source hierarchy</b><strong>Rules before instances.</strong><span>Brand Manual → Design Tokens → visuelles Style Sheet → Implementierung. Neue Regeln werden zuerst im System entschieden.</span></article>
+          <article class="application-rule"><b>Language convention</b><strong>English is canonical.</strong><span>Freigegebene Claims bleiben im englischen Original. Die Dokumentation erklärt auf Deutsch; lokalisierte Website-Copy wird sinngemäß und unabhängig gepflegt.</span></article>
+          <article class="application-rule"><b>Standalone output</b><strong>Portable by default.</strong><span>Dokumentationsgrafiken verwenden browserfeste Bildquellen statt externer CSS-Masken, damit das Sheet auch direkt aus dem Dateisystem funktioniert.</span></article>
+          <article class="application-rule"><b>Changelog</b><strong>Corporate Design · Juli 2026.</strong><span>Version 1.1 erweitert Kontrast, Internationalisierung, Motion, Anwendungen, Do/Don'ts, Future-Archetypen und Governance.</span></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="brand-footer">
+    <div class="footer-inner shell"><img src="../../public/assets/images/brand/felya-labs-logo/felya-labs-wordmark-white.webp" alt="FELYA LABS"><p>Human presence → wearable interface → robotic action → physical return.</p></div>
+  </footer>
+</body>
+</html>
