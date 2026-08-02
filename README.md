@@ -1,8 +1,8 @@
 # FELYA LABS Landing
 
-[![Live website](https://img.shields.io/badge/live-www.felyalabs.com-315efb)](https://www.felyalabs.com)
+[![FELYA LABS PATON — Your hands. Anywhere on Earth.](docs/assets/readme-header-anywhere-on-earth.png)](https://www.felyalabs.com)
 
-![FELYA LABS PATON — Anywhere on Earth](docs/assets/readme-header-anywhere-on-earth.png)
+[![Open the FELYA LABS website](https://img.shields.io/badge/open-www.felyalabs.com-315efb)](https://www.felyalabs.com)
 
 Production source for the multilingual FELYA LABS PATON landing page. The site is built with Astro and Tailwind CSS and is published as static files—no production application server is required.
 
